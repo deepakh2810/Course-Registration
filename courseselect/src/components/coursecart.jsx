@@ -35,7 +35,7 @@ class CourseCart extends Component {
     // console.log(this.props);
     return (
       <React.Fragment>
-        <div className="container-fluid">
+        <div className="container-fluid ">
           <h3 className="text-center">Cart</h3>
           {this.renderTable()}
         </div>
