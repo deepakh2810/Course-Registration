@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const UserSchema = new Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   name: {
     type: String,
     required: true
@@ -18,12 +17,12 @@ const UserSchema = new Schema({
     required: true
   },
   avatar: {
-    type: String,
-    required: true
+    type: String
   },
   date: {
     type: String,
     default: Date.now
   }
 });
-module.exports = User = monggose.model("users", UserSchema);
+
+module.exports = User = mongoose.model("users", UserSchema);
