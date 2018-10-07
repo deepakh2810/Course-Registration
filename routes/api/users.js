@@ -82,7 +82,7 @@ router.post("/login", (req, res) => {
         //sign token
         jwt.sign(
           payload,
-          keys.secretKey,
+          keys.secretOrKey,
           { expiresIn: 36000 },
           (err, token) => {
             res.json({
@@ -93,7 +93,7 @@ router.post("/login", (req, res) => {
         );
       } else {
         errors.password = "Password incorrect";
-        return res.status(400).json(errors.password);
+        return res.status(400).json(errors);
       }
     });
   });
