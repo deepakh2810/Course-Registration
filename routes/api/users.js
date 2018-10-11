@@ -16,11 +16,12 @@ const User = require("../../models/User");
 
 router.get("/test", (req, res) => res.json({ msg: "Users works" }));
 
-// @route   GET  api/users/register
+// @route   POST  api/users/register
 // @desc    Tests post route
 // @access  Public
 
 router.post("/register", (req, res) => {
+  console.log(req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
