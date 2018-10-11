@@ -31,8 +31,6 @@ class CourseCart extends Component {
   }
 
   render() {
-    // console.log("In the cart");
-    // console.log(this.props);
     return (
       <React.Fragment>
         <div className="container-fluid ">

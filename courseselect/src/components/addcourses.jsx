@@ -55,13 +55,13 @@ class AddCourses extends Component {
   };
 
   handleAddToCart = course => {
-    console.log("In Add to cart", course.Schedule);
+    // console.log("In Add to cart", course.Schedule);
     let raiseAlert = 0;
     let alertMessage = "The schedule clashes with courses you already have:";
-    console.log(this.props.studentInfo.Courses);
+    // console.log(this.props.studentInfo.Courses);
 
     for (var i = 0; i < this.props.studentInfo.Courses.length; i++) {
-      console.log("Checking", this.props.studentInfo.Courses[i].Schedule);
+      // console.log("Checking", this.props.studentInfo.Courses[i].Schedule);
 
       if (this.props.studentInfo.Courses[i].Schedule === course.Schedule) {
         raiseAlert = 1;
@@ -98,15 +98,15 @@ class AddCourses extends Component {
   };
 
   render() {
-    // console.log(this.props.studentInfo);
+    // console.log("In add:", this.props);
     return (
       <React.Fragment>
-        {/* <Navbar /> */}
         <main className="container-fluid">
           <div className="row">
             <div className="col-md-9">
               <Courses
                 courses={this.state.courses}
+                stateInfo={this.props.stateInfo}
                 onAdd={this.handleAddToCart}
               />
             </div>

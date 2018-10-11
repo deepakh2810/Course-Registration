@@ -8,7 +8,15 @@ class Courses extends Component {
     return (
       <div>
         {this.props.courses.map(course => (
-          <Course key={course.id} course={course} onAdd={this.props.onAdd} />
+          <Course
+            key={course.id}
+            course={course}
+            onAdd={this.props.onAdd}
+            stateInfo={this.props.stateInfo}
+            swapWith={this.props.swapWith}
+            onSwap={this.props.onSwap}
+            onBack={this.props.onBack}
+          />
         ))}
       </div>
     );
