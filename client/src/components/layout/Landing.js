@@ -17,6 +17,7 @@ class Landing extends Component {
                   with you fellow mates or even professor.
                 </p>
                 <hr />
+
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
                 </Link>
