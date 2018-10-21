@@ -14,9 +14,9 @@ import Footer from "./components/layout/Footer";
 import LandingPage from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import EmailVerification from "./components/auth/Email_verification";
 import Dashboard from "./components/dashboard/Dashboard";
-
-// import { decode } from "punycode";
+import CreateProfile from "./components/create-profile/CreateProfile";
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -45,11 +45,19 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/verify" component={EmailVerification} />
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
               </Switch>
             </div>
             <Footer />

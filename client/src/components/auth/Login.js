@@ -42,37 +42,47 @@ class Login extends Component {
   };
   render() {
     const { errors } = this.state;
+
     return (
       <div>
         <div className="login">
           <div className="container">
             <div className="row">
-              <div className="col-md-8 m-auto">
-                <h1 className="display-4 text-center">Log In</h1>
-                <p className="lead text-center">Sign in to your account</p>
-                <form onSubmit={this.onSubmit}>
-                  <TextFieldGroup
-                    placeholder="Email Address"
-                    name="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    error={errors.email}
-                  />
+              <div className="col-md-6 m-auto">
+                <div class="shadow-lg p-4 mb-10 bg-grey rounded">
+                  <h1 className="display-4 text-center">Log In</h1>
+                  <p className="lead text-center">Sign in to your account</p>
 
-                  <TextFieldGroup
-                    placeholder="Password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                    error={errors.password}
-                  />
-                  <input
-                    type="submit"
-                    className="btn btn-info btn-block mt-4"
-                  />
-                </form>
+                  {errors.inactive && (
+                    <p className="text-danger">{errors.inactive}</p>
+                  )}
+                  <form onSubmit={this.onSubmit}>
+                    <TextFieldGroup
+                      placeholder="Email Address"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
+
+                    <TextFieldGroup
+                      placeholder="Password"
+                      name="password"
+                      type="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
+                    <input
+                      type="submit"
+                      className="btn btn-success btn-block mt-4"
+                    />
+                    <button type="button" class="btn btn-link btn-block">
+                      Forgot/Reset Password?
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>

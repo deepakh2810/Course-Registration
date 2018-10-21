@@ -12,12 +12,6 @@ const validateEducationInput = require("../../validation/education");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
-// @route   GET  api/profile/test
-// @desc    Tests post route
-// @access  Public
-
-router.get("/test", (req, res) => res.json({ msg: "Profile works" }));
-
 // @route   GET  api/profile
 // @desc    Get current users profile
 // @access  Private

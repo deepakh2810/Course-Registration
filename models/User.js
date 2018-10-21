@@ -16,6 +16,12 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  randomSecretToken: {
+    type: String
+  },
+  active: {
+    type: Boolean
+  },
   avatar: {
     type: String
   },

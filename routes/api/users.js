@@ -4,24 +4,21 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const randomstring = require("randomstring");
+const mailer = require("../../misc/mailer");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+const validateVerificationUser = require("../../validation/email_verification");
 
 const keys = require("../../config/keys");
 const User = require("../../models/User");
-// @route   GET  api/users/test
-// @desc    Tests post route
-// @access  Public
-
-router.get("/test", (req, res) => res.json({ msg: "Users works" }));
 
 // @route   POST  api/users/register
 // @desc    Tests post route
 // @access  Public
 
 router.post("/register", (req, res) => {
-  console.log(req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
@@ -48,6 +45,36 @@ router.post("/register", (req, res) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
           newUser.password = hash;
+          //Generate a secret token
+          const randomSecretToken = randomstring.generate();
+          newUser.randomSecretToken = randomSecretToken;
+          newUser.active = false;
+          // Compose an email
+          const html = `Hi ${req.body.name}!
+          <br/>
+          <br />
+          Thank you for registering with us.
+          Please verify your email by pasting following token:
+          Token: <b>${randomSecretToken}</b>
+          <br />
+          on the following page: 
+          <a href="http://localhost:3000/verify">Course-Select verifying page</a>
+          
+          <br /> </br>
+          Have a good day!
+          <br /> </br>
+
+          Team,
+          <br />
+          Course Select
+          `;
+          //Send the email
+          mailer.sendEmail(
+            "admin@courseselect.com",
+            req.body.email,
+            "Email verification",
+            html
+          );
           newUser
             .save()
             .then(user => res.json(user))
@@ -64,7 +91,6 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
-
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -78,6 +104,10 @@ router.post("/login", (req, res) => {
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
+        if (user.active === false) {
+          errors.inactive = "You need to verify your account";
+          return res.status(400).json(errors);
+        }
         //user matched
         const payload = { id: user.id, name: user.name, avatar: user.avatar };
         //sign token
@@ -98,6 +128,29 @@ router.post("/login", (req, res) => {
       }
     });
   });
+});
+
+// @route   POST  api/users/verfiy
+// @desc    Verify post route
+// @access  Public
+
+router.post("/verify", (req, res) => {
+  const { errors, isValid } = validateVerificationUser(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  User.findOne({ randomSecretToken: req.body.secrettoken })
+    .then(user => {
+      if (user && user.active === false) {
+        User.findOneAndUpdate({ $set: { active: true } }).then(user =>
+          res.json({ success: true })
+        );
+      } else if (user.active === true) {
+        errors.message = "Account has been active already. Please login!";
+        return res.status(400).json(errors);
+      }
+    })
+    .catch(err => res.status(404).json({ message: "Invalid token entered" }));
 });
 
 // @route   GET  api/users/current
