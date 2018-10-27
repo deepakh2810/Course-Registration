@@ -17,6 +17,19 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 
+// Verify User
+export const verifyUser = (verifyingToken, history) => dispatch => {
+  axios
+    .post("/api/users/verify", verifyingToken)
+    .then(res => history.push("/login"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 //Login - Get User Token
 
 export const loginUser = userData => dispatch => {

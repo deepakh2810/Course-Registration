@@ -3,27 +3,44 @@ const Schema = mongoose.Schema;
 
 //Create schema
 const UserSchema = new Schema({
-  name: {
+  method: {
     type: String,
+    enum: ["local", "google"],
     required: true
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true
+  local: {
+    name: {
+      type: String
+    },
+    email: {
+      type: String
+    },
+    password: {
+      type: String
+    },
+    randomSecretToken: {
+      type: String
+    },
+    active: {
+      type: Boolean
+    },
+    avatar: {
+      type: String
+    }
   },
-  password: {
-    type: String,
-    required: true
-  },
-  randomSecretToken: {
-    type: String
-  },
-  active: {
-    type: Boolean
-  },
-  avatar: {
-    type: String
+  google: {
+    id: {
+      type: String
+    },
+    name: {
+      type: String
+    },
+    email: {
+      type: String
+    },
+    avatar: {
+      type: String
+    }
   },
   date: {
     type: String,

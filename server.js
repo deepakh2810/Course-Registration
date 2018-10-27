@@ -5,13 +5,15 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const passport = require("passport");
-
+const cors = require("cors");
 const app = express();
 
+// Set up view engine
+// app.set("view engine", "ejs");
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(cors());
 // DB Config
 const db = require("./config/keys").mongoURI;
 //Connect to MongoDB

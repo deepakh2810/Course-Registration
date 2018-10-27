@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import TextFieldGroup from "../common/TextFieldGroup";
-import axios from "axios";
+import { connect } from "react-redux";
+import { verifyUser } from "../../actions/authActions";
 
 class Email_verification extends Component {
   constructor() {
@@ -12,6 +14,13 @@ class Email_verification extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -21,10 +30,7 @@ class Email_verification extends Component {
     const userActivity = {
       secrettoken: this.state.secrettoken
     };
-    axios
-      .post("/api/users/verify", userActivity)
-      .then(res => res.redirect("/login"))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.verifyUser(userActivity, this.props.history);
   }
   render() {
     const { errors } = this.state;
@@ -60,5 +66,16 @@ class Email_verification extends Component {
     );
   }
 }
-
-export default Email_verification;
+Email_verification.propTypes = {
+  verifyUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { verifyUser }
+)(Email_verification);

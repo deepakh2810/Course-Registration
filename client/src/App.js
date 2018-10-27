@@ -45,8 +45,8 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/verify" component={EmailVerification} />
             <div className="container">
+              <Route exact path="/verify" component={EmailVerification} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Switch>

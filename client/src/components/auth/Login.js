@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor() {
@@ -12,6 +13,7 @@ class Login extends Component {
       password: "",
       errors: {}
     };
+
     // this.onChange = this.onChange.bind(this);
     // this.onSubmit = this.onSubmit.bind(this);
   }
@@ -36,10 +38,16 @@ class Login extends Component {
     e.preventDefault();
     const userData = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      method: "local"
     };
     this.props.loginUser(userData);
   };
+
+  handleClick = e => {
+    return <Redirect to="/google" />;
+  };
+
   render() {
     const { errors } = this.state;
 
@@ -49,7 +57,7 @@ class Login extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6 m-auto">
-                <div class="shadow-lg p-4 mb-10 bg-grey rounded">
+                <div className="shadow-lg p-4 mb-10 bg-grey rounded">
                   <h1 className="display-4 text-center">Log In</h1>
                   <p className="lead text-center">Sign in to your account</p>
 
@@ -78,8 +86,15 @@ class Login extends Component {
                       type="submit"
                       className="btn btn-success btn-block mt-4"
                     />
-                    <button type="button" class="btn btn-link btn-block">
+                    <button type="button" className="btn btn-link btn-block">
                       Forgot/Reset Password?
+                    </button>
+                    <button
+                      type="button"
+                      onClick={this.handleClick}
+                      className="btn btn-danger btn-block mt-4"
+                    >
+                      Sign In using Google+
                     </button>
                   </form>
                 </div>
