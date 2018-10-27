@@ -30,6 +30,33 @@ export const verifyUser = (verifyingToken, history) => dispatch => {
     );
 };
 
+//Signin Google
+export const oauthGoogle = data => dispatch => {
+  axios
+    .post("api/users/oauth/google", {
+      access_token: data
+    })
+    .then(res => {
+      // save to local storage
+
+      const { token } = res.data;
+      // set token to local storage
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      //Decode token to get user data
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
 //Login - Get User Token
 
 export const loginUser = userData => dispatch => {
@@ -37,6 +64,7 @@ export const loginUser = userData => dispatch => {
     .post("/api/users/login", userData)
     .then(res => {
       // save to local storage
+
       const { token } = res.data;
       // set token to local storage
       localStorage.setItem("jwtToken", token);

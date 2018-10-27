@@ -107,7 +107,7 @@ router.post("/login", (req, res) => {
     }
     bcrypt.compare(password, user.local.password).then(isMatch => {
       if (isMatch) {
-        if (user.active === false) {
+        if (user.local.active === false) {
           errors.inactive = "You need to verify your account";
           return res.status(400).json(errors);
         }

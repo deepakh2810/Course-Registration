@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/authActions";
+import { loginUser, oauthGoogle } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
 import { Redirect } from "react-router-dom";
-
+import GoogleLogin from "react-google-login";
 class Login extends Component {
   constructor() {
     super();
@@ -44,8 +44,8 @@ class Login extends Component {
     this.props.loginUser(userData);
   };
 
-  handleClick = e => {
-    return <Redirect to="/google" />;
+  responseGoogle = res => {
+    this.props.oauthGoogle(res.accessToken);
   };
 
   render() {
@@ -89,13 +89,15 @@ class Login extends Component {
                     <button type="button" className="btn btn-link btn-block">
                       Forgot/Reset Password?
                     </button>
-                    <button
-                      type="button"
-                      onClick={this.handleClick}
-                      className="btn btn-danger btn-block mt-4"
+
+                    <GoogleLogin
+                      clientId="498630087136-oorljhuca5lojak119ji46rvn02g764d.apps.googleusercontent.com"
+                      onSuccess={this.responseGoogle}
+                      onFailure={this.responseGoogle}
+                      className="btn btn-outline-danger btn-block mt-4"
                     >
-                      Sign In using Google+
-                    </button>
+                      <span> Sign In using Google+</span>
+                    </GoogleLogin>
                   </form>
                 </div>
               </div>
@@ -109,6 +111,7 @@ class Login extends Component {
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
+  oauthGoogle: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -118,5 +121,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { loginUser }
+  { loginUser, oauthGoogle }
 )(Login);

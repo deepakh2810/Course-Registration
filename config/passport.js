@@ -37,11 +37,6 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       //passport callback function
-      // console.log("access token", accessToken);
-      // console.log("refresh token", refreshToken);
-      // console.log("profile", profile);
-      // console.log("Done", done);
-
       // Check whether this current user exists or not
       User.findOne({ "google.id": profile.id }).then(user => {
         if (user) {
@@ -58,7 +53,6 @@ passport.use(
             avatar: profile.photos[0].value
           }
         });
-        console.log(newUser);
         newUser.save().then(newUser => {
           done(null, newUser);
         });
