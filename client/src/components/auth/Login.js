@@ -49,7 +49,7 @@ class Login extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6 m-auto">
-                <div class="shadow-lg p-4 mb-10 bg-grey rounded">
+                <div className="shadow-lg p-4 mb-10 bg-grey rounded">
                   <h1 className="display-4 text-center">Log In</h1>
                   <p className="lead text-center">Sign in to your account</p>
 
@@ -78,7 +78,7 @@ class Login extends Component {
                       type="submit"
                       className="btn btn-success btn-block mt-4"
                     />
-                    <button type="button" class="btn btn-link btn-block">
+                    <button type="button" className="btn btn-link btn-block">
                       Forgot/Reset Password?
                     </button>
                   </form>
