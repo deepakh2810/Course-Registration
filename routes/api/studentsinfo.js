@@ -9,13 +9,17 @@ const validateCourseInput = require("../../validation/studentinfo");
 // @route   GET  api/studentsinfo
 // @desc    Get all students
 // @access  Public
-router.get("/", (req, res) => {
-  // console.log("Request", req);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // console.log("Request", req);
 
-  Studentinfo.find()
-    .sort({ date: -1 })
-    .then(studentinfo => res.json(studentinfo));
-});
+    Studentinfo.find()
+      .sort({ date: -1 })
+      .then(studentinfo => res.json(studentinfo));
+  }
+);
 
 // // @route   GET  api/studentsinfo
 // // @desc Get a specific student
@@ -43,7 +47,8 @@ router.post(
       type: req.body.type,
       studentid: req.body.studentid,
       gpa: req.body.gpa,
-      courses: req.body.courses
+      coursesselected: req.body.coursesselected,
+      coursesincart: req.body.coursesincart
     });
 
     newStudentinfo.save().then(studentinfo => res.json(studentinfo));
@@ -53,12 +58,16 @@ router.post(
 // @route   DELETE api/studentsinfo/:id
 // @desc    Delete A Student
 // @access  Public
-router.delete("/:id", (req, res) => {
-  Studentinfo.findById(req.params.id)
-    .then(studentinfo =>
-      studentinfo.remove().then(() => res.json({ success: true }))
-    )
-    .catch(err => res.status(404).json({ success: false }));
-});
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Studentinfo.findById(req.params.id)
+      .then(studentinfo =>
+        studentinfo.remove().then(() => res.json({ success: true }))
+      )
+      .catch(err => res.status(404).json({ success: false }));
+  }
+);
 
 module.exports = router;

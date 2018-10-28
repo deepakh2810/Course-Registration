@@ -23,7 +23,17 @@ const StudentInfoSchema = new Schema({
     type: String,
     required: true
   },
-  courses: [
+  coursesselected: [
+    {
+      name: { type: String },
+      courseNumber: { type: String },
+      instructor: { type: String },
+      description: { type: String },
+      location: { type: String },
+      schedule: { type: String }
+    }
+  ],
+  coursesincart: [
     {
       name: { type: String },
       courseNumber: { type: String },
