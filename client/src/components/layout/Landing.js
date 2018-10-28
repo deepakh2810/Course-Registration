@@ -20,7 +20,7 @@ class Landing extends Component {
                   {" "}
                   A one stop destination for students and professor. Here, you
                   can browse the courses, select, and enroll. You can even chat
-                  with you fellow mates or even professor.
+                  with your fellow mates or even professor.
                 </p>
                 <hr />
 
