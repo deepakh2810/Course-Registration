@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
+import Selection from "../add-swap-delete-course/selection";
+// import ShowCourse from "../add-swap-delete-course/showavailablecourses";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -11,6 +13,8 @@ class Dashboard extends Component {
   }
   render() {
     const { user } = this.props.auth;
+    // console.log(user);
+
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
@@ -20,7 +24,13 @@ class Dashboard extends Component {
     } else {
       // check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h4>DISPLAY PROFILE</h4>;
+        dashboardContent = (
+          <div>
+            {/* <ShowCourse /> */}
+            <Selection username={user.name} />
+          </div>
+        );
+        // dashboardContent = <h4>Other Stuff</h4>;
       } else {
         dashboardContent = (
           <div>
