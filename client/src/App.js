@@ -17,6 +17,8 @@ import Register from "./components/auth/Register";
 import EmailVerification from "./components/auth/Email_verification";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
+import Addswapdelete from "./components/addswapdelete/addswapdel";
+
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -42,16 +44,28 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
+          <React.Fragment>
+          {/* <div className="App"> */}
+
             <Navbar />
             <Route exact path="/" component={LandingPage} />
-            <div className="container">
+            {/* <div className="container-fluid"> */}
               <Route exact path="/verify" component={EmailVerification} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
+
+              <Switch>
+                <PrivateRoute exact path="/Addswapdelete" component={Addswapdelete} />
+              </Switch>
+
+              
+
+          
+
               <Switch>
                 <PrivateRoute
                   exact
@@ -59,9 +73,11 @@ class App extends Component {
                   component={CreateProfile}
                 />
               </Switch>
-            </div>
+
+            
             <Footer />
-          </div>
+          {/* </div> */}
+          </React.Fragment>
         </Router>
       </Provider>
     );
