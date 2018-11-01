@@ -1,8 +1,6 @@
-
 import React from "react";
 import './Form.css';
 import './TheForm.css';
-import TheForm from "./TheForm"
 
 import { Button } from 'react-bootstrap';
 

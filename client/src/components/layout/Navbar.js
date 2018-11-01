@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Searchbox from "../reviewcourse/Searchbox";
+
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
@@ -16,11 +18,13 @@ class Navbar extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto ">
+
+
         <li className="nav-item ">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link" 
+            className="nav-link"
           >
             <img
               className="rounded-circle"
@@ -32,6 +36,7 @@ class Navbar extends Component {
             Logout
           </a>
         </li>
+
       </ul>
     );
     const guestLink = (
@@ -68,7 +73,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   {" "}
-                  
+
                 </Link>
               </li>
             </ul>

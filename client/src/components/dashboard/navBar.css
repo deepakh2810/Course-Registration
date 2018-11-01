@@ -16,7 +16,7 @@
     min-width: 275px;
     max-width: 275px;
     position:relative;
-    
+
     height: 100%;
     background: rgb(1, 4, 14);
     color: #fff;
@@ -24,7 +24,7 @@
     margin-top: -25px !important;
     margin-left: 0px !important;
     margin-bottom: 0px !important;
-    
+
 }
 
 #sidebar.active {

@@ -36,9 +36,9 @@ class Dashboard extends Component {
               title="You must have a Gravatar connected to your email to display an image"
             />{" "}
             <p className="lead text-muted" align="center" > Welcome <br/><b>{user.name}</b></p>
-              
+
               </div>
-              
+
               <ul className="list-unstyled components">
               <li>
                     <a href="/"  aria-expanded="true">
@@ -77,7 +77,7 @@ class Dashboard extends Component {
                     Direct Message
                   </a>
                 </li>
-             
+
 
                 <li>
                   <a href="/" aria-expanded="true">
@@ -85,23 +85,23 @@ class Dashboard extends Component {
                     Check Out
                   </a>
                 </li>
-            
+
               </ul>
             </nav>
-           
+
             {/* <div id="content">
                 <div className="container-fluid">
                   <div className="navbar-header">
                 </div>
             </div>
         </div>*/}
-          </div> 
+          </div>
       </React.Fragment>
         );
-          
+
       } else {
         dashboardContent = (
-         
+
           <React.Fragment>
           <div className="wrapper">
             <nav id="sidebar">
@@ -114,9 +114,9 @@ class Dashboard extends Component {
               title="You must have a Gravatar connected to your email to display an image"
             />{" "}
             <p className="lead text-muted" align="center" > Welcome <br/><b>{user.name}</b></p>
-              
+
               </div>
-              
+
               <ul className="list-unstyled components">
               <li>
                     <a href="/"  aria-expanded="true">
@@ -138,7 +138,7 @@ class Dashboard extends Component {
                   </a>
                   </li>
                <li>
-                  <a href="/" aria-expanded="true">
+                  <a href="/reviewcourses" aria-expanded="true">
                     <i className="glyphicon glyphicon-link" />
                     Course Reviews
                   </a>
@@ -155,25 +155,25 @@ class Dashboard extends Component {
                     Direct Message
                   </a>
                 </li>
-             
+
 
                 <li>
-                  <a href="/" aria-expanded="true">
+                  <a href="/Payment" aria-expanded="true">
                     <i className="glyphicon glyphicon-shopping-cart" />
                     Check Out
                   </a>
                 </li>
-            
+
               </ul>
             </nav>
-           
+
             {/* <div id="content">
                 <div className="container-fluid">
                   <div className="navbar-header">
                 </div>
             </div>
         </div>*/}
-          </div> 
+          </div>
       </React.Fragment>
         );
       }
@@ -206,4 +206,3 @@ export default connect(
   mapStateToProps,
   { getCurrentProfile }
 )(Dashboard);
-

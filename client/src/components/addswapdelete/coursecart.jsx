@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 class CourseCart extends Component {
   renderTable() {
@@ -25,7 +26,7 @@ class CourseCart extends Component {
             </tbody>
           ))}
         </table>
-        <button className="btn btn-success w-100">Pay Now</button>
+        <button onClick={ <Redirect to=  '/Payment' />} className="btn btn-success w-100">Pay Now</button>
       </React.Fragment>
     );
   }

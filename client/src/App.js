@@ -20,6 +20,15 @@ import CreateProfile from "./components/create-profile/CreateProfile";
 import Addswapdelete from "./components/addswapdelete/addswapdel";
 
 
+import Payment from "./components/payment/Payment";
+import ReviewPage from "./components/reviewcourse/ReviewPage";
+import ReviewCourses from "./components/reviewcourse/ReviewCourses";
+import Searchbox from "./components/reviewcourse/Searchbox";
+import Math101 from "./components/reviewcourse/Math101";
+import ComSci565 from "./components/reviewcourse/ComSci565";
+import Info401 from "./components/reviewcourse/Info401";
+
+
 //Check for token
 if (localStorage.jwtToken) {
   // Set the auth token header auth
@@ -53,7 +62,7 @@ class App extends Component {
               <Route exact path="/verify" component={EmailVerification} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              
+
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -62,9 +71,20 @@ class App extends Component {
                 <PrivateRoute exact path="/Addswapdelete" component={Addswapdelete} />
               </Switch>
 
-              
 
-          
+              <Switch>
+                <PrivateRoute exact path="/Payment" component={Payment} />
+              </Switch>
+
+              <Switch>
+                <Route exact path="/reviewcourses" component={ReviewPage} />
+                <Route exact path="/reviewcourses/101" component={Math101} />
+                <Route exact path="/reviewcourses/565" component={ComSci565} />
+                <Route exact path="/reviewcourses/401" component={Info401} />
+
+
+              </Switch>
+
 
               <Switch>
                 <PrivateRoute
@@ -74,7 +94,7 @@ class App extends Component {
                 />
               </Switch>
 
-            
+
             <Footer />
           {/* </div> */}
           </React.Fragment>

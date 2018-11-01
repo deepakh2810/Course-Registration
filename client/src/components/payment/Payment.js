@@ -1,10 +1,9 @@
 import React from "react";
-import Cart from "./Cart";
-import './Form.css';
+import Cart from "./Cart"
+//import FinancialAid from "./FinancialAid"
 import './TheForm.css';
-import NewForm from "./NewForm";
+import NewForm from "./NewForm"
 
-const jsonfile = require('jsonfile');
 
 
 
@@ -111,14 +110,13 @@ state = {
   render() {
     return (
 
-  
+<div className="App">
 
 
-
- 
+<br/> 
   <div className="row">
 
-              <div className="container"> <br/>
+              <div className="thecontainer"> <br/>
                  <br/> <div id="first">
                       <NewForm   formSubmitted = {this.state.formSubmitted}
                       submitFunction={this.submitFunction}
@@ -128,13 +126,13 @@ state = {
 
           <div id="second">
 
-        {/*   <div className="containerRight">
+          {/*     <div className="containerRight">
                  <FinancialAid applyChangesFunction = {this.applyChangesFunction}
                    finaidchanged = {this.state.finaidchanged}
                      error = {this.state.error} />
-               </div> */}
-                <br/> 
-               <div className="containerRight">
+               </div>
+                <br/> */}
+               <div className="containerRight float-right m-2"  >
 
                  <Cart  printFunction = {this.printFunction} />
                </div>
@@ -142,11 +140,9 @@ state = {
     </div>
 
   </div>
-  
-  
 
 
-
+</div>
     );
   }
 }
