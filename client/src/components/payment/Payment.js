@@ -113,15 +113,15 @@ state = {
 <div className="App">
 
 
-<br/> 
+<br/>
   <div className="row">
 
               <div className="thecontainer"> <br/>
-                 <br/> <div id="first">
+                 <br/>       <div id="first">
                       <NewForm   formSubmitted = {this.state.formSubmitted}
                       submitFunction={this.submitFunction}
                       error = {this.state.error} />
-                      </div>
+                            </div>
                </div> <br/>
 
           <div id="second">
@@ -132,7 +132,7 @@ state = {
                      error = {this.state.error} />
                </div>
                 <br/> */}
-               <div className="containerRight float-right m-2"  >
+               <div className="containerRight "  >
 
                  <Cart  printFunction = {this.printFunction} />
                </div>

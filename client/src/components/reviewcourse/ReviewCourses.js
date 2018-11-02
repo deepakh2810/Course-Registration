@@ -42,9 +42,9 @@ render(){
             </Router>
           */}
 
-          <p>  <h1>Search Results { this.props.searchtext  } </h1>  </p>
+        {/*  <p>  <h1>Search Results { this.props.searchtext  } </h1>  </p>
 
-          <h1> Review Page For:  </h1>
+          <h1> Review Page For:  </h1>   */ }
 
 
       </form>

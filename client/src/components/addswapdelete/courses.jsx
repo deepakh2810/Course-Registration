@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Course from "./course";
+import ReviewPage from "../reviewcourse/ReviewPage";
 
 class Courses extends Component {
   render() {
     // console.log("hello");
-    // console.log(this.props);
+     console.log(this.props);
     return (
       <div>
         {this.props.courses.map(course => (
@@ -17,8 +18,13 @@ class Courses extends Component {
             onSwap={this.props.onSwap}
             onBack={this.props.onBack}
           />
+
         ))}
+
+
+
       </div>
+
     );
   }
 }

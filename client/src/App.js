@@ -21,6 +21,8 @@ import Addswapdelete from "./components/addswapdelete/addswapdel";
 
 
 import Payment from "./components/payment/Payment";
+import Cart from "./components/payment/Cart";
+
 import ReviewPage from "./components/reviewcourse/ReviewPage";
 import ReviewCourses from "./components/reviewcourse/ReviewCourses";
 import Searchbox from "./components/reviewcourse/Searchbox";
@@ -78,6 +80,7 @@ class App extends Component {
 
               <Switch>
                 <Route exact path="/reviewcourses" component={ReviewPage} />
+
                 <Route exact path="/reviewcourses/101" component={Math101} />
                 <Route exact path="/reviewcourses/565" component={ComSci565} />
                 <Route exact path="/reviewcourses/401" component={Info401} />

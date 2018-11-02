@@ -3,6 +3,13 @@ import '../payment/Searchbox.css';
 import Searchbox from "./Searchbox"
 import ReviewCourses from "./ReviewCourses"
 import { Link } from "react-router-dom";
+import Course from "../addswapdelete/course";
+import Courses from "../addswapdelete/courses";
+import CourseCart from "../addswapdelete/coursecart";
+import ViewCourse from "../addswapdelete/viewcourse";
+
+import { getCourses } from "../../actions/courseActions";
+import { connect } from "react-redux";
 
 const courses = [
 {
@@ -92,7 +99,10 @@ render(){
         searchtext={this.state.searchtext}
         searchHandler = {this.searchHandler} value = {term} />
 
-<div className="card w-75 m-2">
+
+  <div className="row">
+
+<div className="card w-75 m-5">
   <div className="card-body">
     <div className="card-title">
 
@@ -112,6 +122,24 @@ render(){
 
 
 
+<div className="col-md-9">
+  {this.props.courses.courses.map(course => (
+    <div>
+    <ViewCourse
+      key={course.coursenumber}
+      course={course}
+      onAdd={this.handleAddToCart}
+    />
+    </div>
+  ))}
+</div>
+
+
+
+</div>
+
+
+
   </form>
 
 );
@@ -123,5 +151,16 @@ render(){
 
 }
 
+const mapStateToProps = state => {
+  return {
+    courses: state.courses
+  };
+};
 
-export default ReviewPage;
+export default connect(
+  mapStateToProps,
+  { getCourses }
+)(ReviewPage);
+
+
+//export default ReviewPage;

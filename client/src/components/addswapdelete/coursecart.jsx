@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
+import Courses from "./courses";
+import Cart from "../payment/Cart";
+import ViewCourse from "./viewcourse";
+import { getCourses } from "../../actions/courseActions";
+import { connect } from "react-redux";
+import ReviewPage from "../reviewcourse/ReviewPage";
+import AddCourses from "./addcourses";
+
 class CourseCart extends Component {
+
+
+
   renderTable() {
-    if (this.props.coursesAdded.length === 0)
+    if (this.props.coursesAdded )
       return <p className="text-center">No courses in the cart yet.</p>;
+
 
     return (
       <React.Fragment>
@@ -42,5 +54,14 @@ class CourseCart extends Component {
     );
   }
 }
+
+
+const mapStateToProps = state => {
+  return {
+    courses: state.courses
+  };
+};
+
+
 
 export default CourseCart;

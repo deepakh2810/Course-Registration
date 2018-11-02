@@ -16,13 +16,7 @@ render(){
       <form>
 
 
-        <div className="next2sidebar">
-        <div className="card w-75 m-2">
-
-            <p>  <h1>Search Results { this.props.searchtext  } </h1>  </p>
-            <h1> Review Page For:  </h1>
-              </div>
-       </div>
+      
 
        <div className="card w-75 m-2">
          <div className="card-body">

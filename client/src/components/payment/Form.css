@@ -1,4 +1,5 @@
 
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 body {
   font-family: Arial;
@@ -19,6 +20,7 @@ body {
 
 
 }
+
 #second {
   float: right;
   width: 45%;
@@ -26,6 +28,8 @@ body {
   margin-right: -100px;
 
   height: 60%;
+
+  margin-right: 0px;
 
 
 }
@@ -55,6 +59,8 @@ body {
   margin: auto;
   margin-left: 100px;
   margin-top: 50px;
+  margin-left: 10%;
+
 
 
 }
@@ -95,9 +101,18 @@ body {
   filter:alpha(opacity=90);
   -moz-opacity:.90;
   opacity:.90;
+
+  margin-left: 5%;
+
+  width: 55%;
+
+
 }
 
 .containerRight {
+  position: relative;
+  margin-top: -4.5%;
+
   background-color: #f2f2f2;
   padding: 0px 20px 15px 20px;
   border: 1px solid lightgrey;
@@ -108,7 +123,14 @@ body {
   opacity:.90;
   margin-right: 100px;
   margin-left: -10px;
-  margin-top: -10%;
+
+  margin-right: 0%;
+
+  margin-left: 150%;
+
+  margin-top: -87%;
+
+
 }
 
 
@@ -193,6 +215,8 @@ span.price {
       margin: auto;
       margin-left: 17%;
       height: 60%;
+
+
     }
 
 
