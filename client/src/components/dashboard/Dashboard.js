@@ -26,8 +26,8 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            {/* <ShowCourse /> */}
             <Selection username={user.name} />
+            {/* <h2>Hello</h2> */}
           </div>
         );
         // dashboardContent = <h4>Other Stuff</h4>;

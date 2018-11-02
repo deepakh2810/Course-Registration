@@ -6,6 +6,7 @@ const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const courses = require("./routes/api/courses");
 const studentsinfo = require("./routes/api/studentsinfo");
+const studentinfobyname = require("./routes/api/studentinfobyname");
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
@@ -39,6 +40,7 @@ app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
+app.use("/api/studentinfobyname/", studentinfobyname);
 
 const port = process.env.PORT || 5000;
 

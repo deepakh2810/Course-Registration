@@ -1,4 +1,11 @@
-import { GET_STUDENTINFO, STUDENTINFO_LOADING } from "../actions/types";
+import {
+  GET_STUDENTINFO,
+  STUDENTINFO_LOADING,
+  GET_STUDENTINFO_BY_NAME,
+  POST_COURSE_TO_CART,
+  REMOVE_COURSE_FROM_CART,
+  REMOVE_COURSE_FROM_STUDENT
+} from "../actions/types";
 
 const initialState = {
   studentinfo: [
@@ -9,7 +16,17 @@ const initialState = {
       type: null,
       studentid: null,
       gpa: null,
-      courses: [
+      coursesselected: [
+        {
+          name: null,
+          coursenumber: null,
+          instructor: null,
+          description: null,
+          location: null,
+          schedule: null
+        }
+      ],
+      coursesincart: [
         {
           name: null,
           coursenumber: null,
@@ -25,8 +42,6 @@ const initialState = {
 };
 
 export default function(state = initialState, action) {
-  // console.log("reducer:", action);
-
   switch (action.type) {
     case STUDENTINFO_LOADING:
       return {
@@ -34,6 +49,30 @@ export default function(state = initialState, action) {
         loading: true
       };
     case GET_STUDENTINFO:
+      return {
+        ...state,
+        studentinfo: action.payload,
+        loading: false
+      };
+    case GET_STUDENTINFO_BY_NAME:
+      return {
+        ...state,
+        studentinfo: action.payload,
+        loading: false
+      };
+    case POST_COURSE_TO_CART:
+      return {
+        ...state,
+        studentinfo: action.payload,
+        loading: false
+      };
+    case REMOVE_COURSE_FROM_CART:
+      return {
+        ...state,
+        studentinfo: action.payload,
+        loading: false
+      };
+    case REMOVE_COURSE_FROM_STUDENT:
       return {
         ...state,
         studentinfo: action.payload,

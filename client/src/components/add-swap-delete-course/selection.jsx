@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getStudentinfo } from "../../actions/studentinfoActions";
+import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import ViewCourse from "./viewcourse";
 import AddCourses from "./addcourses";
 import SwapCourse from "./swapcourse";
@@ -10,57 +10,62 @@ class Selection extends Component {
       add: 0,
       swap: {
         ind: 0,
-        courseId: ""
+        courseId: "",
+        courseName: ""
       }
     }
   };
 
   handleAddView = () => {
-    // console.log("Am I here?");
-    // console.log(this.state.selectButtonInfo);
-
     const selectButtonInfo = this.state.selectButtonInfo;
     selectButtonInfo.add = 1;
-    // console.log(selectButtonInfo);
 
-    // this.state.selectButton.add = 1;
     this.setState(selectButtonInfo);
   };
 
-  handleSwapView = courseId => {
-    // console.log("Handle Swap");
+  handleBacktoHome = backFrom => {
+    const selectButtonInfo = this.state.selectButtonInfo;
+
+    switch (backFrom) {
+      case "add":
+        selectButtonInfo.add = 0;
+        break;
+      case "swap":
+        selectButtonInfo.swap.ind = 0;
+        break;
+      default:
+        break;
+    }
+
+    this.setState(selectButtonInfo);
+  };
+
+  handleSwapView = (courseid, coursename) => {
     const selectButtonInfo = this.state.selectButtonInfo;
     selectButtonInfo.swap.ind = 1;
-    selectButtonInfo.swap.courseId = courseId;
-    // console.log(selectButtonInfo);
+    selectButtonInfo.swap.courseId = courseid;
+    selectButtonInfo.swap.courseName = coursename;
 
     this.setState(selectButtonInfo);
   };
 
   componentDidMount() {
-    this.props.getStudentinfo();
+    this.props.getStudentInfoByName(this.props.username);
   }
 
-  findStudentInfo = () => {
-    let username = this.props.username;
-
-    let availableCourses = [];
-    this.props.studentinfo.studentinfo.forEach(function(item) {
-      if (item.name === username) {
-        availableCourses = item.courses;
-      }
-    });
-
-    return availableCourses;
-  };
   renderSelection() {
     if (this.state.selectButtonInfo.add === 1)
       return (
         <React.Fragment>
           <AddCourses
-          // studentInfo={this.props.studentInfo}
-          // stateInfo={this.state.selectButtonInfo}
-          // onBack={this.handleBacktoHome}
+            onBack={this.handleBacktoHome}
+            studentid={this.props.studentinfobyname.studentinfo.studentid}
+            coursesincart={
+              this.props.studentinfobyname.studentinfo.coursesincart
+            }
+            coursesselected={
+              this.props.studentinfobyname.studentinfo.coursesselected
+            }
           />
         </React.Fragment>
       );
@@ -75,13 +80,42 @@ class Selection extends Component {
     return (
       <React.Fragment>
         <SwapCourse
-          // studentInfo={this.props.studentInfo}
+          studentid={this.props.studentinfobyname.studentinfo.studentid}
           stateInfo={this.state.selectButtonInfo}
           onBack={this.handleBacktoHome}
-          onSwap={this.props.onSwap}
+          coursesselected={
+            this.props.studentinfobyname.studentinfo.coursesselected
+          }
+          coursesincart={this.props.studentinfobyname.studentinfo.coursesincart}
         />
       </React.Fragment>
     );
+  }
+
+  renderSchedule() {
+    if (this.props.studentinfobyname.studentinfo.coursesselected.length === 0) {
+      return (
+        <h4 className="m-2">
+          You do not have any courses added. Please add few.
+        </h4>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          {this.props.studentinfobyname.studentinfo.coursesselected.map(
+            course => (
+              <ViewCourse
+                key={course._id}
+                studentid={this.props.studentinfobyname.studentinfo.studentid}
+                course={course}
+                status="selectedcourses" //courses that are already added to the profile
+                onSwap={this.handleSwapView}
+              />
+            )
+          )}
+        </React.Fragment>
+      );
+    }
   }
 
   renderSelectionContent() {
@@ -91,25 +125,27 @@ class Selection extends Component {
           Add New Course{" "}
         </button>
         <h2 className="m-2">Your Current Schedule: </h2>
-        {this.findStudentInfo().map(course => (
-          <ViewCourse key={course._id} course={course} status="added" />
-        ))}
+        <div>{this.renderSchedule()}</div>
       </React.Fragment>
     );
   }
 
   render() {
-    return <div>{this.renderSelection()}</div>;
+    if (this.props.studentinfobyname.studentinfo.coursesselected) {
+      return <div>{this.renderSelection()}</div>;
+    } else {
+      return <div>Loading..</div>;
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    studentinfo: state.studentsinfo
+    studentinfobyname: state.studentsinfo
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getStudentinfo }
+  { getStudentInfoByName }
 )(Selection);

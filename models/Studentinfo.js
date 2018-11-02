@@ -26,21 +26,27 @@ const StudentInfoSchema = new Schema({
   coursesselected: [
     {
       name: { type: String },
-      courseNumber: { type: String },
+      coursenumber: { type: String },
       instructor: { type: String },
       description: { type: String },
       location: { type: String },
-      schedule: { type: String }
+      schedule: { type: String },
+      year: { type: String },
+      semester: { type: String },
+      department: { type: String }
     }
   ],
   coursesincart: [
     {
       name: { type: String },
-      courseNumber: { type: String },
+      coursenumber: { type: String },
       instructor: { type: String },
       description: { type: String },
       location: { type: String },
-      schedule: { type: String }
+      schedule: { type: String },
+      year: { type: String },
+      semester: { type: String },
+      department: { type: String }
     }
   ],
   date: {
