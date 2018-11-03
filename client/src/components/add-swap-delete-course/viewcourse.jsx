@@ -116,6 +116,9 @@ class ViewCourse extends Component {
           </div>
           <div className="card-text">
             <p>{this.props.course.description}</p>
+            <h4>
+              Instructor: <strong>{this.props.course.instructor}</strong>
+            </h4>
             <h4>{this.props.course.location}</h4>
             <h5>{this.props.course.schedule}</h5>
             <a href="#" className="float-right">
