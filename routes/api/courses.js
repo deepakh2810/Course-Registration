@@ -15,6 +15,24 @@ router.get("/", (req, res) => {
     .then(courses => res.json(courses));
 });
 
+// @route   GET api/courses
+// @desc    Get a course with coursenumber
+// @access  Public
+
+router.get(
+  "/:coursenumber",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("Here in the api", req.params.coursenumber);
+    Course.findOne({ coursenumber: req.params.coursenumber })
+      .then(Course => {
+        // console.log("In Api: ", Course);
+        res.json(Course);
+      })
+      .catch(err => res.status(404).json({ success: false }));
+  }
+);
+
 // @route   POST api/courses
 // @desc    Create A new Course
 // @access  Public

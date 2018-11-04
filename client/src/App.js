@@ -17,6 +17,7 @@ import Register from "./components/auth/Register";
 import EmailVerification from "./components/auth/Email_verification";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
+import ViewCourseDetails from "./components/add-swap-delete-course/viewcoursedetails";
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -57,6 +58,13 @@ class App extends Component {
                   exact
                   path="/create-profile"
                   component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/coursedetails/:coursenumber"
+                  component={ViewCourseDetails}
                 />
               </Switch>
             </div>

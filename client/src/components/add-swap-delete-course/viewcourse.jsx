@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { postCourseToCart } from "../../actions/studentinfoActions";
 import { removeCourseFromStudent } from "../../actions/studentinfoActions";
 import { swapCourse } from "../../actions/studentinfoActions";
+import { Link } from "react-router-dom";
 // import { log } from "util";
 class ViewCourse extends Component {
   handleAdd = () => {
@@ -121,9 +122,9 @@ class ViewCourse extends Component {
             </h4>
             <h4>{this.props.course.location}</h4>
             <h5>{this.props.course.schedule}</h5>
-            <a href="#" className="float-right">
-              View More
-            </a>
+            <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+              <span className="float-right">View More</span>
+            </Link>
             <br />
             {this.renderAddOrSwapButton()}
           </div>
