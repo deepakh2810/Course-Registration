@@ -7,6 +7,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile } from "../../actions/profileActions";
+import Sidebar from "../layout/Sidebar";
 import DashBoard from "../dashboard/Dashboard";
 import Dashboard from "../dashboard/Dashboard";
 
@@ -120,8 +121,14 @@ class CreateProfile extends Component {
       { label: "Intern", value: "Intern" }
     ];
     return (
-      <div className="create-profile">
       <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-2">
+          <Sidebar />
+        </div>
+        <div className="col-md-10">
+      <div className="create-profile">
+      <div className="container">
           <div className="row">
           
         
@@ -221,6 +228,9 @@ class CreateProfile extends Component {
             </div>
           </div>
         </div>
+      </div>
+      </div>
+      </div>
       </div>
     );
   }

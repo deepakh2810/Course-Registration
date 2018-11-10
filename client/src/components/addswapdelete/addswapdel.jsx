@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Selection from "./selection";
 import Dashboard from "../dashboard/Dashboard";
+import Sidebar from "../layout/Sidebar";
 
 class AddSwapDelete extends Component {
   state = {
@@ -59,7 +60,16 @@ class AddSwapDelete extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-2">
+          <Sidebar />
+        </div>
+        <div className="col-md-10">
+      <div className="create-profile">
+      <div className="container">
+          <div className="row">
+
         <div className="container-fluid">
         <div className="row">
       
@@ -71,7 +81,14 @@ class AddSwapDelete extends Component {
         /></div>
         </div>
         </div>
-      </React.Fragment>
+
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      
     );
   }
 }

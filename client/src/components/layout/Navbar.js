@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import './navBar.css';
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -15,12 +16,14 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
+      
       <ul className="navbar-nav ml-auto ">
         <li className="nav-item ">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
             className="nav-link" 
+            style={{color:"white"}}
           >
             <img
               className="rounded-circle"
@@ -33,7 +36,7 @@ class Navbar extends Component {
           </a>
         </li>
       </ul>
-    );
+);
     const guestLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -48,7 +51,9 @@ class Navbar extends Component {
         </li>
       </ul>
     );
+
     return (
+      <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 " >
         <div className="container">
           <Link className="navbar-brand" to="/">
@@ -75,7 +80,9 @@ class Navbar extends Component {
             {isAuthenticated ? authLinks : guestLink}
           </div>
         </div>
-      </nav>
+        </nav>
+      
+    </div>
     );
   }
 }
