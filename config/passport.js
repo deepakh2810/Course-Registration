@@ -31,7 +31,7 @@ passport.use(
   new GooglePlusTokenStrategy(
     {
       //options for the google strat
-      // callbackURL: "/api/users/google/redirect",
+      callbackURL: "/api/users/google/redirect",
       clientID: keys.google.clientID,
       clientSecret: keys.google.clientSecret
     },
