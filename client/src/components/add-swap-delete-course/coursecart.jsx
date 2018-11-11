@@ -1,10 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeCourseFromCart } from "../../actions/studentinfoActions";
+import Payment from "../payment/Payment";
+import { Link } from "react-router-dom";
+
+
 class CourseCart extends Component {
   handleRemove = course => {
     this.props.removeCourseFromCart(this.props.studentid, course);
   };
+
+  paynowhandle = () => {
+    return (
+      <React.Fragment>
+      <Link className="nav-link" to="/payment">
+        {" "}
+        Checkout
+      </Link>
+        </React.Fragment>
+      )};
+
   renderTable() {
     if (this.props.coursesincart.length === 0)
       return <p className="text-center">No courses in the cart yet.</p>;
@@ -29,18 +44,23 @@ class CourseCart extends Component {
             </tbody>
           ))}
         </table>
-        <button className="btn btn-success w-100">Pay Now</button>
-      </React.Fragment>
+          <button className="btn btn-success w-100">Pay Now</button>
+       </React.Fragment>
     );
   }
 
   render() {
+
+
     return (
       <React.Fragment>
+
         <div className="container-fluid">
+
           <h3 className="text-center">Cart</h3>
           {this.renderTable()}
         </div>
+
       </React.Fragment>
     );
   }

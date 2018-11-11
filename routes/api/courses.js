@@ -10,6 +10,7 @@ const validateCourseInput = require("../../validation/course");
 // @desc    Get All courses
 // @access  Public
 router.get("/", (req, res) => {
+
   Course.find()
     .sort({ date: -1 })
     .then(courses => res.json(courses));

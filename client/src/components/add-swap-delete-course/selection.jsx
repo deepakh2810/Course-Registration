@@ -4,6 +4,11 @@ import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import ViewCourse from "./viewcourse";
 import AddCourses from "./addcourses";
 import SwapCourse from "./swapcourse";
+import Cart from "../payment/Cart";
+import Payment from "../payment/Payment";
+import ListCourses from "../reviewcourse/ListCourses"
+
+
 class Selection extends Component {
   state = {
     selectButtonInfo: {
@@ -67,6 +72,19 @@ class Selection extends Component {
               this.props.studentinfobyname.studentinfo.coursesselected
             }
           />
+
+          <ListCourses
+            onBack={this.handleBacktoHome}
+            studentid={this.props.studentinfobyname.studentinfo.studentid}
+            coursesincart={
+              this.props.studentinfobyname.studentinfo.coursesincart
+            }
+            coursesselected={
+              this.props.studentinfobyname.studentinfo.coursesselected
+            }
+          />
+
+
         </React.Fragment>
       );
 
@@ -88,6 +106,17 @@ class Selection extends Component {
           }
           coursesincart={this.props.studentinfobyname.studentinfo.coursesincart}
         />
+
+        <ListCourses
+          studentid={this.props.studentinfobyname.studentinfo.studentid}
+          stateInfo={this.state.selectButtonInfo}
+          onBack={this.handleBacktoHome}
+          coursesselected={
+            this.props.studentinfobyname.studentinfo.coursesselected
+          }
+          coursesincart={this.props.studentinfobyname.studentinfo.coursesincart}
+        />
+
       </React.Fragment>
     );
   }
@@ -110,9 +139,28 @@ class Selection extends Component {
                 course={course}
                 status="selectedcourses" //courses that are already added to the profile
                 onSwap={this.handleSwapView}
+                coursesselected={
+                  this.props.studentinfobyname.studentinfo.coursesselected
+                }
               />
             )
           )}
+
+
+        {/*  {this.props.studentinfobyname.studentinfo.coursesselected.map(
+            course => (
+              <ListCourses
+                key={course._id}
+                studentid={this.props.studentinfobyname.studentinfo.studentid}
+                course={course}
+                status="selectedcourses" //courses that are already added to the profile
+                onSwap={this.handleSwapView}
+                coursesselected={
+                  this.props.studentinfobyname.studentinfo.coursesselected
+                }
+              />
+            )
+          )}  */}
         </React.Fragment>
       );
     }

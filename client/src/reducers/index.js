@@ -4,11 +4,14 @@ import errorReducer from "./errorReducer";
 import profileReducer from "./profileReducer";
 import courseReducer from "./courseReducer";
 import studentinfoReducer from "./studentinfoReducer";
+import paymentReducer from "./paymentReducer";
+
 
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
   profile: profileReducer,
   courses: courseReducer,
-  studentsinfo: studentinfoReducer
+  studentsinfo: studentinfoReducer,
+  paymentReducer: paymentReducer
 });

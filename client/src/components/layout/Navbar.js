@@ -15,7 +15,35 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul className="navbar-nav ml-auto ">
+      <ul className="navbar-nav pr-5 ">
+
+      <li className="nav-item ">
+        <a
+          href="#"
+          className="nav-link"
+          >
+          {" "}
+          <Link className="nav-link" to="/reviewcourses">
+            {" "}
+            Course Reviews
+          </Link>
+        </a>
+      </li>
+
+      <li className="nav-item ">
+        <a
+          href="#"
+          className="nav-link"
+          >
+          {" "}
+          <Link className="nav-link" to="/payment">
+            {" "}
+            Checkout
+          </Link>
+        </a>
+      </li>
+
+
         <li className="nav-item ">
           <a
             href="#"
@@ -32,6 +60,7 @@ class Navbar extends Component {
             Logout
           </a>
         </li>
+
       </ul>
     );
     const guestLink = (
@@ -74,6 +103,8 @@ class Navbar extends Component {
             </ul>
             {isAuthenticated ? authLinks : guestLink}
           </div>
+
+
         </div>
       </nav>
     );

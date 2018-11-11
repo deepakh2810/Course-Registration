@@ -60,13 +60,13 @@ router.post("/register", (req, res) => {
             Please verify your email by pasting following token:<br/>
             Token: <b>${randomSecretToken}</b>
             <br />
-            on the following page: 
+            on the following page:
             <a href="http://localhost:3000/verify">Course-Select verifying page</a>
-            
+
             <br /> </br>
             Have a good day!
             <br /> </br>
-  
+
             Team,
             <br />
             Course Select

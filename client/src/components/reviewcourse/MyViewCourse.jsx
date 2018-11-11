@@ -4,7 +4,7 @@ import { postCourseToCart } from "../../actions/studentinfoActions";
 import { removeCourseFromStudent } from "../../actions/studentinfoActions";
 import { swapCourse } from "../../actions/studentinfoActions";
 // import { log } from "util";
-class ViewCourse extends Component {
+class MyViewCourse extends Component {
 
 
   handleAdd = () => {
@@ -72,22 +72,10 @@ class ViewCourse extends Component {
     } else if (this.props.status === "addtocart") {
       for (var i = 0; i < this.props.coursesincart.length; i++) {
         if (this.props.coursesincart[i].name === this.props.course.name) {
-          return (
-            <React.Fragment>
-              <button className="btn btn-info m-2" disabled>
-                Add
-              </button>
-            </React.Fragment>
-          );
+
         }
       }
-      return (
-        <React.Fragment>
-          <button onClick={this.handleAdd} className="btn btn-info m-2">
-            Add
-          </button>
-        </React.Fragment>
-      );
+    
     } else if (this.props.status === "swapwith") {
       return (
         <React.Fragment>
@@ -97,13 +85,7 @@ class ViewCourse extends Component {
         </React.Fragment>
       );
     } else {
-      return (
-        <React.Fragment>
-          <button onClick={this.handleAdd} className="btn btn-info m-2">
-            Add
-          </button>
-        </React.Fragment>
-      );
+
     }
   }
 
@@ -142,4 +124,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { postCourseToCart, removeCourseFromStudent, swapCourse }
-)(ViewCourse);
+)(MyViewCourse);

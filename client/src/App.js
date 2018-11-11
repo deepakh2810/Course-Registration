@@ -18,6 +18,16 @@ import EmailVerification from "./components/auth/Email_verification";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/create-profile/CreateProfile";
 
+import Payment from "./components/payment/Payment";
+import Cart from "./components/payment/Cart";
+import ReviewPage from "./components/reviewcourse/ReviewPage";
+import ReviewCourses from "./components/reviewcourse/ReviewCourses";
+import Searchbox from "./components/reviewcourse/Searchbox";
+import Math101 from "./components/reviewcourse/Math101";
+import ComSci565 from "./components/reviewcourse/ComSci565";
+import Info401 from "./components/reviewcourse/Info401";
+
+
 //Check for token
 if (localStorage.jwtToken) {
   // Set the auth token header auth
@@ -59,6 +69,20 @@ class App extends Component {
                   component={CreateProfile}
                 />
               </Switch>
+
+
+              <Switch>
+                  <PrivateRoute exact path="/payment" component={Payment} />
+                  </Switch>
+
+            <Switch>
+              <Route exact path="/reviewcourses" component={ReviewPage} />
+              <Route exact path="/reviewcourses/101" component={Math101} />
+              <Route exact path="/reviewcourses/565" component={ComSci565} />
+              <Route exact path="/reviewcourses/401" component={Info401} />
+          </Switch>
+
+
             </div>
             <Footer />
           </div>

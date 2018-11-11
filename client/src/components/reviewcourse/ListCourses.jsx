@@ -1,15 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CourseCart from "./coursecart";
 import { getCourses } from "../../actions/courseActions";
-import ViewCourse from "./viewcourse";
+import CourseCart from "../add-swap-delete-course/coursecart";
+//import ViewCourse from "../add-swap-delete-course/viewcourse";
+import MyViewCourse from "./MyViewCourse";
 import Cart from "../payment/Cart";
 import Payment from "../payment/Payment";
+import { getStudentInfoByName } from "../../actions/studentinfoActions";
 
-class AddCourses extends Component {
+var length = 1;
+
+
+class ListCourses extends Component {
+
   state = {
-    Department: "None"
+    Department: "None",
+coursesselected: [
+    {
+      name:  "Computing & Technology Bootcamp",
+      coursenumber: "INFO221" ,
+      instructor: "Charles Escue" ,
+      description: "A high-level introduction ...",
+      location:  "Luddy Hall 2011" ,
+      schedule: "Online Course" ,
+      year: "2018" ,
+      semester:  "Spring" ,
+      department:  "INFO"
+    }
+  ]
     };
+
   componentDidMount() {
     this.props.getCourses();
   }
@@ -22,21 +42,22 @@ class AddCourses extends Component {
 
   filterCoursesInProfile = course => {
     let flag = true;
-    for (var i = 0; i < this.props.coursesselected.length; i++) {
-      if (this.props.coursesselected[i].name === course.name) {
+
+
+    for (var i = 0; i < this.state.coursesselected.length; i++) {
+      if (this.state.coursesselected[i].name === course.name) {
         flag = false;
       }
     }
     if (flag === true) {
       return (
           <React.Fragment>
-          <ViewCourse
+          <MyViewCourse
             key={course.name}
             course={course}
             studentid={this.props.studentid}
-            onAdd={this.handleAddToCart}
-            coursesincart={this.props.coursesincart}
-            coursesselected={this.props.coursesselected}
+            coursesincart={this.state.coursesselected}
+            coursesselected={this.state.coursesselected}
             status="addtocart" //add these courses to cart
           />
 
@@ -62,10 +83,12 @@ class AddCourses extends Component {
                   this.filterCoursesInProfile(course)
                 )}
               </div>
+
+            {/*
               <div className="col-md-4">
                 <CourseCart
                   studentid={this.props.studentid}
-                  coursesincart={this.props.coursesincart}
+                  coursesincart={this.state.coursesselected}
                 />
                 <button
                   onClick={() => this.props.onBack("add")}
@@ -74,7 +97,7 @@ class AddCourses extends Component {
                   Back
                 </button>
               </div>
-
+              */}
 
 
 
@@ -107,10 +130,11 @@ class AddCourses extends Component {
                   this.filterCoursesInProfile(course)
                 )}
               </div>
+              {/*
               <div className="col-md-4">
                 <CourseCart
                   studentid={this.props.studentid}
-                  coursesincart={this.props.coursesincart}
+                  coursesincart={this.state.coursesselected}
                 />
                 <button
                   onClick={() => this.props.onBack("add")}
@@ -119,7 +143,7 @@ class AddCourses extends Component {
                   Back
                 </button>
               </div>
-
+              */}
 
 
             </div>
@@ -206,11 +230,13 @@ class AddCourses extends Component {
 
 const mapStateToProps = state => {
   return {
-    courses: state.courses
+    courses: state.courses,
+    studentinfobyname: state.studentsinfo
+
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getCourses }
-)(AddCourses);
+  { getCourses, getStudentInfoByName}
+)(ListCourses);
