@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { removeCourseFromCart } from "../../actions/studentinfoActions";
 import Payment from "../payment/Payment";
 import { Link } from "react-router-dom";
-
+import Cart from "../payment/Cart";
 
 class CourseCart extends Component {
   handleRemove = course => {
@@ -43,6 +43,7 @@ class CourseCart extends Component {
               </tr>
             </tbody>
           ))}
+
         </table>
           <button className="btn btn-success w-100">Pay Now</button>
        </React.Fragment>
@@ -51,6 +52,7 @@ class CourseCart extends Component {
 
   render() {
 
+//<Payment coursesincart = {this.props.coursesincart} />
 
     return (
       <React.Fragment>
@@ -59,6 +61,17 @@ class CourseCart extends Component {
 
           <h3 className="text-center">Cart</h3>
           {this.renderTable()}
+
+          <Cart
+          coursesselected={
+            this.props.coursesselected
+          }
+          coursesincart={
+            this.props.coursesincart
+          }
+           />
+
+
         </div>
 
       </React.Fragment>

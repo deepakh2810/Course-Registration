@@ -3,6 +3,7 @@ import React from "react";
 //import './TheForm.css';
 import TextFieldGroup from "../common/TextFieldGroup";
 import { Redirect } from "react-router-dom";
+import CreditCardInput from '../../react-credit-card-input-master/src/index';
 
 import { Button } from 'react-bootstrap';
 
@@ -90,13 +91,17 @@ import { Button } from 'react-bootstrap';
 
 */}
 
+
+
 class NewForm extends React.Component{
   render(){
     return(
 
 
       <div>
-          <div className="container">
+
+
+          <div className="container"  >
             <div className="row">
               <div className="col-md-6 m-auto">
                 <div className="shadow-lg p-4 mb-10 bg-grey rounded">
@@ -112,26 +117,24 @@ class NewForm extends React.Component{
                     />
 
                     <TextFieldGroup
-                    id="creditcardnumber" name="creditcardnumber" placeholder="Card Number" type="text" required="required"
-
+                      id="emailaddress" name="emailaddress" placeholder="Email Address" type="text" aria-describedby="emailaddressHelpBlock" required="required"
                     />
 
-                    <TextFieldGroup
-                    id="expirationmonth" name="expirationmonth" placeholder="Expiration Month" type="text" required="required"
 
-                    />
+                    <CreditCardInput
+                          cardNumberInputProps={{ value: CreditCardInput.cardNumber, onChange: this.handleCardNumberChange,
+                            id:"creditcardnumber", name:"creditcardnumber", required:"required" }}
 
-                    <TextFieldGroup
-                    id="expirationyear" name="expirationyear" placeholder="Expiration Year" type="text" required="required"
-                    />
 
-                    <TextFieldGroup
-                    id="cardcvv" name="cardcvv" placeholder="CVV" type="text" required="required"
-                    />
+                          cardExpiryInputProps={{ value: CreditCardInput.expiry, onChange: this.handleCardExpiryChange,
+                            id:"expirationmonthyear", name:"expirationmonthyear", required:"required" }}
 
-                    <TextFieldGroup
-                    id="emailaddress" name="emailaddress" placeholder="Email Address" type="text" aria-describedby="emailaddressHelpBlock" required="required"
-                    />
+                          cardCVCInputProps={{ value: CreditCardInput.cvc, onChange: this.handleCardCVCChange,
+                            id:"cardcvv", name:"cardcvv", required:"required"  }}
+                          fieldClassName="input"
+
+                          />  <br/> <br/>
+
 
                     <div className="form-group">
                     <span id="emailaddressHelpBlock" className="form-text text-muted"> <br/>Receipt will be sent to this email</span>

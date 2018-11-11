@@ -12,8 +12,7 @@ const initialState = {
       name: null,
       email: null,
       creditcardnumber: null,
-      expirationmonth: null,
-      expirationyear: null,
+      expirationmonthyear: null,
       ccv: null
     }
   ],

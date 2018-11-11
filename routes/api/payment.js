@@ -86,8 +86,8 @@ passport.authenticate("jwt", { session: false }),
     name: req.body.paymentinfo.name,
     email: req.body.paymentinfo.email,
     creditcardnumber: req.body.paymentinfo.creditcardnumber,
-    expirationmonth: req.body.paymentinfo.expirationmonth,
-    expirationyear: req.body.paymentinfo.expirationyear,
+    expirationmonthyear: req.body.paymentinfo.expirationmonthyear,
+    //expirationyear: req.body.paymentinfo.expirationyear,
     ccv: req.body.paymentinfo.ccv
   }); // req.body);
 

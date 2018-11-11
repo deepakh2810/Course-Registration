@@ -47,6 +47,7 @@ class AddCourses extends Component {
       );
     }
   };
+
   renderAddCoursesForDepartment = () => {
     let chosenCourses = this.props.courses.courses.filter(
       c => c.department === this.state.Department

@@ -84,6 +84,16 @@ class Selection extends Component {
             }
           />
 
+          <Cart
+             studentid={this.props.studentinfobyname.studentinfo.studentid}
+            coursesincart={
+              this.props.studentinfobyname.studentinfo.coursesincart
+            }
+            coursesselected={
+              this.props.studentinfobyname.studentinfo.coursesselected
+            }
+          />
+
 
         </React.Fragment>
       );
@@ -142,10 +152,15 @@ class Selection extends Component {
                 coursesselected={
                   this.props.studentinfobyname.studentinfo.coursesselected
                 }
+
               />
             )
           )}
 
+          {
+            //console.log( "coursesincart:" + this.props.studentinfobyname.studentinfo.coursesincart ),
+            //console.log( "coursesselected:" + this.props.studentinfobyname.studentinfo.coursesselected )
+          }
 
         {/*  {this.props.studentinfobyname.studentinfo.coursesselected.map(
             course => (

@@ -3,6 +3,7 @@ import Cart from "./Cart"
 //import FinancialAid from "./FinancialAid"
 import './TheForm.css';
 import NewForm from "./NewForm"
+
 import { connect } from "react-redux";
 import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import { removeCourseFromCart } from "../../actions/studentinfoActions";
@@ -31,31 +32,66 @@ class Payment extends React.Component{
     formSubmitted: undefined,
     error: undefined
   }
-//  componentDidMount() {
-  //  this.props.getStudentInfoByName(this.props.username);  }
-state = {
 
-  selectButtonInfo: {
-    add: 0,
-    swap: {
-      ind: 0,
-      courseId: "h",
-      courseName: ""
-    }
-  }
-};
+    state = {
+      enteredfinancialaid: undefined,
+      error: undefined,
+      newpricetotal: undefined,
+
+      Department: "None",
+    coursesincart: [
+      {
+        name:  "Computing & Technology Bootcamp",
+        coursenumber: "INFO221" ,
+        instructor: "Charles Escue" ,
+        description: "A high-level introduction ...",
+        location:  "Luddy Hall 2011" ,
+        schedule: "Online Course" ,
+        year: "2018" ,
+        semester:  "Spring" ,
+        department:  "INFO"
+      },
+      {
+        name:  "Machine Learning",
+        coursenumber: "CSCI525" ,
+        instructor: "Donald Williamson" ,
+        description: "Theory and practice of constructing ...",
+        location:  "Luddy Hall 0311" ,
+        schedule: "Monday, Wednesday 7:15 PM" ,
+        year: "2018" ,
+        semester:  "Spring" ,
+        department:  "CS"
+      }
+    ],
+
+    coursesselected: [
+      {
+        name:  "Computing & Technology Bootcamp",
+        coursenumber: "INFO221" ,
+        instructor: "Charles Escue" ,
+        description: "A high-level introduction ...",
+        location:  "Luddy Hall 2011" ,
+        schedule: "Online Course" ,
+        year: "2018" ,
+        semester:  "Spring" ,
+        department:  "INFO"
+      }
+    ]
+
+      };
+
 
   submitFunction = (e) => {
     e.preventDefault();
     const namecard = e.target.elements.nameoncard.value;
     const cardnum = e.target.elements.creditcardnumber.value;
-    const expirmonth = e.target.elements.expirationmonth.value;
-    const expiryear = e.target.elements.expirationyear.value;
+    const expirmonthyear = e.target.elements.expirationmonthyear.value;
+    //const expiryear = e.target.elements.expirationyear.value;
     const cvv = e.target.elements.cardcvv.value;
     const email = e.target.elements.emailaddress.value;
     const buttonSubmitted = 'Submitted!';
-    if( email && namecard && expirmonth && expiryear && cvv && cardnum ){
-      const info = {email, namecard, expirmonth, expiryear, cvv, cardnum };
+    if( email && namecard && expirmonthyear && cvv && cardnum ){
+      const info = {email, namecard, expirmonthyear, cvv, cardnum };
       const data = JSON.stringify(info);
       // console.log("const info after JSON.stringify: " + info);
     // console.log(buttonSubmitted);
@@ -65,16 +101,16 @@ state = {
       name: namecard,
       email: email,
       creditcardnumber: cardnum,
-      expirationmonth: expirmonth,
-      expirationyear: expiryear,
+      expirationmonthyear: expirmonthyear,
+      //expirationyear: expiryear,
       ccv: cvv
     }
     console.log(" This is completedForm before JSON.stringify "+ completedForm);
 
     const formStringJson = JSON.stringify( completedForm);
-  console.log(" This is completedForm AFTER JSON.stringify "+ completedForm);
+    console.log(" This is completedForm AFTER JSON.stringify "+ completedForm);
 
-  console.log(" email: "+ email);
+    console.log(" email: "+ email);
 
 
     this.props.postPayment("", completedForm);
@@ -92,6 +128,32 @@ state = {
    } );
    }
  }
+
+
+
+ funcfinaid = (e) => {
+   e.preventDefault();
+   const finaidamount = e.target.elements.financialAidAmount.value;
+   const newtotal = (1000 * this.state.coursesincart.length) - finaidamount;
+   console.log(" finaidamount: "+ finaidamount);
+   console.log(" newtotal: "+ newtotal);
+   if( finaidamount ){
+     this.setState( {
+       enteredfinancialaid: finaidamount,
+       newpricetotal: newtotal,
+       error: " "
+      } );
+    }
+    else{
+      this.setState( {
+      error: "No Financial Aid Entered",
+      enteredfinancialaid: undefined,
+      newpricetotal: undefined
+    } );
+    }
+ }
+
+
 
   printFunction = (e) => {
     e.preventDefault();
@@ -120,27 +182,27 @@ state = {
     return (
 <div className="App"> <br/>
 
+<div id="first">
+  <NewForm   formSubmitted = {this.state.formSubmitted}
+  submitFunction={this.submitFunction}
+  error = {this.state.error}   />
+</div>
 
-<NewForm   formSubmitted = {this.state.formSubmitted}
-submitFunction={this.submitFunction}
-error = {this.state.error}   />
+    {/*
+        <div className="row">
 
-
-{/* /// this was included before using adityas form
-  <div className="row">
-              <div className="thecontainer"> <br/>
+          //    <div className="thecontainer"> <br/>
                  <br/>
-
                    <div id="first">
                       <NewForm   formSubmitted = {this.state.formSubmitted}
                       submitFunction={this.submitFunction}
                       error = {this.state.error}   />
                    </div>
-
-               </div> <br/>
+            //   </div> <br/>
+    */}
 
           <div id="second">
-*/}
+
 
           {/*     <div className="containerRight">
                  <FinancialAid applyChangesFunction = {this.applyChangesFunction}
@@ -150,7 +212,13 @@ error = {this.state.error}   />
                 <br/> */}
 
 
-              { /*  /// this was included before using adityas form  <div className="containerRight">  <Cart  printFunction = {this.printFunction} />  </div>  */}
+           <div className="containerRight">
+           <Cart
+            funcfinaid = {this.funcfinaid}
+            enteredfinancialaid = {this.state.enteredfinancialaid}
+            newpricetotal = {this.state.newpricetotal}
+            error = {this.state.error}
+            printFunction = {this.printFunction} />  </div>
 
 {/*
                <AddCourses
@@ -165,25 +233,51 @@ error = {this.state.error}   />
                />
                */ }
 
-               {/*
+
                <div className="col-md-9">
-                 {this.props.courses.courses.map(course => (
+               {
+                // console.log( "coursesincart:" + this.props.studentinfobyname.studentinfo.coursesincart ),
+                 //console.log( "coursesselected:" + this.props.studentinfobyname.studentinfo.coursesselected )
+               }
+
+
+            {/*   <CourseCart
+                 studentid={this.props.studentid}
+                 coursesincart={this.props.coursesincart}   /> */}
+
+
+
+                 { this.props.courses.courses.map(course => (
                    <div>
                    <ViewCourse
                      key={course._id}
                      studentid={ "12345678"  }
                      course={course}
-                     status="selectedcourses" //courses that are already added to the profile
+                    // status="selectedcourses" //courses that are already added to the profile
+                    //status="addtocart" //add these courses to cart
+
+                     stateInfo={this.state.selectButtonInfo}
+
+                     coursesselected={
+                       this.state.coursesselected
+                     }
+                     coursesincart={
+                       this.state.coursesincart
+                     }
                    />
                    </div>
                  ))}
-               </div>
-               */}
 
-{/*
+
+
+
+              {/* </div>  */}
+
+
+
     </div>
   </div>
-*/}
+
 
 </div>
     );
@@ -199,5 +293,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { getStudentInfoByName, getCourses, postPayment }
+  { getStudentInfoByName, getCourses, postPayment, removeCourseFromCart}
 )(Payment);
