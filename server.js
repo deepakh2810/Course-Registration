@@ -10,6 +10,7 @@ const studentinfobyname = require("./routes/api/studentinfobyname");
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
+const path=require('path');
 
 // Set up view engine
 // app.set("view engine", "ejs");
@@ -41,6 +42,16 @@ app.use("/api/posts", posts);
 app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname/", studentinfobyname);
+
+//Serve  static assets
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const port = process.env.PORT || 5000;
 

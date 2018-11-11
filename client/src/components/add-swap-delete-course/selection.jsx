@@ -131,10 +131,20 @@ class Selection extends Component {
   }
 
   render() {
-    if (this.props.studentinfobyname.studentinfo.coursesselected) {
-      return <div>{this.renderSelection()}</div>;
+    if (this.props.studentinfobyname.studentinfo === null) {
+      return (
+        <h3>
+          We couldn't find your information in our database. Please contact your
+          administrator!!
+        </h3>
+      );
     } else {
-      return <div>Loading..</div>;
+      if (this.props.studentinfobyname.studentinfo.coursesselected) {
+        return <div>{this.renderSelection()}</div>;
+      } else {
+        return <div>Select <a href="/addcourses">Courses</a> to be displayed here
+        </div>;
+      }
     }
   }
 }
