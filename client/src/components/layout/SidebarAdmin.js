@@ -68,8 +68,7 @@ class SidebarAdmin extends Component {
             </a>
      </li>
       <li className="nav-item">
-
-          <a href="/AddSwapDelete" className="nav-link active" style={{color:"white"}} >
+      <a href="/addcourses" className="nav-link active" style={{color:"white"}} >
           <i class="fas fa-search"></i>
               Courses
           </a>
@@ -89,12 +88,7 @@ class SidebarAdmin extends Component {
         </li>
      
 
-        <li className="nav-item">
-          <a href="/" className="nav-link active" style={{color:"white"}}>
-          <i class="fas fa-shopping-cart"></i>
-            Shopping Cart
-          </a>
-        </li>
+        
      </ul>
           </div>
         </div>

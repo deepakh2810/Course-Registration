@@ -26,6 +26,7 @@ import CreateCourseWrapper from "./components/create-course/createcoursewrapper"
 import StudentDashboard from "./components/cards/studentdashboard";
 import ProfessorDashboard from "./components/cards/ProfessorDashboard";
 import RegistrarDashboard from "./components/cards/RegistrarDashboard";
+import DashboardLogic from "./components/cards/DashBoardLogic";
 library.add(faStroopwafel);
 
 //Check for token
@@ -63,7 +64,7 @@ class App extends Component {
               <PrivateRoute
                 exact
                 path="/dashboard"
-                component={StudentDashboard}
+                component={DashboardLogic}
               />
             </Switch>
             <Switch>
@@ -93,26 +94,13 @@ class App extends Component {
             <Switch>
               <PrivateRoute
                 exact
-                path="/StudentDashboard"
-                component={StudentDashboard}
+                path="/dashboard"
+                component={DashboardLogic}
               />
             </Switch>
 
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/ProfessorDashboard"
-                component={ProfessorDashboard}
-              />
-            </Switch>
-
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/RegistrarDashboard"
-                component={RegistrarDashboard}
-              />
-            </Switch>
+           
+           
 
             <Switch>
               <PrivateRoute
@@ -121,6 +109,8 @@ class App extends Component {
                 component={CreateProfile}
               />
             </Switch>
+          
+           
             <Footer />
           </React.Fragment>
         </Router>

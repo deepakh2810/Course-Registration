@@ -37,6 +37,7 @@ router.post("/register", (req, res) => {
       //Error here coz it has to be stored in local
       const newUser = new User({
         method: "local",
+        user_type: "ADMIN",
         local: {
           name: req.body.name,
           email: req.body.email,
@@ -93,6 +94,7 @@ router.post("/register", (req, res) => {
 // @access  Public
 
 router.post("/login", (req, res) => {
+  console.log("In login");
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
@@ -114,6 +116,7 @@ router.post("/login", (req, res) => {
         //user matched
         const payload = {
           id: user.id,
+          user_type: user.user_type,
           name: user.local.name,
           avatar: user.local.avatar
         };

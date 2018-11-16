@@ -58,7 +58,7 @@ class StudentDashboard extends Component {
         route: "/"
       },
       {
-        id: "t002",
+        id: "t003",
         name: "Enrollment Dates",
         description: "Important dates to enroll for courses",
         imagelink:

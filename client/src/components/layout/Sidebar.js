@@ -130,7 +130,6 @@ const mapStateToProps = state => ({
 });
 
 Sidebar.propTypes = {
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps)(Sidebar);

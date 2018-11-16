@@ -44,7 +44,7 @@ class RegistrarDashboard extends Component {
       {
         id: "t001",
         name: "Holds",
-        description: "View Holds : financial, Health, Advisory",
+        description: "PUT Holds : financial, Health, Advisory",
         imagelink:
           "http://wbnaboise.org/wp-content/uploads/2015/07/hold200.gif",
         route: "/"
@@ -58,7 +58,7 @@ class RegistrarDashboard extends Component {
         route: "/"
       },
       {
-        id: "t002",
+        id: "t003",
         name: "Enrollment Dates",
         description: "Important dates to enroll for courses",
         imagelink:
