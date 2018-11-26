@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Glyphicon } from "react-bootstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { Glyphicon } from "react-bootstrap";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileActions";
-import Spinner from "../common/Spinner";
-import CreateProfile from "../create-profile/CreateProfile";
-import Radium from "radium";
+// import { getCurrentProfile } from "../../actions/profileActions";
+// import Spinner from "../common/Spinner";
+// import CreateProfile from "../create-profile/CreateProfile";
+// import Radium from "radium";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.css";
 library.add(faStroopwafel);
@@ -16,14 +16,7 @@ library.add(faStroopwafel);
 class SidebarProf extends Component {
   state = {};
   render() {
-    const styles = {
-      base: {
-        ":hover": {
-          color: "#ffffff",
-          cursor: "pointer"
-        }
-      }
-    };
+    console.log("In sidebar Proff");
 
     const { user } = this.props.auth;
     return (
@@ -61,7 +54,7 @@ class SidebarProf extends Component {
                   href="/"
                   style={{ color: "white" }}
                 >
-                  <i class="fas fa-home" />
+                  <i className="fas fa-home" />
                   Home
                 </a>
               </li>
@@ -72,17 +65,17 @@ class SidebarProf extends Component {
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
-                  <i class="fas fa-user-ninja" />
+                  <i className="fas fa-user-ninja" />
                   User Details
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  href="/createnewcourse"
+                  href="/create-course"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
-                  <i class="fas fa-search" />
+                  <i className="fas fa-search" />
                   Create Course
                 </a>
               </li>
@@ -92,7 +85,7 @@ class SidebarProf extends Component {
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
-                  <i class="fas fa-envelope-square" />
+                  <i className="fas fa-envelope-square" />
                   Reviews
                 </a>
               </li>
@@ -103,7 +96,7 @@ class SidebarProf extends Component {
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
-                  <i class="fas fa-comments" />
+                  <i className="fas fa-comments" />
                   Let's Chat
                 </a>
               </li>
@@ -119,7 +112,6 @@ const mapStateToProps = state => ({
 });
 
 SidebarProf.propTypes = {
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 export default connect(mapStateToProps)(SidebarProf);

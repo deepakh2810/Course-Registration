@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ViewCard from "./card";
-import ViewTopic from "./topic";
+// import ViewTopic from "./topic";
 // import Addswapdelete from "../addswapdelete/addswapdel";
 
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileActions";
-import Spinner from "../common/Spinner";
-import CreateProfile from "../create-profile/CreateProfile";
+// import PropTypes from "prop-types";
+// import { connect } from "react-redux";
+// import { getCurrentProfile } from "../../actions/profileActions";
+// import Spinner from "../common/Spinner";
+// import CreateProfile from "../create-profile/CreateProfile";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import AddSwapDelete from "../addswapdelete/addswapdel";
-import Navbar from "../layout/Navbar";
+// import Navbar from "../layout/Navbar";
 import Sidebar from "../layout/Sidebar";
 
 class StudentDashboard extends Component {
@@ -23,7 +23,7 @@ class StudentDashboard extends Component {
         description: "Check out this week's classes and schedule",
         imagelink:
           "http://oriellycc.com/wp-content/uploads/2016/08/calschedule.jpg",
-        route: "/addcourses"
+        route: "/viewschedule"
       },
       {
         id: "C002",
@@ -42,7 +42,7 @@ class StudentDashboard extends Component {
         route: "/"
       },
       {
-        id: "t001",
+        id: "C004",
         name: "Holds",
         description: "View Holds : financial, Health, Advisory",
         imagelink:
@@ -50,15 +50,15 @@ class StudentDashboard extends Component {
         route: "/"
       },
       {
-        id: "t002",
+        id: "C005",
         name: "To-Do list",
         description: "What needs to be done this month",
         imagelink:
           "http://straightenyourpaths.com/wp-content/uploads/2013/01/bigstock-Blank-To-Do-List-27249434.jpg",
-        route: "/"
+        route: "/todolist"
       },
       {
-        id: "t002",
+        id: "C006",
         name: "Enrollment Dates",
         description: "Important dates to enroll for courses",
         imagelink:

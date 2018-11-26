@@ -4,12 +4,15 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
+import SelectListGroup from "../common/SelectListGroup";
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
       name: "",
+      role: "",
+      universityid: "",
       email: "",
       password: "",
       password2: "",
@@ -30,16 +33,21 @@ class Register extends Component {
   }
 
   onChange(e) {
+    console.log("Target Name: ", e.target.name);
+    console.log("Target Value: ", e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   }
   onSubmit(e) {
     e.preventDefault();
     const newUser = {
       name: this.state.name,
+      role: this.state.role,
+      universityid: this.state.universityid,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
     };
+
     this.props.registerUser(newUser, this.props.history);
     // axios;
     // .post("/api/users/register", newUser)
@@ -48,6 +56,12 @@ class Register extends Component {
   }
   render() {
     const { errors } = this.state;
+    const role_options = [
+      { label: "* Select Role", value: 0 },
+      { label: "Student", value: "STUDENT" },
+      { label: "Professor", value: "PROFESSOR" },
+      { label: "Administrator", value: "ADMIN" }
+    ];
     return (
       <div className="register">
         <div className="container">
@@ -63,6 +77,22 @@ class Register extends Component {
                     value={this.state.name}
                     onChange={this.onChange}
                     error={errors.name}
+                  />
+                  <SelectListGroup
+                    placeholder="Role"
+                    name="role"
+                    value={this.state.role}
+                    onChange={this.onChange}
+                    error={errors.role}
+                    options={role_options}
+                    info="Select a role that identifies you the best"
+                  />
+                  <TextFieldGroup
+                    placeholder="University Identification Number"
+                    name="universityid"
+                    value={this.state.universityid}
+                    onChange={this.onChange}
+                    error={errors.universityid}
                   />
                   <TextFieldGroup
                     placeholder="Email Address"

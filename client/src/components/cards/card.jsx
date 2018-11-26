@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  Col,
-  CardSubtitle,
-  Button
-} from "reactstrap";
-
+import { Card, CardImg, CardText, CardBody, CardTitle, Col } from "reactstrap";
 
 class ViewCard extends Component {
   render() {
@@ -28,16 +18,17 @@ class ViewCard extends Component {
             alt="Card image cap"
           />
           <CardBody>
-            <CardTitle><a href={this.props.card.route}>{this.props.card.name}</a></CardTitle>
+            <CardTitle>
+              <a href={this.props.card.route}>{this.props.card.name}</a>
+            </CardTitle>
             {/* <CardSubtitle>Card subtitle</CardSubtitle> */}
             <CardText>{this.props.card.description}</CardText>
             {/* <Button>Button</Button> */}
           </CardBody>
-
-        </Card >
-        <br/>
+        </Card>
+        <br />
       </Col>
-   // </div>
+      // </div>
     );
   }
 }

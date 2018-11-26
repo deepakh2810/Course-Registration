@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CourseCart from "./coursecart";
 import { getCourses } from "../../actions/courseActions";
 import ViewCourse from "./viewcourse";
+import Spinner from "../common/Spinner";
 
 class AddCourses extends Component {
   constructor(props) {
@@ -113,7 +114,8 @@ class AddCourses extends Component {
 
   renderCourses() {
     if (this.state.Department === "None")
-      return <div>{this.renderAddCourses()}</div>;
+      // return <div>{this.renderAddCourses()}</div>;
+      return <h2 className="m-3">Select a department to view courses.</h2>;
     else {
       return <div>{this.renderAddCoursesForDepartment()}</div>;
     }

@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import ViewCard from "./card";
-import ViewTopic from "./topic";
+// import ViewTopic from "./topic";
 // import Addswapdelete from "../addswapdelete/addswapdel";
 
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileActions";
-import Spinner from "../common/Spinner";
-import CreateProfile from "../create-profile/CreateProfile";
+// import PropTypes from "prop-types";
+// import { connect } from "react-redux";
+// import { getCurrentProfile } from "../../actions/profileActions";
+// import Spinner from "../common/Spinner";
+// import CreateProfile from "../create-profile/CreateProfile";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 // import Selection from "../add-swap-delete-course/selection";
-import Navbar from "../layout/Navbar";
+// import Navbar from "../layout/Navbar";
 import SidebarProf from "../layout/SidebarProf";
 
 class ProfessorDashboard extends Component {
@@ -55,10 +55,10 @@ class ProfessorDashboard extends Component {
         description: "What needs to be done this month",
         imagelink:
           "http://straightenyourpaths.com/wp-content/uploads/2013/01/bigstock-Blank-To-Do-List-27249434.jpg",
-        route: "/"
+        route: "/todolist"
       },
       {
-        id: "t002",
+        id: "t003",
         name: "Enrollment Dates",
         description: "Important dates to enroll for courses",
         imagelink:

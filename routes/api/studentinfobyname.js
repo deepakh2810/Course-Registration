@@ -14,6 +14,7 @@ router.get(
   "/:name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    // console.log("Hello????????????");
     Studentinfo.findOne({ name: req.params.name })
       .then(Studentinfo => res.json(Studentinfo))
       .catch(err => res.status(404).json({ success: false }));

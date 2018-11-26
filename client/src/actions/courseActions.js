@@ -3,8 +3,10 @@ import {
   GET_COURSES,
   COURSE_LOADING,
   GET_COURSE_BY_COURSENUMEBR,
-  GET_ERRORS
+  GET_ERRORS,
+  REMOVE_COURSE_BY_COURSE_NUMBER
 } from "./types";
+// import reducers from "../reducers";
 
 //Get Courses
 export const getCourses = () => dispatch => {
@@ -54,6 +56,27 @@ export const getCoursesByCourseNumber = coursenumber => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_COURSE_BY_COURSENUMEBR,
+        payload: {}
+      });
+    });
+};
+
+//Delete Course by course Number
+export const removeCourse = courseid => dispatch => {
+  console.log("In actions courses: ", courseid);
+  axios
+    .delete("/api/courses/" + courseid)
+    .then(res => {
+      dispatch({
+        // type: REMOVE_COURSE_BY_COURSE_NUMBER,
+        // payload: res.data
+        type: GET_COURSES,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: REMOVE_COURSE_BY_COURSE_NUMBER,
         payload: {}
       });
     });

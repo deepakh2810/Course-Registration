@@ -4,11 +4,15 @@ import errorReducer from "./errorReducer";
 import profileReducer from "./profileReducer";
 import courseReducer from "./courseReducer";
 import studentinfoReducer from "./studentinfoReducer";
+import todoReducer from "./todoReducer";
+import addtodoReducer from "./addtodoReducer";
 
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
   profile: profileReducer,
   courses: courseReducer,
-  studentsinfo: studentinfoReducer
+  studentsinfo: studentinfoReducer,
+  users: todoReducer,
+  todos: addtodoReducer
 });

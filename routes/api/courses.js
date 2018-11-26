@@ -23,7 +23,7 @@ router.get(
   "/:coursenumber",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("Here in the api", req.params.coursenumber);
+    // console.log("Here in the api", req.params.coursenumber);
     Course.findOne({ coursenumber: req.params.coursenumber })
       .then(Course => {
         // console.log("In Api: ", Course);
@@ -74,10 +74,36 @@ router.post(
 // @route   DELETE api/courses/:id
 // @desc    Delete A Course
 // @access  Public
-router.delete("/:id", (req, res) => {
-  Item.findById(req.params.id)
-    .then(course => course.remove().then(() => res.json({ success: true })))
-    .catch(err => res.status(404).json({ success: false }));
+router.delete("/:courseid", (req, res) => {
+  // console.log("Choose me");
+  // console.log("Parameters: ", req.params);
+
+  Course.findById(req.params.courseid)
+    .then(course => {
+      // console.log("Found course: ", course);
+      course
+        .remove()
+        .then(() => {
+          // console.log("Remove Successful");
+          // res.json(Course);
+          // res.json({ success: true });
+          // router.get("/", (req, res) => {
+          Course.find()
+            .sort({ date: -1 })
+            .then(courses => {
+              // console.log("Found Courses: ", courses);
+              res.json(courses);
+            });
+          // });
+        })
+        .catch(err => {
+          // console.log("Still error: ", err);
+        });
+    })
+    .catch(err => {
+      // console.log("Error: ", err);
+      res.status(404).json({ success: false });
+    });
 });
 
 module.exports = router;

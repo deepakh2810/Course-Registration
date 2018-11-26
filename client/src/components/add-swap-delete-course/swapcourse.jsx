@@ -17,9 +17,9 @@ class SwapCourses extends Component {
       }
     }
 
-    for (var i = 0; i < this.props.coursesincart.length; i++) {
+    for (var j = 0; j < this.props.coursesincart.length; j++) {
       //Do not show courses that are already in cart
-      if (this.props.coursesincart[i].name === course.name) {
+      if (this.props.coursesincart[j].name === course.name) {
         flag = false;
       }
     }
