@@ -55,7 +55,9 @@ router.post(
       location: req.body.location,
       schedule: req.body.schedule,
       year: "2018",
-      semester: "Spring"
+      semester: "Spring",
+      reviews: req.body.reviews
+
     });
 
     Course.findOne({ coursenumber: newCourse.coursenumber }).then(course => {

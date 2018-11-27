@@ -7,10 +7,14 @@ const posts = require("./routes/api/posts");
 const courses = require("./routes/api/courses");
 const studentsinfo = require("./routes/api/studentsinfo");
 const studentinfobyname = require("./routes/api/studentinfobyname");
+const payment = require("./routes/api/payment");
+
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
 const path=require('path');
+
+
 
 // Set up view engine
 // app.set("view engine", "ejs");
@@ -42,6 +46,8 @@ app.use("/api/posts", posts);
 app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname/", studentinfobyname);
+
+app.use("/api", require("./routes/api/payment"));
 
 //Serve  static assets
 if (process.env.NODE_ENV === 'production') {

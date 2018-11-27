@@ -43,10 +43,21 @@ const CourseSchema = new Schema({
     type: String,
     required: false
   },
+
+  reviews: [
+    {
+    review: { type: String },
+    name: { type: String },
+    studentid: { type: String },
+    date: { type: Date}
+  }
+],
+
   date: {
-    type: Date,
+    type: Array,
     default: Date.now
   }
+
 });
 
 module.exports = Course = mongoose.model("course", CourseSchema);

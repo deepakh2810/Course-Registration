@@ -26,6 +26,13 @@ import CreateCourseWrapper from "./components/create-course/createcoursewrapper"
 import StudentDashboard from "./components/cards/studentdashboard";
 import ProfessorDashboard from "./components/cards/ProfessorDashboard";
 import RegistrarDashboard from "./components/cards/RegistrarDashboard";
+
+import Payment from "./components/payment/Payment";
+import Cart from "./components/payment/Cart";
+import ReviewPage from "./components/reviewcourse/ReviewPage";
+import ReviewCourses from "./components/reviewcourse/ReviewCourses";
+
+
 library.add(faStroopwafel);
 
 //Check for token
@@ -121,6 +128,24 @@ class App extends Component {
                 component={CreateProfile}
               />
             </Switch>
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/payment"
+                component={Payment}
+              />
+            </Switch>
+
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/reviewcourses"
+                component={ReviewPage}
+              />
+            </Switch>
+
             <Footer />
           </React.Fragment>
         </Router>
