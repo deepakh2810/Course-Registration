@@ -4,6 +4,8 @@ import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import ViewCourse from "./viewcourse";
 import AddCourses from "./addcourses";
 import SwapCourse from "./swapcourse";
+import Spinner from "../common/Spinner";
+
 class Selection extends Component {
   state = {
     selectButtonInfo: {
@@ -137,13 +139,13 @@ class Selection extends Component {
           We couldn't find your information in our database. Please contact your
           administrator!!
         </h3>
+        // <Spinner />
       );
     } else {
       if (this.props.studentinfobyname.studentinfo.coursesselected) {
         return <div>{this.renderSelection()}</div>;
       } else {
-        return <div>Select <a href="/addcourses">Courses</a> to be displayed here
-        </div>;
+        return <div>Select a course to be displayed here</div>;
       }
     }
   }

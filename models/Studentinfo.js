@@ -8,20 +8,17 @@ const StudentInfoSchema = new Schema({
     required: true
   },
   major: {
-    type: String,
-    required: true
+    type: String
   },
   type: {
-    type: String,
-    required: true
+    type: String
   },
   studentid: {
     type: String,
     required: true
   },
   gpa: {
-    type: String,
-    required: true
+    type: String
   },
   coursesselected: [
     {
@@ -29,9 +26,10 @@ const StudentInfoSchema = new Schema({
       coursenumber: { type: String },
       instructor: { type: String },
       description: { type: String },
+      grade: { type: String },
       location: { type: String },
       schedule: { type: String },
-      year: { type: String },
+      year: { type: String, default: "Not Calculated yet" },
       semester: { type: String },
       department: { type: String }
     }

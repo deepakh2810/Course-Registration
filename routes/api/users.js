@@ -13,12 +13,29 @@ const validateVerificationUser = require("../../validation/email_verification");
 
 const keys = require("../../config/keys");
 const User = require("../../models/User");
+const Studentinfo = require("../../models/Studentinfo");
+
+// @route   GET  api/users/
+// @desc    Get User Details from User collection
+// @access  Public
+
+router.get("/", (req, res) => {
+  const User = require("../../models/User");
+  // let ReturnUserList = [];
+  User.find()
+    .sort({ date: -1 })
+    .then(users => {
+      // console.log("All Users: ", users);
+      res.json(users);
+    });
+});
 
 // @route   POST  api/users/register
 // @desc    Tests post route
 // @access  Public
 
 router.post("/register", (req, res) => {
+  console.log("Parameters: ", req.body);
   const { errors, isValid } = validateRegisterInput(req.body);
 
   if (!isValid) {
@@ -29,6 +46,19 @@ router.post("/register", (req, res) => {
       errors.email = "Email already exsist";
       return res.status(400).json(errors);
     } else {
+      if (req.body.role === "STUDENT") {
+        console.log("For a student: ", req.body.universityid);
+        Studentinfo.findOne({ studentid: req.body.universityid })
+          .then(Studentinfo => {
+            console.log("The result: ", Studentinfo);
+            if (Studentinfo) {
+              errors.universityid = "University ID already exists";
+              return res.status(400).json(errors);
+            }
+          })
+          .catch(err => console.log(err));
+      }
+      console.log("Now we are here");
       const avatar = gravatar.url(req.body.email, {
         s: "200",
         r: "pg",
@@ -37,6 +67,8 @@ router.post("/register", (req, res) => {
       //Error here coz it has to be stored in local
       const newUser = new User({
         method: "local",
+        user_type: req.body.role,
+        university_id: req.body.universityid,
         local: {
           name: req.body.name,
           email: req.body.email,
@@ -80,7 +112,19 @@ router.post("/register", (req, res) => {
           );
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => {
+              // console.log(user);
+              res.json(user);
+              if (req.body.role === "STUDENT") {
+                const newStudentinfo = new Studentinfo({
+                  name: req.body.name,
+                  studentid: req.body.universityid
+                });
+                newStudentinfo
+                  .save()
+                  .then(studentinfo => console.log("Student Created"));
+              }
+            })
             .catch(err => console.log(err));
         });
       });
@@ -93,6 +137,7 @@ router.post("/register", (req, res) => {
 // @access  Public
 
 router.post("/login", (req, res) => {
+  // console.log("In login");
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
@@ -114,6 +159,8 @@ router.post("/login", (req, res) => {
         //user matched
         const payload = {
           id: user.id,
+          user_type: user.user_type,
+          university_id: user.university_id,
           name: user.local.name,
           avatar: user.local.avatar
         };

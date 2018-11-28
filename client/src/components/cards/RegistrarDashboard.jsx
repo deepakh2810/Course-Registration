@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ViewCard from "./card";
 import ViewTopic from "./topic";
-// import Addswapdelete from "../addswapdelete/addswapdel";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -10,7 +9,7 @@ import Spinner from "../common/Spinner";
 import CreateProfile from "../create-profile/CreateProfile";
 
 import { Link } from "react-router-dom";
-// import AddSwapDelete from "../addswapdelete/addswapdel";
+import AddSwapDelete from "../add-swap-delete-course/add-swap-del-wrapper";
 import Navbar from "../layout/Navbar";
 import SidebarAdmin from "../layout/SidebarAdmin";
 
@@ -19,15 +18,15 @@ class RegistrarDashboard extends Component {
     cards: [
       {
         id: "C001",
-        name: " Class Schedule",
+        name: "Class Schedule",
         description: "Check out this week's classes and schedule",
         imagelink:
           "http://oriellycc.com/wp-content/uploads/2016/08/calschedule.jpg",
-        route: "/Addswapdelete"
+        route: "/AddSwapDelete"
       },
       {
         id: "C002",
-        name: "View Text Books",
+        name: " Text Books",
         description: "Checkout the textbooks from upcoming classes",
         imagelink:
           "https://www.gijobs.com/wp-content/uploads/2014/08/textbooks.resized-1.jpg",
@@ -35,7 +34,7 @@ class RegistrarDashboard extends Component {
       },
       {
         id: "C003",
-        name: "View Grades",
+        name: "PUT Grades",
         description: " View your individual course grades so far",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
@@ -47,18 +46,18 @@ class RegistrarDashboard extends Component {
         description: "View Holds : financial, Health, Advisory",
         imagelink:
           "http://wbnaboise.org/wp-content/uploads/2015/07/hold200.gif",
-        route: "/"
+        route: "/holds"
       },
       {
         id: "t002",
-        name: "To-Do list",
+        name: "Enter TO-DO's",
         description: "What needs to be done this month",
         imagelink:
           "http://straightenyourpaths.com/wp-content/uploads/2013/01/bigstock-Blank-To-Do-List-27249434.jpg",
-        route: "/"
+        route: "/todolist"
       },
       {
-        id: "t002",
+        id: "t003",
         name: "Enrollment Dates",
         description: "Important dates to enroll for courses",
         imagelink:

@@ -1,12 +1,27 @@
 import React, { Component } from "react";
 import { getCoursesByCourseNumber } from "../../actions/courseActions";
 import { connect } from "react-redux";
+import Sidebar from "../layout/Sidebar";
 
 class ViewCourseDetails extends Component {
   componentDidMount() {
     let coursenumber = this.props.match.params.coursenumber;
 
     this.props.getCoursesByCourseNumber(coursenumber);
+  }
+  renderContent() {
+    return (
+      <React.Fragment>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-2">
+              <Sidebar />
+            </div>
+            <div className="col-md-10">{this.renderCourses()}</div>
+          </div>
+        </div>
+      </React.Fragment>
+    );
   }
   renderCourses() {
     if (this.props.courses.courses._id == null) {
@@ -19,11 +34,18 @@ class ViewCourseDetails extends Component {
           <h2>
             Instructor: <strong>{this.props.courses.courses.instructor}</strong>
           </h2>
-          <p>{this.props.courses.courses.description}</p>
+          <h5>{this.props.courses.courses.description}</h5>
           <div className="row">
             <div className="col-md-6">
               <h3>Location: {this.props.courses.courses.location}</h3>
               <h4>Schedule: {this.props.courses.courses.schedule}</h4>
+              <button
+                onClick={this.props.history.goBack}
+                type="button"
+                className="btn btn-info"
+              >
+                Back
+              </button>
             </div>
           </div>
         </React.Fragment>
@@ -31,9 +53,11 @@ class ViewCourseDetails extends Component {
     }
   }
   render() {
+    console.log("This.props: ", this.props);
     return (
       <React.Fragment>
-        <div className="container">{this.renderCourses()}</div>
+        {/* <div className="container">{this.renderCourses()}</div> */}
+        {this.renderContent()}
       </React.Fragment>
     );
   }

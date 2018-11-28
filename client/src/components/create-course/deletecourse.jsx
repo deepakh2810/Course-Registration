@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CourseCart from "./coursecart";
 import { getCourses } from "../../actions/courseActions";
-import ViewCourse from "./viewcourse";
-import Spinner from "../common/Spinner";
+import ViewCourse from "../add-swap-delete-course/viewcourse";
 
-class AddCourses extends Component {
+class DeleteCourse extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,41 +25,21 @@ class AddCourses extends Component {
   };
 
   filterCoursesInProfile = course => {
-    let flag = true;
-    for (var i = 0; i < this.props.coursesselected.length; i++) {
-      if (this.props.coursesselected[i].name === course.name) {
-        flag = false;
-      }
-    }
-    if (flag === true) {
-      if (course.id !== null) {
-        if (
-          course.name
-            .toLowerCase()
-            .includes(this.state.SearchString.toLowerCase()) ||
-          course.instructor
-            .toLowerCase()
-            .includes(this.state.SearchString.toLowerCase()) ||
-          course.department
-            .toLowerCase()
-            .includes(this.state.SearchString.toLowerCase()) ||
-          course.coursenumber
-            .toLowerCase()
-            .includes(this.state.SearchString.toLowerCase())
-        ) {
-          return (
-            <ViewCourse
-              key={course.name}
-              course={course}
-              studentid={this.props.studentid}
-              onAdd={this.handleAddToCart}
-              coursesincart={this.props.coursesincart}
-              coursesselected={this.props.coursesselected}
-              status="addtocart" //add these courses to cart
-            />
-          );
-        }
-      } else {
+    if (course.id !== null) {
+      if (
+        course.name
+          .toLowerCase()
+          .includes(this.state.SearchString.toLowerCase()) ||
+        course.instructor
+          .toLowerCase()
+          .includes(this.state.SearchString.toLowerCase()) ||
+        course.department
+          .toLowerCase()
+          .includes(this.state.SearchString.toLowerCase()) ||
+        course.coursenumber
+          .toLowerCase()
+          .includes(this.state.SearchString.toLowerCase())
+      ) {
         return (
           <ViewCourse
             key={course.name}
@@ -70,45 +48,51 @@ class AddCourses extends Component {
             onAdd={this.handleAddToCart}
             coursesincart={this.props.coursesincart}
             coursesselected={this.props.coursesselected}
-            status="addtocart" //add these courses to cart
+            status="deletecourse" //Delete the specific course
           />
         );
       }
+    } else {
+      return (
+        <ViewCourse
+          key={course.name}
+          course={course}
+          studentid={this.props.studentid}
+          onAdd={this.handleAddToCart}
+          coursesincart={this.props.coursesincart}
+          coursesselected={this.props.coursesselected}
+          status="deletecourse" //delete the specific course
+        />
+      );
     }
   };
-  renderAddCoursesForDepartment = () => {
-    let chosenCourses = this.props.courses.courses.filter(
-      c => c.department === this.state.Department
-    );
 
-    if (this.props.courses.courses.length > 0) {
-      return (
-        <React.Fragment>
-          <main className="container-fluid">
-            <div className="row">
-              <div className="col-md-8">
-                {chosenCourses.map(course =>
-                  this.filterCoursesInProfile(course)
-                )}
-              </div>
-              <div className="col-md-4">
-                <CourseCart
-                  studentid={this.props.studentid}
-                  coursesincart={this.props.coursesincart}
-                />
-                <button
-                  onClick={() => this.props.onBack("add")}
-                  className="btn btn-info float-right m-2"
-                >
-                  Back
-                </button>
-              </div>
-            </div>
-          </main>
-        </React.Fragment>
-      );
-    } else {
-      return <div>Nothing Offered yet</div>;
+  renderAddCoursesForDepartment = () => {
+    // console.log("Whats wrong?", this.props);
+    if (this.props.courses.courses) {
+      if (this.props.courses.courses) {
+        let chosenCourses = this.props.courses.courses.filter(
+          c => c.department === this.state.Department
+        );
+
+        if (this.props.courses.courses.length > 0) {
+          return (
+            <React.Fragment>
+              <main className="container-fluid">
+                <div className="row">
+                  <div className="col-md-12">
+                    {chosenCourses.map(course =>
+                      this.filterCoursesInProfile(course)
+                    )}
+                  </div>
+                </div>
+              </main>
+            </React.Fragment>
+          );
+        } else {
+          return <div>Nothing Offered yet</div>;
+        }
+      }
     }
   };
 
@@ -120,43 +104,13 @@ class AddCourses extends Component {
       return <div>{this.renderAddCoursesForDepartment()}</div>;
     }
   }
-
-  renderAddCourses() {
-    if (this.props.courses.courses.length > 0) {
-      return (
-        <React.Fragment>
-          <main className="container-fluid">
-            <div className="row">
-              <div className="col-md-8">
-                {this.props.courses.courses.map(course =>
-                  this.filterCoursesInProfile(course)
-                )}
-              </div>
-              <div className="col-md-4">
-                <CourseCart
-                  studentid={this.props.studentid}
-                  coursesincart={this.props.coursesincart}
-                />
-                <button
-                  onClick={() => this.props.onBack("add")}
-                  className="btn btn-info float-right m-2"
-                >
-                  Back
-                </button>
-              </div>
-            </div>
-          </main>
-        </React.Fragment>
-      );
-    } else {
-      return <div>Nothing Offered yet</div>;
-    }
-  }
   onInputChange(event) {
     this.setState({ SearchString: event.target.value.substr(0, 20) });
   }
 
   render() {
+    console.log("Delete a course");
+    console.log("Props: ", this.props);
     let searchButtonName = "";
     switch (this.state.Department) {
       case "None":
@@ -177,7 +131,7 @@ class AddCourses extends Component {
       default:
         searchButtonName = "Select Department";
     }
-    // let serachBoxWidth = 40;
+
     return (
       <React.Fragment>
         <div className="container-fluid">
@@ -258,4 +212,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getCourses }
-)(AddCourses);
+)(DeleteCourse);

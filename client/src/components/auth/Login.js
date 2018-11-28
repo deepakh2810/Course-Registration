@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser, oauthGoogle } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 class Login extends Component {
   constructor() {

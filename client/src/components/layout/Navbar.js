@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
-import './navBar.css';
+import "./navBar.css";
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -16,14 +16,13 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      
       <ul className="navbar-nav ml-auto ">
         <li className="nav-item ">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link" 
-            style={{color:"white"}}
+            className="nav-link"
+            style={{ color: "white" }}
           >
             <img
               className="rounded-circle"
@@ -36,7 +35,7 @@ class Navbar extends Component {
           </a>
         </li>
       </ul>
-);
+    );
     const guestLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -54,35 +53,33 @@ class Navbar extends Component {
 
     return (
       <div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 " >
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            Course Select
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#mobile-nav"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              Course Select
+            </Link>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#mobile-nav"
+            >
+              <span className="navbar-toggler-icon" />
+            </button>
 
-          <div className="collapse navbar-collapse" id="mobile-nav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to="/profiles">
-                  {" "}
-                  
-                </Link>
-              </li>
-            </ul>
-            {isAuthenticated ? authLinks : guestLink}
+            <div className="collapse navbar-collapse" id="mobile-nav">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/profiles">
+                    {" "}
+                  </Link>
+                </li>
+              </ul>
+              {isAuthenticated ? authLinks : guestLink}
+            </div>
           </div>
-        </div>
         </nav>
-      
-    </div>
+      </div>
     );
   }
 }

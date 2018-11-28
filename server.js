@@ -7,10 +7,12 @@ const posts = require("./routes/api/posts");
 const courses = require("./routes/api/courses");
 const studentsinfo = require("./routes/api/studentsinfo");
 const studentinfobyname = require("./routes/api/studentinfobyname");
+const todo = require("./routes/api/todo");
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
-const path=require('path');
+const path = require("path");
+const holds=require("./routes/api/holds");
 
 // Set up view engine
 // app.set("view engine", "ejs");
@@ -42,14 +44,16 @@ app.use("/api/posts", posts);
 app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname/", studentinfobyname);
+app.use("/api/todo", todo);
+app.use("/api/holds",holds);
 
 //Serve  static assets
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 

@@ -7,7 +7,7 @@ import { setCurrentUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 
 import PrivateRoute from "./components/common/PrivateRoute";
@@ -17,15 +17,24 @@ import LandingPage from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import EmailVerification from "./components/auth/Email_verification";
-import Dashboard from "./components/dashboard/Dashboard";
+// import Dashboard from "./components/dashboard/Dashboard";
 
 import CreateProfile from "./components/create-profile/CreateProfile";
 import ViewCourseDetails from "./components/add-swap-delete-course/viewcoursedetails";
 import AddSwapDeleteWrapper from "./components/add-swap-delete-course/add-swap-del-wrapper";
+import AddCourses from "./components/add-swap-delete-course/addcourses";
 import CreateCourseWrapper from "./components/create-course/createcoursewrapper";
 import StudentDashboard from "./components/cards/studentdashboard";
 import ProfessorDashboard from "./components/cards/ProfessorDashboard";
 import RegistrarDashboard from "./components/cards/RegistrarDashboard";
+import ViewClassScheduleWrapper from "./components/class-schedule/viewclassschedulewrapper";
+import DashBoardLogic from "./components/cards/DashBoardlogic";
+import CreateAdminCourseWrapper from "./components/create-course/createadmincoursewrapper";
+import DeleteAdminCourseWrapper from "./components/create-course/deleteadmincoursewrapper";
+import ToDoWrapper from "./components/to-do/todowrapper";
+import AddToDo from "./components/to-do/addtodo";
+import AddHolds from "./components/holds/addholds";
+import HoldsWrapper from "./components/holds/holdswrapper";
 library.add(faStroopwafel);
 
 //Check for token
@@ -63,9 +72,10 @@ class App extends Component {
               <PrivateRoute
                 exact
                 path="/dashboard"
-                component={StudentDashboard}
+                component={DashBoardLogic}
               />
             </Switch>
+            
             <Switch>
               <PrivateRoute
                 exact
@@ -73,7 +83,35 @@ class App extends Component {
                 component={ViewCourseDetails}
               />
             </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/addtodo/:university_id"
+                component={AddToDo}
+              />
+            </Switch>
 
+             <Switch>
+              <PrivateRoute
+                exact
+                path="/addholds/:university_id"
+                component={AddHolds}
+              />
+            </Switch>
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-course"
+                component={CreateCourseWrapper}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/todolist" component={ToDoWrapper} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/holds" component={HoldsWrapper} />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact
@@ -81,15 +119,34 @@ class App extends Component {
                 component={AddSwapDeleteWrapper}
               />
             </Switch>
-
             <Switch>
               <PrivateRoute
                 exact
-                path="/createnewcourse"
+                path="/ViewSchedule"
+                component={ViewClassScheduleWrapper}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/CreateCourse"
                 component={CreateCourseWrapper}
               />
             </Switch>
-
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/create-admin-course"
+                component={CreateAdminCourseWrapper}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/delete-admin-course"
+                component={DeleteAdminCourseWrapper}
+              />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact

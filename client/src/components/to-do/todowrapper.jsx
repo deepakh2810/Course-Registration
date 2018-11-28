@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SidebarAdmin from "../layout/SidebarAdmin";
 import SidebarProf from "../layout/SidebarProf";
-import CreateCourse from "./createcourse";
-import { Link } from "react-router-dom";
+import Sidebar from "../layout/Sidebar";
+import ToDoAdmin from "./todoadmin";
+import ToDoProffStudent from "./todoproffstudent";
 
-class CreateCourseWrapper extends Component {
+class ToDoWrapper extends Component {
   populateSidebar() {
     if (this.props.auth.user.user_type === "ADMIN") {
       return (
@@ -20,6 +21,12 @@ class CreateCourseWrapper extends Component {
           <SidebarProf />
         </React.Fragment>
       );
+    } else {
+      return (
+        <React.Fragment>
+          <Sidebar />
+        </React.Fragment>
+      );
     }
   }
 
@@ -27,28 +34,24 @@ class CreateCourseWrapper extends Component {
     if (this.props.auth.user.user_type === "ADMIN") {
       return (
         <React.Fragment>
-          <Link to={"/create-admin-course"}>
-            <button className="btn btn-info m-2">Create New Course </button>
-          </Link>
-          <Link to={"/delete-admin-course"}>
-            <button className="btn btn-info m-2">Delete A Course </button>
-          </Link>
+          <ToDoAdmin />
         </React.Fragment>
       );
     } else if (this.props.auth.user.user_type === "PROFESSOR") {
       return (
         <React.Fragment>
-          <CreateCourse />
+          <ToDoProffStudent />
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <ToDoProffStudent />
         </React.Fragment>
       );
     }
   }
-
   render() {
-    console.log("In create Admin course wrapper");
-    const { user } = this.props.auth;
-    console.log("User: ", user);
-
     return (
       <React.Fragment>
         <div className="container-fluid">
@@ -66,8 +69,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-CreateCourseWrapper.propTypes = {
+ToDoWrapper.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(CreateCourseWrapper);
+export default connect(mapStateToProps)(ToDoWrapper);

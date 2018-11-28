@@ -28,6 +28,7 @@ export const getStudentinfo = () => dispatch => {
 
 //Get StudentInfo by name
 export const getStudentInfoByName = username => dispatch => {
+  console.log("In the action.");
   axios
     .get("/api/studentinfobyname/" + username)
     .then(res =>

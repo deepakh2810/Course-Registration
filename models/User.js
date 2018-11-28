@@ -8,6 +8,12 @@ const UserSchema = new Schema({
     enum: ["local", "google"],
     required: true
   },
+  user_type: {
+    type: String
+  },
+  university_id: {
+    type: String
+  },
   local: {
     name: {
       type: String

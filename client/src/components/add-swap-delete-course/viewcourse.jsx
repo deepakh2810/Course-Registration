@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { postCourseToCart } from "../../actions/studentinfoActions";
 import { removeCourseFromStudent } from "../../actions/studentinfoActions";
 import { swapCourse } from "../../actions/studentinfoActions";
+import { removeCourse } from "../../actions/courseActions";
 import { Link } from "react-router-dom";
 // import { log } from "util";
 class ViewCourse extends Component {
   handleAdd = () => {
+    console.log("Am I here?");
     let raiseAlert = 0;
     let alertMessage = "The schedule clashes with courses you already have:";
 
@@ -21,12 +23,18 @@ class ViewCourse extends Component {
     if (raiseAlert === 1) {
       alert(alertMessage);
     } else {
+      console.log("In else, That's good");
       this.props.postCourseToCart(this.props.studentid, this.props.course);
     }
   };
 
   handleDelete = () => {
     this.props.removeCourseFromStudent(this.props.studentid, this.props.course);
+  };
+
+  hendleCourseDelete = () => {
+    // console.log("Delete Course: ", this.props.course._id);
+    this.props.removeCourse(this.props.course._id);
   };
 
   hendleSwap = () => {
@@ -59,6 +67,12 @@ class ViewCourse extends Component {
           >
             Swap This course{" "}
           </button>
+          <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+            {/* <span className="float-right">View More</span> */}
+            <button type="button" className="btn btn-info m-2">
+              View More
+            </button>
+          </Link>
           <button
             onClick={this.handleDelete}
             className="btn btn-info float-right"
@@ -75,6 +89,12 @@ class ViewCourse extends Component {
               <button className="btn btn-info m-2" disabled>
                 Add
               </button>
+              <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+                {/* <span className="float-right">View More</span> */}
+                <button type="button" className="btn btn-info m-2">
+                  View More
+                </button>
+              </Link>
             </React.Fragment>
           );
         }
@@ -84,6 +104,12 @@ class ViewCourse extends Component {
           <button onClick={this.handleAdd} className="btn btn-info m-2">
             Add
           </button>
+          <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+            {/* <span className="float-right">View More</span> */}
+            <button type="button" className="btn btn-info m-2">
+              View More
+            </button>
+          </Link>
         </React.Fragment>
       );
     } else if (this.props.status === "swapwith") {
@@ -92,6 +118,29 @@ class ViewCourse extends Component {
           <button onClick={this.hendleSwap} className="btn btn-info m-2">
             Swap with this Course
           </button>
+          <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+            {/* <span className="float-right">View More</span> */}
+            <button type="button" className="btn btn-info m-2">
+              View More
+            </button>
+          </Link>
+        </React.Fragment>
+      );
+    } else if (this.props.status === "deletecourse") {
+      return (
+        <React.Fragment>
+          <button
+            onClick={this.hendleCourseDelete}
+            className="btn btn-info m-2"
+          >
+            Delete
+          </button>
+          <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+            {/* <span className="float-right">View More</span> */}
+            <button type="button" className="btn btn-info m-2">
+              View More
+            </button>
+          </Link>
         </React.Fragment>
       );
     } else {
@@ -100,6 +149,12 @@ class ViewCourse extends Component {
           <button onClick={this.handleAdd} className="btn btn-info m-2">
             Add
           </button>
+          <Link to={"/coursedetails/" + this.props.course.coursenumber}>
+            {/* <span className="float-right">View More</span> */}
+            <button type="button" className="btn btn-info m-2">
+              View More
+            </button>
+          </Link>
         </React.Fragment>
       );
     }
@@ -113,18 +168,21 @@ class ViewCourse extends Component {
       <div className="card w-90 m-2">
         <div className="card-body">
           <div className="card-title">
-            <h2>{CourseIdentifier}</h2>
+            <h1>{CourseIdentifier}</h1>
           </div>
           <div className="card-text">
-            <p>{this.props.course.description}</p>
-            <h4>
+            <h5>{this.props.course.description}</h5>
+            <h2>
               Instructor: <strong>{this.props.course.instructor}</strong>
-            </h4>
-            <h4>{this.props.course.location}</h4>
-            <h5>{this.props.course.schedule}</h5>
-            <Link to={"/coursedetails/" + this.props.course.coursenumber}>
-              <span className="float-right">View More</span>
-            </Link>
+            </h2>
+            <h3>{this.props.course.location}</h3>
+            <h4>{this.props.course.schedule}</h4>
+            {/* <Link to={"/coursedetails/" + this.props.course.coursenumber}> */}
+            {/* <span className="float-right">View More</span> */}
+            {/* <button type="button" className="btn btn-info"> */}
+            {/* View More */}
+            {/* </button> */}
+            {/* </Link> */}
             <br />
             {this.renderAddOrSwapButton()}
           </div>
@@ -142,5 +200,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { postCourseToCart, removeCourseFromStudent, swapCourse }
+  { postCourseToCart, removeCourseFromStudent, swapCourse, removeCourse }
 )(ViewCourse);
