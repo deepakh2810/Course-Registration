@@ -47,7 +47,7 @@ class StudentDashboard extends Component {
         description: "View Holds : financial, Health, Advisory",
         imagelink:
           "http://wbnaboise.org/wp-content/uploads/2015/07/hold200.gif",
-        route: "/"
+        route: "/holds"
       },
       {
         id: "C005",

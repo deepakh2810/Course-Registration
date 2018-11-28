@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
   User.find()
     .sort({ date: -1 })
     .then(users => {
-      console.log("All Users: ", users);
+      // console.log("All Users: ", users);
       res.json(users);
     });
 });
@@ -160,6 +160,7 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           user_type: user.user_type,
+          university_id: user.university_id,
           name: user.local.name,
           avatar: user.local.avatar
         };

@@ -55,7 +55,7 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-home" />
-                  Home
+                  &nbsp; Home
                 </a>
               </li>
 
@@ -66,7 +66,7 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-user-ninja" />
-                  User Details
+                  &nbsp; User Details
                 </a>
               </li>
               <li className="nav-item">
@@ -76,7 +76,7 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-search" />
-                  Create Course
+                  &nbsp; Create Course
                 </a>
               </li>
               <li className="nav-item">
@@ -86,7 +86,7 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-envelope-square" />
-                  Reviews
+                  &nbsp; Reviews
                 </a>
               </li>
 
@@ -97,7 +97,7 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-comments" />
-                  Let's Chat
+                  &nbsp; Let's Chat
                 </a>
               </li>
             </ul>

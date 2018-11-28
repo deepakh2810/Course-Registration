@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import SidebarAdmin from "../layout/SidebarAdmin";
 import SidebarProf from "../layout/SidebarProf";
 import Sidebar from "../layout/Sidebar";
-import ToDoAdmin from "./todoadmin";
-import ToDoProffStudent from "./todoproffstudent";
+import HoldsAdmin from "./holdsadmin";
+import HoldsProffStudent from "./holdsproffstudent";
 
-class ToDoWrapper extends Component {
+class HoldsWrapper extends Component {
   populateSidebar() {
     if (this.props.auth.user.user_type === "ADMIN") {
       return (
@@ -34,19 +34,19 @@ class ToDoWrapper extends Component {
     if (this.props.auth.user.user_type === "ADMIN") {
       return (
         <React.Fragment>
-          <ToDoAdmin />
+          <HoldsAdmin />
         </React.Fragment>
       );
     } else if (this.props.auth.user.user_type === "PROFESSOR") {
       return (
         <React.Fragment>
-          <ToDoProffStudent />
+          <HoldsProffStudent />
         </React.Fragment>
       );
     } else {
       return (
         <React.Fragment>
-          <ToDoProffStudent />
+          <HoldsProffStudent />
         </React.Fragment>
       );
     }
@@ -69,8 +69,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-ToDoWrapper.propTypes = {
+HoldsWrapper.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(ToDoWrapper);
+export default connect(mapStateToProps)(HoldsWrapper);

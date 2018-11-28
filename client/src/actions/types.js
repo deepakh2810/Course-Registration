@@ -22,3 +22,7 @@ export const GET_TODOS = "GET_TODOS";
 export const TODO_LOADING = "TODO_LOADING";
 export const POST_TODO = "POST_TODO";
 export const DELETE_TODO = "DELETE_TODO";
+export const GET_HOLDS = "GET_HOLDS";
+export const HOLDS_LOADING = "HOLDS_LOADING";
+export const POST_HOLDS = "POST_HOLDS";
+export const DELETE_HOLDS = "DELETE_HOLDS";

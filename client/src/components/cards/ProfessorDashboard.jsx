@@ -39,7 +39,7 @@ class ProfessorDashboard extends Component {
         description: "Enter the Grades for a student in your course",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
-        route: "/"
+        route: "/holds"
       },
       {
         id: "t001",

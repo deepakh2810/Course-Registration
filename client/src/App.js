@@ -33,6 +33,8 @@ import CreateAdminCourseWrapper from "./components/create-course/createadmincour
 import DeleteAdminCourseWrapper from "./components/create-course/deleteadmincoursewrapper";
 import ToDoWrapper from "./components/to-do/todowrapper";
 import AddToDo from "./components/to-do/addtodo";
+import AddHolds from "./components/holds/addholds";
+import HoldsWrapper from "./components/holds/holdswrapper";
 library.add(faStroopwafel);
 
 //Check for token
@@ -70,10 +72,10 @@ class App extends Component {
               <PrivateRoute
                 exact
                 path="/dashboard"
-                // component={StudentDashboard}
                 component={DashBoardLogic}
               />
             </Switch>
+            
             <Switch>
               <PrivateRoute
                 exact
@@ -88,15 +90,27 @@ class App extends Component {
                 component={AddToDo}
               />
             </Switch>
+
+             <Switch>
+              <PrivateRoute
+                exact
+                path="/addholds/:university_id"
+                component={AddHolds}
+              />
+            </Switch>
+
             <Switch>
               <PrivateRoute
                 exact
-                path="/create-course/"
+                path="/create-course"
                 component={CreateCourseWrapper}
               />
             </Switch>
             <Switch>
-              <PrivateRoute exact path="/todolist/" component={ToDoWrapper} />
+              <PrivateRoute exact path="/todolist" component={ToDoWrapper} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/holds" component={HoldsWrapper} />
             </Switch>
             <Switch>
               <PrivateRoute
