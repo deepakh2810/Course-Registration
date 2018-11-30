@@ -19,7 +19,7 @@ class EdatesStudent extends Component {
                 <div className="card-title">
                   <div className="row">
                     <div className="col col-md-12">
-                      <h4 key={edates._id}>{edates.edates}</h4>
+                      <h4 key={edates._id}>{edates.Edates}</h4>
                     </div>
                   </div>
                 </div>

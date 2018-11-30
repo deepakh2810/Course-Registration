@@ -8,8 +8,8 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile } from "../../actions/profileActions";
 import Sidebar from "../layout/Sidebar";
-// import DashBoard from "../dashboard/Dashboard";
-// import Dashboard from "../dashboard/Dashboard";
+import DashBoard from "../dashboard/Dashboard";
+
 
 class CreateProfile extends Component {
   constructor(props) {

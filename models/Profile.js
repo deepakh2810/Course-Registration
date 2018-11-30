@@ -11,10 +11,10 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  comapny: {
+  company: {
     type: String
   },
-  webiste: {
+  website: {
     type: String
   },
   location: {
@@ -94,7 +94,7 @@ const ProfileSchema = new Schema({
     twitter: {
       type: String
     },
-    facbook: {
+    facebook: {
       type: String
     },
     linkedin: {

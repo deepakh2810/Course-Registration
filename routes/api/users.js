@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const randomstring = require("randomstring");
 const mailer = require("../../misc/mailer");
+const nodemailer = require("nodemailer");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
@@ -33,6 +34,14 @@ router.get("/", (req, res) => {
 // @route   POST  api/users/register
 // @desc    Tests post route
 // @access  Public
+
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "courseselect2018@gmail.com",
+    pass: "admin@1234"
+  }
+});
 
 router.post("/register", (req, res) => {
   console.log("Parameters: ", req.body);
@@ -104,12 +113,25 @@ router.post("/register", (req, res) => {
             Course Select
             `;
           //Send the email
-          mailer.sendEmail(
-            "admin@courseselect.com",
-            req.body.email,
-            "Email verification",
-            html
-          );
+          // mailer.sendEmail(
+          //   "admin@courseselect.com",
+          //   req.body.email,
+          //   "Email verification",
+          //   html
+          // );
+          var mailOptions = {
+            from: "courseselect2018@gmail.com",
+            to: req.body.email,
+            subject: "Email verification",
+            text: html
+          };
+          transporter.sendMail(mailOptions, function(error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
           newUser
             .save()
             .then(user => {
