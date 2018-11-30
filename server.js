@@ -12,7 +12,8 @@ const passport = require("passport");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const holds=require("./routes/api/holds");
+const holds = require("./routes/api/holds");
+const postcoursestostudent = require("./routes/api/postcoursestostudent");
 
 // Set up view engine
 // app.set("view engine", "ejs");
@@ -45,7 +46,8 @@ app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname/", studentinfobyname);
 app.use("/api/todo", todo);
-app.use("/api/holds",holds);
+app.use("/api/holds", holds);
+app.use("/api/postcoursestostudent", postcoursestostudent);
 
 //Serve  static assets
 if (process.env.NODE_ENV === "production") {

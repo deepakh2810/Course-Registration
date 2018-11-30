@@ -35,6 +35,7 @@ import ToDoWrapper from "./components/to-do/todowrapper";
 import AddToDo from "./components/to-do/addtodo";
 import AddHolds from "./components/holds/addholds";
 import HoldsWrapper from "./components/holds/holdswrapper";
+import Payment from "./components/payment/Payment";
 library.add(faStroopwafel);
 
 //Check for token
@@ -75,7 +76,9 @@ class App extends Component {
                 component={DashBoardLogic}
               />
             </Switch>
-            
+            <Switch>
+              <PrivateRoute exact path="/payment" component={Payment} />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact
@@ -91,7 +94,7 @@ class App extends Component {
               />
             </Switch>
 
-             <Switch>
+            <Switch>
               <PrivateRoute
                 exact
                 path="/addholds/:university_id"

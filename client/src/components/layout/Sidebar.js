@@ -110,7 +110,7 @@ class Sidebar extends Component {
 
               <li className="nav-item">
                 <a
-                  href="/"
+                  href="/payment"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >

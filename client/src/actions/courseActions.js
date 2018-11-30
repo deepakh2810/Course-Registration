@@ -28,9 +28,6 @@ export const getCourses = () => dispatch => {
 };
 
 export const createCourse = (courseData, history) => dispatch => {
-  console.log("In course action");
-  console.log("CourseData: ", courseData);
-  console.log("History", history);
   axios
     .post("/api/courses", courseData)
     .then(res => history.push("/dashboard"))
@@ -63,7 +60,6 @@ export const getCoursesByCourseNumber = coursenumber => dispatch => {
 
 //Delete Course by course Number
 export const removeCourse = courseid => dispatch => {
-  console.log("In actions courses: ", courseid);
   axios
     .delete("/api/courses/" + courseid)
     .then(res => {

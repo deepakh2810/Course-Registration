@@ -18,6 +18,7 @@ class CreateCourse extends Component {
       description: "",
       location: "",
       schedule: "",
+      officehours: "",
       errors: ""
     };
     this.onChange = this.onChange.bind(this);
@@ -54,7 +55,8 @@ class CreateCourse extends Component {
       description: this.state.description,
       instructor: instructorName,
       location: this.state.location,
-      schedule: this.state.schedule
+      schedule: this.state.schedule,
+      officehours: this.state.officehours
     };
     this.props.createCourse(courseData, this.props.history);
   }
@@ -95,7 +97,7 @@ class CreateCourse extends Component {
               info="Department that offers the course"
             />
             <TextFieldGroup
-              placeholder="* Course Number e.g. DEPTXXXX"
+              placeholder="* Course Number e.g. XXXX"
               name="coursenumber"
               value={this.state.coursenumber}
               onChange={this.onChange}
@@ -133,6 +135,14 @@ class CreateCourse extends Component {
               onChange={this.onChange}
               error={errors.schedule}
               info="Date and Time of the lecture."
+            />
+            <TextFieldGroup
+              placeholder="* Office Hours e.g. Monday, Wednesday HH:MM XM - HH:MM XM"
+              name="officehours"
+              value={this.state.officehours}
+              onChange={this.onChange}
+              error={errors.officehours}
+              info="Office Hours."
             />
             <input
               type="submit"
@@ -199,6 +209,14 @@ class CreateCourse extends Component {
               onChange={this.onChange}
               error={errors.schedule}
               info="Date and Time of the lecture."
+            />
+            <TextFieldGroup
+              placeholder="* Office Hours e.g. Monday, Wednesday HH:MM XM - HH:MM XM"
+              name="officehours"
+              value={this.state.officehours}
+              onChange={this.onChange}
+              error={errors.officehours}
+              info="Office Hours."
             />
             <input
               type="submit"

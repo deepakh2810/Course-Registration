@@ -23,10 +23,8 @@ router.get(
   "/:coursenumber",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // console.log("Here in the api", req.params.coursenumber);
     Course.findOne({ coursenumber: req.params.coursenumber })
       .then(Course => {
-        // console.log("In Api: ", Course);
         res.json(Course);
       })
       .catch(err => res.status(404).json({ success: false }));
@@ -54,6 +52,7 @@ router.post(
       department: req.body.department,
       location: req.body.location,
       schedule: req.body.schedule,
+      officehours: req.body.officehours,
       year: "2018",
       semester: "Spring"
     });
@@ -66,8 +65,6 @@ router.post(
       //Save profile
       newCourse.save().then(course => res.json(course));
     });
-
-    // newCourse.save().then(course => res.json(course));
   }
 );
 
@@ -75,12 +72,8 @@ router.post(
 // @desc    Delete A Course
 // @access  Public
 router.delete("/:courseid", (req, res) => {
-  // console.log("Choose me");
-  // console.log("Parameters: ", req.params);
-
   Course.findById(req.params.courseid)
     .then(course => {
-      // console.log("Found course: ", course);
       course
         .remove()
         .then(() => {

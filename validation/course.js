@@ -38,6 +38,10 @@ module.exports = function validatePostInput(data) {
     errors.schedule = "Class Schedule is required";
   }
 
+  if (Validator.isEmpty(data.officehours)) {
+    errors.officehours = "Office hours is required";
+  }
+
   return {
     errors,
     isValid: isEmpty(errors)

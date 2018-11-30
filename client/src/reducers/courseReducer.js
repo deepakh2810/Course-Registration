@@ -15,6 +15,7 @@ const initialState = {
       description: null,
       location: null,
       schedule: null,
+      officehours: null,
       date: null
     }
   ],
