@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
-import './navBar.css';
+import "./navBar.css";
+import logo from "../../img/logo.png";
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -16,14 +17,13 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      
       <ul className="navbar-nav ml-auto ">
         <li className="nav-item ">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
-            className="nav-link" 
-            style={{color:"white"}}
+            className="nav-link"
+            style={{ color: "white" }}
           >
             <img
               className="rounded-circle"
@@ -36,7 +36,7 @@ class Navbar extends Component {
           </a>
         </li>
       </ul>
-);
+    );
     const guestLink = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -54,11 +54,11 @@ class Navbar extends Component {
 
     return (
       <div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 " >
-        <div className="container">
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-4 ">
           <Link className="navbar-brand" to="/">
-            Course Select
+            <img src={logo} style={{ width: "300px" }} />
           </Link>
+
           <button
             className="navbar-toggler"
             type="button"
@@ -72,17 +72,14 @@ class Navbar extends Component {
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
-                  {" "}
-                  
+                  User Profiles
                 </Link>
               </li>
             </ul>
             {isAuthenticated ? authLinks : guestLink}
           </div>
-        </div>
         </nav>
-      
-    </div>
+      </div>
     );
   }
 }

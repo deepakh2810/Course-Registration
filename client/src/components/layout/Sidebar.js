@@ -3,14 +3,10 @@ import { Glyphicon } from "react-bootstrap";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profileActions";
-import Spinner from "../common/Spinner";
-import CreateProfile from "../create-profile/CreateProfile";
-import Radium from "radium";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
 import "./navBar.css";
+
 library.add(faStroopwafel);
 
 class Sidebar extends Component {
@@ -56,67 +52,67 @@ class Sidebar extends Component {
 
             <ul className="nav flex-column">
               <li className="nav-item">
-                <a
+                <Link
                   className="nav-link active"
-                  href="/"
+                  to="/"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-home" />
                   &nbsp; Home
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a
-                  href="/create-profile"
+                <Link
+                  to="/profile"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-user-ninja" />
                   &nbsp;User Details
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  href="/addcourses"
+                <Link
+                  to="/addcourses"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-search" />
                   &nbsp;Courses
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-envelope-square" />
                   &nbsp;Reviews
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-comments" />
                   &nbsp; Let's Chat
-                </a>
+                </Link>
               </li>
 
               <li className="nav-item">
-                <a
-                  href="/"
+                <Link
+                  to="/"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i class="fas fa-shopping-cart" />
                   &nbsp; Shopping Cart
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
