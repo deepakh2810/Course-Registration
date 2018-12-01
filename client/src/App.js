@@ -39,7 +39,6 @@ import AddFaid from "./components/faid/addfaid";
 import FaidWrapper from "./components/faid/faidwrapper";
 import AddEdates from "./components/edates/addedates";
 import EdatesWrapper from "./components/edates/edateswrapper";
-import ViewStudentProfessors from "./components/ViewStudentsProfessors/viewStudentsProfessors";
 library.add(faStroopwafel);
 
 //Check for token
@@ -138,9 +137,6 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/edates" component={EdatesWrapper} />
-            </Switch>
-            <Switch>
-              <PrivateRoute exact path="/viewStudentsProfessors" component={ViewStudentProfessors} />
             </Switch>
 
             <Switch>
