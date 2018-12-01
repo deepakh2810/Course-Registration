@@ -15,6 +15,10 @@ const path = require("path");
 const holds = require("./routes/api/holds");
 const postcoursestostudent = require("./routes/api/postcoursestostudent");
 
+const reviews = require("./routes/api/reviews");
+const payment = require("./routes/api/payment");
+
+
 // Set up view engine
 // app.set("view engine", "ejs");
 //Body parser middleware
@@ -48,6 +52,10 @@ app.use("/api/studentinfobyname/", studentinfobyname);
 app.use("/api/todo", todo);
 app.use("/api/holds", holds);
 app.use("/api/postcoursestostudent", postcoursestostudent);
+
+app.use("/api/reviews", reviews);
+
+app.use("/api", require("./routes/api/payment"));
 
 //Serve  static assets
 if (process.env.NODE_ENV === "production") {

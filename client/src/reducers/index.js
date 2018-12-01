@@ -7,6 +7,7 @@ import studentinfoReducer from "./studentinfoReducer";
 import todoReducer from "./todoReducer";
 import addtodoReducer from "./addtodoReducer";
 import addholdsReducer from "./addholdsReducer";
+import reviewsReducer from "./reviewsReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   studentsinfo: studentinfoReducer,
   users: todoReducer,
   todos: addtodoReducer,
-  holds: addholdsReducer
+  holds: addholdsReducer,
+  reviews: reviewsReducer
 });

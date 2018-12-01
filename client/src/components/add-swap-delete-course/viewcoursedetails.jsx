@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { getCoursesByCourseNumber } from "../../actions/courseActions";
 import { connect } from "react-redux";
 import Sidebar from "../layout/Sidebar";
+//import AddReviews from "../reviews/AddReviews";
+
+import Reviews from "../reviews/reviews";
 
 class ViewCourseDetails extends Component {
   componentDidMount() {
@@ -19,6 +22,7 @@ class ViewCourseDetails extends Component {
             </div>
             <div className="col-md-10">{this.renderCourses()}</div>
           </div>
+
         </div>
       </React.Fragment>
     );
@@ -29,6 +33,10 @@ class ViewCourseDetails extends Component {
     } else {
       return (
         <React.Fragment>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-9">
+
           <h1>{this.props.courses.courses.name}</h1>
           <br />
           <h2>
@@ -46,9 +54,22 @@ class ViewCourseDetails extends Component {
               >
                 Back
               </button>
+
             </div>
+
+
           </div>
+
+  <div> <Reviews/> </div>
+
+      </div>
+    </div>
+  </div>
+
         </React.Fragment>
+
+
+
       );
     }
   }

@@ -35,6 +35,8 @@ class AddHolds extends Component {
       University_ID: this.props.match.params.university_id,
       description: this.state.description
     };
+    console.log("this.props.history: ", this.props.history);
+
     this.props.postHoldsByUniId(holdsData, this.props.history);
   }
 
@@ -46,7 +48,10 @@ class AddHolds extends Component {
   }
 
   renderHoldsTextBox() {
+    console.log("this.props.history: ", this.props.history);
+
     return (
+
       <React.Fragment>
         <h2>Add a new item:</h2>
         <form onSubmit={this.onSubmit}>
@@ -70,7 +75,10 @@ class AddHolds extends Component {
 
   renderExistingContent() {
     // return <h2>In here</h2>;
+
     if (this.props.holds.holds[0]) {
+      console.log("this.props.history: ", this.props.history);
+
       console.log("In the render component: ");
       return (
         <React.Fragment>
@@ -78,6 +86,7 @@ class AddHolds extends Component {
           <br />
           <h2>Existing Items on the list:</h2>
           {this.props.holds.holds.map(holds => (
+
             <div className="card w-90 m-2">
               <div className="card-body">
                 <div className="card-title">

@@ -31,7 +31,7 @@ class CreateCourseWrapper extends Component {
             <button className="btn btn-info m-2">Create New Course </button>
           </Link>
           <Link to={"/delete-admin-course"}>
-            <button className="btn btn-info m-2">Delete A Course </button>
+            <button className="btn btn-info m-2">View/Delete A Course </button>
           </Link>
         </React.Fragment>
       );

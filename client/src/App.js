@@ -37,6 +37,7 @@ import AddHolds from "./components/holds/addholds";
 import HoldsWrapper from "./components/holds/holdswrapper";
 import Payment from "./components/payment/Payment";
 
+
 import ConfirmationPage from "./components/payment/ConfirmationPage";
 import PdfPage from "./components/payment/PdfPage.jsx";
 
@@ -195,6 +196,7 @@ class App extends Component {
             component={ConfirmationPage}
             />
             </Switch>
+
 
 
             <Footer />
