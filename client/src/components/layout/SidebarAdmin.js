@@ -36,7 +36,7 @@ class SidebarAdmin extends Component {
               background: "#2F363A",
               marginLeft: "-15px",
               marginTop: "-24px",
-              height: "180vh"
+              height: "250vh"
             }}
           >
             <div className="sidebar-header">
@@ -58,7 +58,7 @@ class SidebarAdmin extends Component {
               <li className="nav-item">
                 <a
                   className="nav-link active"
-                  href="/"
+                  href="/dashboard"
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-home" />
