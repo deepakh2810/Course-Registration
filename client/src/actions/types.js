@@ -26,3 +26,13 @@ export const GET_HOLDS = "GET_HOLDS";
 export const HOLDS_LOADING = "HOLDS_LOADING";
 export const POST_HOLDS = "POST_HOLDS";
 export const DELETE_HOLDS = "DELETE_HOLDS";
+export const GET_FAID = "GET_FAID";
+export const FAID_LOADING = "FAID_LOADING";
+export const POST_FAID = "POST_FAID";
+export const DELETE_FAID = "DELETE_FAID";
+export const GET_EDATES = "GET_EDATES";
+export const EDATES_LOADING = "EDATES_LOADING";
+export const POST_EDATES = "POST_EDATES";
+export const DELETE_EDATES = "DELETE_EDATES";
+
+

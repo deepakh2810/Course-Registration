@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getUsers } from "../../actions/todoactions";
+import { getUsers } from "../../actions/faidActions";
 import { Link } from "react-router-dom";
 
-class ToDoAdmin extends Component {
+class FaidAdmin extends Component {
   componentDidMount() {
     this.props.getUsers();
   }
@@ -33,16 +33,16 @@ class ToDoAdmin extends Component {
               <tbody key={user.university_id}>
                 <tr>
                   <td>
-                    <h4>{user.user_type}</h4>
+                    <h3>{user.user_type}</h3>
                   </td>
                   <td>
-                    <h4>{user.university_id}</h4>
+                    <h3>{user.university_id}</h3>
                   </td>
                   <td>
-                    <h4>{this.getName(user)}</h4>
+                    <h3>{this.getName(user)}</h3>
                   </td>
                   <td>
-                    <Link to={"/addtodo/" + user.university_id}>
+                    <Link to={"/addfaid/" + user.university_id}>
                       <button type="button" className="btn btn-info m-2">
                         Add
                       </button>
@@ -70,4 +70,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getUsers }
-)(ToDoAdmin);
+)(FaidAdmin);

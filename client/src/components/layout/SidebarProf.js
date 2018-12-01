@@ -51,7 +51,7 @@ class SidebarProf extends Component {
               <li className="nav-item">
                 <a
                   className="nav-link active"
-                  href="/"
+                  href="/dashboard"
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-home" />

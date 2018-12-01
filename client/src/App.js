@@ -35,6 +35,11 @@ import ToDoWrapper from "./components/to-do/todowrapper";
 import AddToDo from "./components/to-do/addtodo";
 import AddHolds from "./components/holds/addholds";
 import HoldsWrapper from "./components/holds/holdswrapper";
+import AddFaid from "./components/faid/addfaid";
+import FaidWrapper from "./components/faid/faidwrapper";
+import AddEdates from "./components/edates/addedates";
+import EdatesWrapper from "./components/edates/edateswrapper";
+import ViewStudentProfessors from "./components/ViewStudentsProfessors/viewStudentsProfessors";
 library.add(faStroopwafel);
 
 //Check for token
@@ -91,11 +96,27 @@ class App extends Component {
               />
             </Switch>
 
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/addfaid/:university_id"
+                component={AddFaid}
+              />
+            </Switch>
+
              <Switch>
               <PrivateRoute
                 exact
                 path="/addholds/:university_id"
                 component={AddHolds}
+              />
+            </Switch>
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/addedates/:university_id"
+                component={AddEdates}
               />
             </Switch>
 
@@ -112,6 +133,16 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/holds" component={HoldsWrapper} />
             </Switch>
+            <Switch>
+              <PrivateRoute exact path="/faid" component={FaidWrapper} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/edates" component={EdatesWrapper} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/viewStudentsProfessors" component={ViewStudentProfessors} />
+            </Switch>
+
             <Switch>
               <PrivateRoute
                 exact

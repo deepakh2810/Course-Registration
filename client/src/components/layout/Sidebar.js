@@ -36,7 +36,7 @@ class Sidebar extends Component {
               background: "#2F363A",
               marginLeft: "-15px",
               marginTop: "-24px",
-              height: "180vh"
+              minheight: "100%"
             }}
           >
             <div className="sidebar-header">
@@ -58,7 +58,7 @@ class Sidebar extends Component {
               <li className="nav-item">
                 <a
                   className="nav-link active"
-                  href="/"
+                  href="/dashboard"
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-home" />
