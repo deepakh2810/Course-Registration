@@ -36,6 +36,11 @@ import AddToDo from "./components/to-do/addtodo";
 import AddHolds from "./components/holds/addholds";
 import HoldsWrapper from "./components/holds/holdswrapper";
 import Payment from "./components/payment/Payment";
+
+import ConfirmationPage from "./components/payment/ConfirmationPage";
+import PdfPage from "./components/payment/PdfPage.jsx";
+
+
 library.add(faStroopwafel);
 
 //Check for token
@@ -181,6 +186,17 @@ class App extends Component {
                 component={CreateProfile}
               />
             </Switch>
+
+
+            <Switch>
+            <PrivateRoute
+            exact
+            path="/confirmationpage"
+            component={ConfirmationPage}
+            />
+            </Switch>
+
+
             <Footer />
           </React.Fragment>
         </Router>

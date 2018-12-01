@@ -12,12 +12,28 @@ import { removeCourseFromCart } from "../../actions/studentinfoActions";
 import { getCourses } from "../../actions/courseActions";
 import { postPayment } from "../../actions/paymentActions";
 import Sidebar from "../layout/Sidebar";
+import ConfirmationPage from "./ConfirmationPage";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch
+} from "react-router-dom";
+
+
+
 
 class Payment extends React.Component {
+
+
+
+
   state = {
     finaidchanged: undefined,
     formSubmitted: undefined,
-    error: undefined
+    error: undefined,
+    receiptInfo: undefined
+
   };
 
   state = {
@@ -28,7 +44,11 @@ class Payment extends React.Component {
 
   componentDidMount() {
     this.props.getStudentInfoByName(this.props.auth.user.name);
+
+
   }
+
+
 
   submitFunction = e => {
     // e.preventDefault();
@@ -71,17 +91,74 @@ class Payment extends React.Component {
         error: " "
       });
 
+
+      ////////////// VVV //SAVES THE COURSES IN CART
+            if (this.props.studentinfobyname.studentinfo.coursesincart) {
+              const numofcoursesincart = this.props.studentinfobyname.studentinfo.coursesincart.length;
+              console.log("Cart size: ", numofcoursesincart);
+              const costperCourse = 1000;
+              const totalcostCourses = 0;
+              console.log("Inside the cart: ", this.props);
+
+              const receiptInfo = [ ];
+             const a2 = [ { grade: "i am item1"} ];
+             //receiptInfo.push.apply( receiptInfo , a2 );
+             const a3 = [  "i am item3"];
+
+             this.props.studentinfobyname.studentinfo.coursesincart.map(course => (
+                receiptInfo.push.apply( receiptInfo, [course.name] )
+             ))
+
+               console.log("receiptInfo: ", receiptInfo);
+               console.log("a3: ", a3);
+
+
+
+      ///////////////  ^^^//SAVES THE COURSES IN CART
+
+      this.setState({
+        receiptInfo: this.props.studentinfobyname.studentinfo.coursesincart
+      });
+      console.log(" this.state.receiptInfo: ", this.state.receiptInfo);
+    }
+    ///////////////  closing brace
+
+
+
+
       this.props.postCourses(
         this.props.auth.user.name,
         this.props.studentinfobyname.studentinfo.coursesincart
       );
-    } else {
+
+
+{/*
+      this.props.history.push({
+        pathname: "/confirmationpage",
+        state: {detail: this.state.receiptInfo}
+
+      });
+*/}
+
+      //this.props.history.push("/confirmationpage");
+
+      //     return( <div> <ConfirmationPage receiptInfo={this.props.receiptInfo} />  </div>);
+
+      return( <div> <Redirect to={"/confirmationpage" + this.state.receiptInfo}  />  </div>);
+
+    }
+
+    else {
       this.setState({
         error: "Form is missing information",
         formSubmitted: undefined
       });
     }
   };
+
+
+
+
 
   funcfinaid = e => {
     e.preventDefault();
@@ -112,25 +189,43 @@ class Payment extends React.Component {
     e.preventDefault();
     window.print();
   };
-  applyChangesFunction = e => {
-    e.preventDefault();
-    const checkchange = e.target.elements.checkedChanges.value;
-    const applyChanges = "Changes Applied!";
-    if (checkchange) {
-      console.log(applyChanges);
-      this.setState({
-        finaidchanged: "Changes Applied!",
-        error: " "
-      });
-    } else {
-      this.setState({
-        finaidchanged: undefined,
-        error: "No Changes made"
-      });
-    }
-  };
+
 
   render() {
+
+
+    ////////////// VVV //SAVES THE COURSES IN CART
+          if (this.props.studentinfobyname.studentinfo.coursesincart) {
+            const numofcoursesincart = this.props.studentinfobyname.studentinfo.coursesincart.length;
+            console.log("Cart size: ", numofcoursesincart);
+            const costperCourse = 1000;
+            const totalcostCourses = 0;
+            console.log("Inside the cart: ", this.props);
+
+            const receiptInfo = [ ];
+           const a2 = [ { grade: "i am item1"} ];
+           //receiptInfo.push.apply( receiptInfo , a2 );
+           const a3 = [  "i am item3"];
+
+           this.props.studentinfobyname.studentinfo.coursesincart.map(course => (
+              receiptInfo.push.apply( receiptInfo, [course.name] )
+           ))
+
+             console.log("receiptInfo: ", receiptInfo);
+             console.log("a3: ", a3);
+
+
+
+    ///////////////  ^^^//SAVES THE COURSES IN CART
+
+      const tryReceiptInfoProps = this.props.studentinfobyname.studentinfo.coursesincart;
+
+    console.log(" tryReceiptInfoProps: ", tryReceiptInfoProps );
+  }
+  ///////////////  closing brace
+
+
+
     return (
       <React.Fragment>
         <div className="container-fluid">
@@ -175,7 +270,8 @@ const mapStateToProps = state => {
     auth: state.auth,
     studentinfo: state.studentinfo,
     studentinfobyname: state.studentsinfo,
-    paymentinfo: state.paymentinfo
+    paymentinfo: state.paymentinfo,
+    receiptInfo: state.receiptInfo
   };
 };
 
@@ -185,6 +281,7 @@ Payment.propTypes = {
 };
 export default connect(
   mapStateToProps,
+
   {
     getStudentInfoByName,
     postPayment,

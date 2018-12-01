@@ -14,6 +14,8 @@ import {
 import CourseCart from "../add-swap-delete-course/coursecart";
 //import './TheForm.css';
 import TextFieldGroup from "../common/TextFieldGroup";
+import ConfirmationPage from "./ConfirmationPage";
+
 
 {
   /*   ///  this was inside the return
@@ -33,7 +35,15 @@ import TextFieldGroup from "../common/TextFieldGroup";
 */
 }
 
+
+//const TheContext = React.creatContext('firstcontext');
+
+
 class Cart extends React.Component {
+
+
+
+
   state = {
     selectButtonInfo: {
       add: 0,
@@ -94,23 +104,67 @@ class Cart extends React.Component {
     this.setState(selectButtonInfo);
   };
 
+
   //componentDidMount() {
   //this.props.getStudentInfoByName(this.props.username);  }
 
+
+
+
+
+
   render() {
+
+
+
+
+
+
+
+
+
     // const numofcoursesincart = this.state.coursesincart.length;
     if (this.props.coursesincart) {
       const numofcoursesincart = this.props.coursesincart.length;
       //const numofcoursesincart = this.state.coursesincart.length;
-
       //const numofcoursesincart = this.state.coursesincart.length;
       const costperCourse = 1000;
       const totalcostCourses = 0;
-
       console.log("Inside the cart: ", this.props);
 
+
+
+      const receiptInfo = [ ];
+     const a2 = [ { grade: "i am item1"} ];
+     //receiptInfo.push.apply( receiptInfo , a2 );
+     const a3 = [  "i am item3"];
+
+     this.props.coursesincart.map(course => (
+        receiptInfo.push.apply( receiptInfo, [course.name] )
+     ))
+
+       console.log("receiptInfo: ", receiptInfo);
+       console.log("a3: ", a3);
+
+       console.log("receiptInfo: ", this.receiptInfo);
+
+     //  <ConfirmationPage  receiptInfo={receiptInfo} />
+
+   // <div>     <ConfirmationPage receiptInfo={this.receiptInfo} /> </div>
+
+
+
+
+       if (  this.props.history == "/confirmationpage"  ){
+          return(<ConfirmationPage receiptInfo={this.props.receiptInfo} /> );
+       }
+
+
       return (
+
         <React.Fragment>
+
+
           {/* <div className="container-fluid"> */}
           {/* <div className="row"> */}
           {/* <div className="col-md-6 m-auto"> */}
@@ -135,7 +189,11 @@ class Cart extends React.Component {
 
             <hr />
             <h4>Financial Aid:</h4>
-            <form onSubmit={this.props.funcfinaid}>
+            <form onSubmit= {this.props.funcfinaid  }>
+
+
+
+
               <TextFieldGroup
                 id="financialAidAmount"
                 name="financialAidAmount"
@@ -179,12 +237,17 @@ class Cart extends React.Component {
   }
 }
 
+//React.render( <Cart  receiptInfo={receiptInfo} /> , document.getElement);
+
+
 const mapStateToProps = state => {
   return {
     studentinfo: state.studentinfo,
     studentinfobyname: state.studentsinfo
   };
 };
+
+
 export default connect(
   mapStateToProps,
   { getStudentInfoByName, getCourses }
