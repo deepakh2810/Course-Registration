@@ -22,7 +22,7 @@ class RegistrarDashboard extends Component {
         description: "View all users in the System",
         imagelink:
           "http://oriellycc.com/wp-content/uploads/2016/08/calschedule.jpg",
-        route: "/viewStudentsProfessors"
+        route: "/profiles"
       },
       {
         id: "C002",
@@ -34,11 +34,11 @@ class RegistrarDashboard extends Component {
       },
       {
         id: "C003",
-        name: "View Grades",
-        description: " Course grades of Students",
+        name: "View Courses",
+        description: "Create/Delete a course",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
-        route: "/"
+        route: "/create-course"
       },
       {
         id: "t001",

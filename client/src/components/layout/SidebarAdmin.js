@@ -36,7 +36,7 @@ class SidebarAdmin extends Component {
               background: "#2F363A",
               marginLeft: "-15px",
               marginTop: "-24px",
-              height: "250vh"
+              height: "500vh"
             }}
           >
             <div className="sidebar-header">
@@ -68,7 +68,7 @@ class SidebarAdmin extends Component {
 
               <li className="nav-item">
                 <a
-                  href="/create-profile"
+                  href="/profile"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
@@ -86,16 +86,7 @@ class SidebarAdmin extends Component {
                   &nbsp; Courses
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  href="/"
-                  className="nav-link active"
-                  style={{ color: "white" }}
-                >
-                  <i className="fas fa-envelope-square" />
-                  &nbsp; Reviews
-                </a>
-              </li>
+              
 
               <li className="nav-item">
                 <a

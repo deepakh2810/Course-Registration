@@ -36,7 +36,7 @@ class Sidebar extends Component {
               background: "#2F363A",
               marginLeft: "-15px",
               marginTop: "-24px",
-              minheight: "100%"
+              height: "500vh"
             }}
           >
             <div className="sidebar-header">
@@ -68,12 +68,12 @@ class Sidebar extends Component {
 
               <li className="nav-item">
                 <a
-                  href="/create-profile"
+                  href="/profile"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-user-ninja" />
-                  &nbsp;User Details
+                  &nbsp; User Details
                 </a>
               </li>
               <li className="nav-item">
@@ -86,16 +86,7 @@ class Sidebar extends Component {
                   &nbsp;Courses
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  href="/"
-                  className="nav-link active"
-                  style={{ color: "white" }}
-                >
-                  <i className="fas fa-envelope-square" />
-                  &nbsp;Reviews
-                </a>
-              </li>
+              
 
               <li className="nav-item">
                 <a
