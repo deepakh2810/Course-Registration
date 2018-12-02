@@ -32,6 +32,7 @@ import AddEducation from "./components/add-credentials/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import notFound from "./components/not-found/notFound";
+import chat from "./components/chat/Chat";
 
 library.add(faStroopwafel);
 
@@ -72,7 +73,9 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/profile" component={Dashboard} />
             </Switch>
-
+            <Switch>
+              <PrivateRoute exact path="/chat" component={chat} />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact
@@ -158,7 +161,7 @@ class App extends Component {
             </Switch>
             <Route exact path="/not-found" component={notFound} />
 
-            <Footer />
+            {/* <Footer /> */}
           </React.Fragment>
         </Router>
       </Provider>

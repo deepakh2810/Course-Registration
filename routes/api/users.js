@@ -80,13 +80,7 @@ router.post("/register", (req, res) => {
             <br />
             Course Select
             `;
-          //Send the email
-          // mailer.sendEmail(
-          //   "admin@courseselect.com",
-          //   req.body.email,
-          //   "Email verification",
-          //   html
-          // );
+
           var mailOptions = {
             from: "courseselect2018@gmail.com",
             to: req.body.email,

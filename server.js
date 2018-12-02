@@ -10,10 +10,9 @@ const studentinfobyname = require("./routes/api/studentinfobyname");
 const passport = require("passport");
 const cors = require("cors");
 const app = express();
-const path=require('path');
+const path = require("path");
+const Chatkit = require("@pusher/chatkit-server");
 
-// Set up view engine
-// app.set("view engine", "ejs");
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -44,15 +43,41 @@ app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname/", studentinfobyname);
 
 //Serve  static assets
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static('client/build'));
+  app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
+const chatkit = new Chatkit.default({
+  instanceLocator: "v1:us1:19a57672-026f-4e1c-8f66-e46338bc283c",
+  key:
+    "c638981a-6f5f-4acd-baf3-37bfc867b747:KinCYGaqQjVf0tLwFjeN7KBVY1Rdv78rCaeyt0xB1lw="
+});
+app.post("/users", (req, res) => {
+  const { username } = req.body;
+  chatkit
+    .createUser({
+      id: username,
+      name: username
+    })
+    .then(() => res.sendStatus(201))
+    .catch(error => {
+      if (error.error === "services/chatkit/user_already_exists") {
+        res.sendStatus(200);
+      } else {
+        res.status(error.status).json(error);
+      }
+    });
+});
+
+app.post("/authenticate", (req, res) => {
+  const authData = chatkit.authenticate({ userId: req.query.user_id });
+  res.status(authData.status).send(authData.body);
+});
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

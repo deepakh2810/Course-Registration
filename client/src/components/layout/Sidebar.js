@@ -95,7 +95,7 @@ class Sidebar extends Component {
 
               <li className="nav-item">
                 <Link
-                  to="/"
+                  to="/chat"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
