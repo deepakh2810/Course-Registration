@@ -10,6 +10,9 @@ const ReviewsSchema = new Schema({
   },
   Reviews_Comment: {
     type: String
+  },
+  rating: {
+    type: String
   }
 });
 

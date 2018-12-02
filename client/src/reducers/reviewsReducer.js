@@ -10,7 +10,8 @@ import {
       {
         _id: null,
         studentname: null,
-        Reviews_Comment: null
+        Reviews_Comment: null,
+        rating: null
       }
     ],
     loading: false

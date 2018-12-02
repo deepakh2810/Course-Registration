@@ -35,7 +35,9 @@ router.get(
       const abc = new Reviews({
         studentname: req.body.reviewsData.studentname,
         coursenumber: req.body.reviewsData.coursenumber,
-        Reviews_Comment: req.body.reviewsData.description
+        Reviews_Comment: req.body.reviewsData.description,
+        rating: req.body.reviewsData.rating,
+
       });
       console.log("abc :  ", abc.body );
 

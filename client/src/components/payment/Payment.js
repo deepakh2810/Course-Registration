@@ -45,13 +45,23 @@ class Payment extends React.Component {
   componentDidMount() {
     this.props.getStudentInfoByName(this.props.auth.user.name);
 
-
   }
 
 
 
+
+  handleAddView = () => {
+    const selectButtonInfo = this.state.selectButtonInfo;
+    selectButtonInfo.add = 1;
+
+    this.setState(selectButtonInfo);
+  };
+
+
+
+
   submitFunction = e => {
-    // e.preventDefault();
+     //e.preventDefault();
     const namecard = e.target.elements.nameoncard.value;
     const cardnum = e.target.elements.creditcardnumber.value;
     const expirmonthyear = e.target.elements.expirationmonthyear.value;
@@ -83,6 +93,9 @@ class Payment extends React.Component {
       );
 
       console.log(" email: " + email);
+
+      const savedCart = this.props.studentinfobyname.studentinfo.coursesincart;
+      const savedProps = this.props;
 
       this.props.postPayment("", completedForm);
 
@@ -124,6 +137,14 @@ class Payment extends React.Component {
     ///////////////  closing brace
 
 
+{/*
+    return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
+              coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
+              savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
+              savedProps={this.props }
+
+              /> }</div>;
+*/}
 
 
       this.props.postCourses(
@@ -132,19 +153,35 @@ class Payment extends React.Component {
       );
 
 
+
 {/*
       this.props.history.push({
         pathname: "/confirmationpage",
         state: {detail: this.state.receiptInfo}
-
       });
 */}
 
-      //this.props.history.push("/confirmationpage");
 
-      //     return( <div> <ConfirmationPage receiptInfo={this.props.receiptInfo} />  </div>);
+//return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo} /> }</div>;
+{/*
+return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
+          coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
+          savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
+          savedProps={this.props }
 
-      return( <div> <Redirect to={"/confirmationpage" + this.state.receiptInfo}  />  </div>);
+          /> }</div>;
+*/}
+
+//return <div>{    this.renderConfirmationPage() }</div>;
+
+
+//return <div>{   <Redirect to={"/confirmationpage" + this.state.receiptInfo}  /> }</div>;
+
+
+      this.props.history.push("/confirmationpage");
+
+
+      //return( <div> <Redirect to={"/confirmationpage" + this.state.receiptInfo}  />  </div>);
 
     }
 
@@ -158,6 +195,21 @@ class Payment extends React.Component {
 
 
 
+  renderConfirmationPage() {
+
+        return (
+  <React.Fragment>
+     <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
+              coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
+              savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
+              savedProps={this.props }
+
+              /> }</div>;
+    {this.props.history.push("/confirmationpage") }
+
+    </React.Fragment>
+  );
+}
 
 
   funcfinaid = e => {

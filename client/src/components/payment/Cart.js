@@ -43,7 +43,6 @@ class Cart extends React.Component {
 
 
 
-
   state = {
     selectButtonInfo: {
       add: 0,
@@ -155,11 +154,6 @@ class Cart extends React.Component {
 
 
 
-       if (  this.props.history == "/confirmationpage"  ){
-          return(<ConfirmationPage receiptInfo={this.props.receiptInfo} /> );
-       }
-
-
       return (
 
         <React.Fragment>
@@ -169,25 +163,30 @@ class Cart extends React.Component {
           {/* <div className="row"> */}
           {/* <div className="col-md-6 m-auto"> */}
           <div className="shadow-lg p-4 mb-10 bg-grey rounded">
-            <h1 className="display-4 text-center">Cart</h1>
-            <hr />
-            {this.props.coursesincart.map(course => (
-              <h3>{course.name}</h3>
-            ))}
-            <p className="lead text-left" style={{ color: "black" }}>
-              Price of Courses: <br /> <i className="fa fa-shopping-cart" />
-              {" $1000"}
-            </p>
-            <p className="lead text-left" style={{ color: "black" }}>
-              {" "}
-              Total Number of Courses in Cart: {numofcoursesincart}{" "}
-            </p>
-            <p className="lead text-left" style={{ color: "black" }}>
-              {" "}
-              Total Cost of Courses: {1000 * numofcoursesincart}
-            </p>
 
+            <h1 className="display-4 text-center">Cart</h1>
+
+                        <p className="lead text-left" style={{ color: "black" }}>
+                          {" "}
+                          Total Number of Courses in Cart: {numofcoursesincart}{" "}
+                          <br/>
+                          <i className="fa fa-shopping-cart" />
+                          <hr />
+                        </p>
+
+            {this.props.coursesincart.map(course => (
+              <h4>{course.name}</h4>
+            ))}
+
+            <p className="lead text-right" style={{ color: "black" }}>   <hr />
+            {"Price of each course: $1000"}</p>
+            
+            <h5  className="lead text-right" style={{color: 'black'}} >
+              {" "}
+              {"Total Cost: $"} {1000 * this.props.studentinfobyname.studentinfo.coursesincart.length}
+            </h5>
             <hr />
+
             <h4>Financial Aid:</h4>
             <form onSubmit= {this.props.funcfinaid  }>
 

@@ -22,18 +22,40 @@ class ConfirmationPage extends React.Component{
 
 
 
+  componentDidMount() {
+    this.props.getStudentInfoByName(this.props.auth.user.name);
+  }
+
+
+
     printFunction = (e) => {
       e.preventDefault();
       window.print();
     }
 
+    returnDashboardButton = (e) => {
+      e.preventDefault();
+      this.props.history.push("/addcourses");
+    }
+
 
 render(){
 
+  console.log(" NOW ON CONFIRMATION PAGE:Inside the props: ", this.props);
+  console.log("NOW ON CONFIRMATION PAGE: ");
+  console.log(" NOW ON CONFIRMATION PAGE:this.props.studentinfobyname.studentinfo ", this.props.studentinfobyname.studentinfo);
+
+  const theProps = this.props;
+  console.log(" THEPROPS VARIABLE ", theProps );
+
   const theInfo = this.props.receiptInfo;
+  console.log("this.props.receiptInfo: ", this.props.receiptInfo);
+
+
 //  const stateInfo = this.state.receiptInfo;
 
 //  const propsData = this.props.location.state.detail.receiptInfo;
+
 
 
   console.log("theInfo: ", theInfo);
@@ -43,6 +65,7 @@ render(){
 //  console.log("receiptInfo: ", receiptInfo);
 
 
+if (this.props.studentinfobyname.studentinfo.coursesincart) {
 
 
   return(
@@ -57,16 +80,42 @@ render(){
         <div className="col-md-6 m-auto">
           <div className="shadow-lg p-4 mb-10 bg-grey rounded">
             <h1 className="display-4 text-center">Confirmation of Checkout</h1>
-            <p className="lead text-center" style={{color: 'black'}}  >Here is your Reciept </p>
+            <h3 className="lead text-left" style={{ color: "black" }}>Here is your Reciept </h3>
 
-            <PdfPage/>
+            <React.Fragment>
+            <hr />
+
+            <p className="lead text-left" style={{ color: "black" }}> {"Course "} {"Price of each course: $1000"}</p>
+                <p className="lead text-left" style={{ color: "black" }}>
+                  {" "}
+                  Courses Checkout Out :  {this.props.studentinfobyname.studentinfo.coursesincart.length}{" "}
+                </p>
+                {this.props.studentinfobyname.studentinfo.coursesincart.map(course => (
+                  <div>
+                    <p className="lead text-left" style={{ color: "black" }}> {course.name}</p>
+                  </div>
+                ))}
+
+                <hr />
+                <h5  className="lead text-right" style={{color: 'black'}} >
+                  {" "}
+                  {"Total Cost: $"} {1000 * this.props.studentinfobyname.studentinfo.coursesincart.length}
+                </h5>
+
+                </React.Fragment>
+
 
 
             <div class="form-group">
-               <button  name="submit" type="submit" class="btn btn-primary">Print PDF of Reciept</button>
+               <button  name="submit" type="submit"  onClick={ this.printFunction }
+               class="btn btn-primary">Print PDF of Reciept</button>
              </div>
 
 
+             <div class="form-group">
+                <button   name="submit" type="submit"  onClick={this.returnDashboardButton}
+                class="btn btn-primary">See my new Schedule</button>
+              </div>
 
 
           </div>
@@ -81,16 +130,34 @@ render(){
 
       );
     }
+    else {
+     return <h2>Loading...</h2>;
+   }
+  }
 
   };
 
   const mapStateToProps = state => {
     return {
-      receiptInfo: state.receiptInfo
+      studentinfo: state.studentinfo,
+      receiptInfo: state.receiptInfo,
+      auth: state.auth,
+      studentinfobyname: state.studentsinfo,
+      paymentinfo: state.paymentinfo,
+
+
+
     };
   };
+
   ConfirmationPage.propTypes = {
-    receiptInfo: PropTypes.object.isRequired
+    receiptInfo: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired
+
   };
 
-    export default ConfirmationPage;
+
+  export default connect(
+    mapStateToProps,
+    { getStudentInfoByName, getCourses }
+  )(ConfirmationPage);
