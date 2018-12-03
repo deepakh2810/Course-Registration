@@ -1,7 +1,35 @@
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 0px;
+  display: flex;
+
+}
+
+
 * {
   box-sizing: border-box;
 }
 
+#first {
+    margin-left: -40%;
+    height: 60%;
+
+}
+
+#second {
+  width: 45%;
+  margin-left: 0px;
+  margin-right: -100px;
+
+  height: 60%;
+
+  margin-right: 0px;
+
+}
 
 #firstTextFields {
     width: auto;
@@ -20,14 +48,16 @@
 }
 
 .row {
-  display: -ms-flexbox; 
+  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap; 
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin: 0 -16px;
   margin: auto;
   margin-left: 100px;
   margin-top: 50px;
+  margin-left: 10%;
+
 
 
 }
@@ -38,12 +68,12 @@
 }
 
 .col-50 {
-  -ms-flex: 50%; 
+  -ms-flex: 50%;
   flex: 50%;
 }
 
 .col-75 {
-  -ms-flex: 75%; 
+  -ms-flex: 75%;
   flex: 75%;
 }
 
@@ -53,9 +83,17 @@
   padding: 0 16px;
 }
 
+.mycontainer{
+  width: 120%;
+  position: relative;
+  left: -15%;
+  height: 90%;
+  margin-bottom: 30%;
+  margin-top: -0%;
 
+}
 
-.container {
+.thecontainer {
   margin-top: -4.5%;
   margin-left: -130px;
   height: 60%;
@@ -68,9 +106,18 @@
   filter:alpha(opacity=90);
   -moz-opacity:.90;
   opacity:.90;
+
+  margin-left: 5%;
+
+  width: 55%;
+
+
 }
 
 .containerRight {
+  position: relative;
+  margin-top: -4.5%;
+
   background-color: #f2f2f2;
   padding: 0px 20px 15px 20px;
   border: 1px solid lightgrey;
@@ -81,7 +128,14 @@
   opacity:.90;
   margin-right: 100px;
   margin-left: -10px;
-  margin-top: -10%;
+
+  margin-right: 0%;
+
+  margin-left: 150%;
+
+  margin-top: -87%;
+
+
 }
 
 
@@ -142,11 +196,7 @@ span.price {
 
 
 @media (max-width: 800px) {
-  body {
-    height: auto;
-      background-color: aquamarine; 
-      background-image: linear-gradient(to bottom right, aquamarine, white); 
-  	 }
+
   #second {
     width: auto;
 
@@ -155,7 +205,7 @@ span.price {
     margin-bottom: 20px;
     margin: auto;
   }
-  .container{
+  .thecontainer{
     width: 550px;
     width: 65%;
 
@@ -170,6 +220,8 @@ span.price {
       margin: auto;
       margin-left: 17%;
       height: 60%;
+
+
     }
 
 
@@ -184,15 +236,12 @@ span.price {
 }
 
 @media (max-width: 600px) {
-  body {
-      background-color: aquamarine; 
-      background-image: linear-gradient(to bottom right, aquamarine, white); 
-  	 }
+
      #second {
        width: auto;
 
      }
-  .container{
+  .thecontainer{
     width: 300px;
     width: 55%;
     margin: auto;
@@ -213,4 +262,4 @@ span.price {
       margin: auto;
     }
 
-}  
+}

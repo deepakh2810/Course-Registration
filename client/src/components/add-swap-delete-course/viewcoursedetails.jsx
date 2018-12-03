@@ -3,6 +3,8 @@ import { getCoursesByCourseNumber } from "../../actions/courseActions";
 import { connect } from "react-redux";
 import Sidebar from "../layout/Sidebar";
 
+import Reviews from "../reviews/reviews";
+
 class ViewCourseDetails extends Component {
   componentDidMount() {
     let coursenumber = this.props.match.params.coursenumber;
@@ -29,6 +31,11 @@ class ViewCourseDetails extends Component {
     } else {
       return (
         <React.Fragment>
+
+        <div className="container-fluid">
+          <div className="row">
+          <div className="col-md-9">
+
           <h1>{this.props.courses.courses.name}</h1>
           <br />
           <h2>
@@ -48,6 +55,14 @@ class ViewCourseDetails extends Component {
               </button>
             </div>
           </div>
+
+
+          <div> <Reviews/> </div>
+
+          </div>
+        </div>
+      </div>
+
         </React.Fragment>
       );
     }

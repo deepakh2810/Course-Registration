@@ -17,6 +17,7 @@
     "radium": "^0.25.0",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
+    "react-credit-card-input": "^1.0.15",
     "react-dom": "^16.5.2",
     "react-google-login": "^3.2.1",
     "react-moment": "^0.8.4",

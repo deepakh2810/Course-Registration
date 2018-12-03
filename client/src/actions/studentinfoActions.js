@@ -26,6 +26,12 @@ export const getStudentinfo = () => dispatch => {
     );
 };
 
+export const postCourses = (username, courses) => dispatch => {
+  console.log("Found post Courses: ", username);
+  console.log("Also the courses: ", courses);
+  axios.post("/api/postcoursestostudent/" + username, { courses });
+};
+
 //Get StudentInfo by name
 export const getStudentInfoByName = username => dispatch => {
   console.log("In the action.");

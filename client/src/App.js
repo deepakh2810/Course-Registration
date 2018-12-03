@@ -53,6 +53,9 @@ import notFound from "./components/not-found/notFound";
 import chat from "./components/chat/Chat";
 import GroupChat from "./components/group-chat/Chat";
 
+import Payment from "./components/payment/Payment";
+import ConfirmationPage from "./components/payment/ConfirmationPage";
+
 library.add(faStroopwafel);
 
 //Check for token
@@ -257,6 +260,24 @@ class App extends Component {
               />
             </Switch>
             <Route exact path="/not-found" component={notFound} />
+
+
+
+
+            <Switch>
+            <PrivateRoute
+            exact
+            path="/confirmationpage"
+            component={ConfirmationPage}
+            />
+            </Switch>
+
+
+            <Switch>
+              <PrivateRoute exact path="/payment" component={Payment} />
+            </Switch>
+
+
 
             <Footer />
           </React.Fragment>
