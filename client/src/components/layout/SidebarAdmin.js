@@ -89,7 +89,7 @@ class SidebarAdmin extends Component {
 
               <li className="nav-item">
                 <a
-                  href="/"
+                  href="/chat"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >

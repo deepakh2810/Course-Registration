@@ -79,11 +79,10 @@ class SidebarProf extends Component {
                   &nbsp; Create Course
                 </a>
               </li>
-              
 
               <li className="nav-item">
                 <a
-                  href="/"
+                  href="/chat"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
