@@ -42,12 +42,16 @@ import AddFaid from "./components/faid/addfaid";
 import FaidWrapper from "./components/faid/faidwrapper";
 import AddEdates from "./components/edates/addedates";
 import EdatesWrapper from "./components/edates/edateswrapper";
+
 import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import notFound from "./components/not-found/notFound";
+
+import chat from "./components/chat/Chat";
+
 library.add(faStroopwafel);
 
 //Check for token
@@ -89,13 +93,19 @@ class App extends Component {
             </Switch>
 
             <Switch>
+              <PrivateRoute exact path="/profile" component={Dashboard} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/chat" component={chat} />
+            </Switch>
+            <Switch>
               <PrivateRoute
                 exact
                 path="/dashboard"
                 component={DashBoardLogic}
               />
             </Switch>
-            
+
             <Switch>
               <PrivateRoute
                 exact
@@ -119,7 +129,7 @@ class App extends Component {
               />
             </Switch>
 
-             <Switch>
+            <Switch>
               <PrivateRoute
                 exact
                 path="/addholds/:university_id"
@@ -154,7 +164,6 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/edates" component={EdatesWrapper} />
             </Switch>
-
 
             <Switch>
               <PrivateRoute

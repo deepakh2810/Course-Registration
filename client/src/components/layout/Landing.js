@@ -18,7 +18,7 @@ class Landing extends Component {
                 <h1 className="display-3 mb-4">Course Select</h1>
                 <p className="lead">
                   {" "}
-                  A one stop destination for students and professor. Here, you
+                  A one stop destination for students and professors. Here, you
                   can browse the courses, select, and enroll. You can even chat
                   with your fellow mates or even professor.
                 </p>

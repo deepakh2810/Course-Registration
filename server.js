@@ -12,12 +12,11 @@ const passport = require("passport");
 const cors = require("cors");
 const app = express();
 const path = require("path");
-const holds=require("./routes/api/holds");
-const faid=require("./routes/api/faid");
-const edates=require("./routes/api/edates");
+const holds = require("./routes/api/holds");
+const faid = require("./routes/api/faid");
+const edates = require("./routes/api/edates");
+const Chatkit = require("@pusher/chatkit-server");
 
-// Set up view engine
-// app.set("view engine", "ejs");
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -47,9 +46,9 @@ app.use("/api/courses", courses);
 app.use("/api/studentsinfo", studentsinfo);
 app.use("/api/studentinfobyname", studentinfobyname);
 app.use("/api/todo", todo);
-app.use("/api/holds",holds);
-app.use("/api/faid",faid);
-app.use("/api/edates",edates);
+app.use("/api/holds", holds);
+app.use("/api/faid", faid);
+app.use("/api/edates", edates);
 
 //Serve  static assets
 if (process.env.NODE_ENV === "production") {
@@ -61,6 +60,32 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
+const chatkit = new Chatkit.default({
+  instanceLocator: "v1:us1:19a57672-026f-4e1c-8f66-e46338bc283c",
+  key:
+    "c638981a-6f5f-4acd-baf3-37bfc867b747:KinCYGaqQjVf0tLwFjeN7KBVY1Rdv78rCaeyt0xB1lw="
+});
+app.post("/users", (req, res) => {
+  const { username } = req.body;
+  chatkit
+    .createUser({
+      id: username,
+      name: username
+    })
+    .then(() => res.sendStatus(201))
+    .catch(error => {
+      if (error.error === "services/chatkit/user_already_exists") {
+        res.sendStatus(200);
+      } else {
+        res.status(error.status).json(error);
+      }
+    });
+});
+
+app.post("/authenticate", (req, res) => {
+  const authData = chatkit.authenticate({ userId: req.query.user_id });
+  res.status(authData.status).send(authData.body);
+});
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

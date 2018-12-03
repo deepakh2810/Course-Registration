@@ -86,7 +86,6 @@ class SidebarAdmin extends Component {
                   &nbsp; Courses
                 </a>
               </li>
-              
 
               <li className="nav-item">
                 <a
@@ -98,7 +97,6 @@ class SidebarAdmin extends Component {
                   &nbsp; Let's Chat
                 </a>
               </li>
-
               <li className="nav-item">
                 <a
                   href="/"
@@ -119,7 +117,6 @@ class SidebarAdmin extends Component {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-
 SidebarAdmin.propTypes = {
   auth: PropTypes.object.isRequired
 };

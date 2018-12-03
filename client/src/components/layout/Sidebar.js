@@ -86,11 +86,10 @@ class Sidebar extends Component {
                   &nbsp;Courses
                 </a>
               </li>
-              
 
               <li className="nav-item">
                 <a
-                  href="/"
+                  href="/chat"
                   className="nav-link active"
                   style={{ color: "white" }}
                 >
@@ -98,7 +97,6 @@ class Sidebar extends Component {
                   &nbsp; Let's Chat
                 </a>
               </li>
-
               <li className="nav-item">
                 <a
                   href="/"
@@ -119,7 +117,6 @@ class Sidebar extends Component {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-
 Sidebar.propTypes = {
   auth: PropTypes.object.isRequired
   // profile: PropTypes.object.isRequired
