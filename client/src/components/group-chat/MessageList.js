@@ -1,44 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+import Message from "./Message";
 
-class MessagesList extends Component {
+class MessageList extends React.Component {
+  componentWillUpdate() {
+    const node = ReactDOM.findDOMNode(this);
+    this.shouldScrollToBottom =
+      node.scrollTop + node.clientHeight + 100 >= node.scrollHeight;
+  }
+
+  componentDidUpdate() {
+    if (this.shouldScrollToBottom) {
+      const node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
+    }
+  }
+
   render() {
-    const styles = {
-      container: {
-        overflowY: "scroll",
-        flex: 1
-      },
-      ul: {
-        listStyle: "none"
-      },
-      li: {
-        marginTop: 13,
-        marginBottom: 13
-      },
-      senderUsername: {
-        fontWeight: "bold"
-      },
-      message: { fontSize: 15 }
-    };
+    if (!this.props.roomId) {
+      return (
+        <div className="message-list">
+          <div className="join-room">&larr; Join a room!</div>
+        </div>
+      );
+    }
     return (
-      <div
-        style={{
-          ...this.props.style,
-          ...styles.container
-        }}
-      >
-        <ul style={styles.ul}>
-          {this.props.messages.map((message, index) => (
-            <li key={index} style={styles.li}>
-              <div>
-                <span style={styles.senderUsername}>{message.senderId}</span>{" "}
-              </div>
-              <p style={styles.message}>{message.text}</p>
-            </li>
-          ))}
-        </ul>
+      <div className="message-list">
+        {this.props.messages.map((message, index) => {
+          return (
+            <Message
+              key={message.id}
+              username={message.senderId}
+              text={message.text}
+            />
+          );
+        })}
       </div>
     );
   }
 }
 
-export default MessagesList;
+export default MessageList;

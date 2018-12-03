@@ -261,23 +261,17 @@ class App extends Component {
             </Switch>
             <Route exact path="/not-found" component={notFound} />
 
-
-
-
             <Switch>
-            <PrivateRoute
-            exact
-            path="/confirmationpage"
-            component={ConfirmationPage}
-            />
+              <PrivateRoute
+                exact
+                path="/confirmationpage"
+                component={ConfirmationPage}
+              />
             </Switch>
-
 
             <Switch>
               <PrivateRoute exact path="/payment" component={Payment} />
             </Switch>
-
-
 
             <Footer />
           </React.Fragment>

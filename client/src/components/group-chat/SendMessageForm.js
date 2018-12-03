@@ -1,59 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 
-class SendMessageForm extends Component {
-  constructor(props) {
-    super(props);
+class SendMessageForm extends React.Component {
+  constructor() {
+    super();
     this.state = {
-      text: ""
+      message: ""
     };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onSubmit(e) {
+  handleChange(e) {
+    this.setState({
+      message: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmit(this.state.text);
-    this.setState({ text: "" });
-  }
-
-  onChange(e) {
-    this.setState({ text: e.target.value });
-    if (this.props.onChange) {
-      this.props.onChange();
-    }
+    this.props.sendMessage(this.state.message);
+    this.setState({
+      message: ""
+    });
   }
 
   render() {
-    const styles = {
-      container: {
-        padding: 20,
-        borderTop: "1px #4C758F solid",
-        marginBottom: 20
-      },
-      form: {
-        display: "flex"
-      },
-      input: {
-        color: "inherit",
-        background: "none",
-        outline: "none",
-        border: "none",
-        flex: 1,
-        fontSize: 16
-      }
-    };
     return (
-      <div style={styles.container}>
-        <form onSubmit={this.onSubmit} style={styles.form}>
-          <input
-            type="text"
-            placeholder="Start Typing ..."
-            onChange={this.onChange}
-            value={this.state.text}
-            style={styles.input}
-          />
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit} className="send-message-form">
+        <input
+          disabled={this.props.disabled}
+          onChange={this.handleChange}
+          value={this.state.message}
+          placeholder="Type your message..."
+          type="text"
+        />
+      </form>
     );
   }
 }
