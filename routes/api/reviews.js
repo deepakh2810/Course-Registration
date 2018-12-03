@@ -42,57 +42,6 @@ router.get(
       console.log("abc :  ", abc.body );
 
 
-
-
-
-
-
-
-        // Compose an email
-                const html = `Hi ${req.body}!
-                  <br/>
-                  <br />
-                  Thank you for registering with us.
-                  Please verify your email by pasting following token:<br/>
-                  Token: <b>Hola</b>
-                  <br />
-                  on the following page:
-                  <a href="http://localhost:3000/verify">Course-Select verifying page</a>
-
-                  <br /> </br>
-                  Have a good day!
-                  <br /> </br>
-
-                  Team,
-                  <br />
-                  Course Select
-                  `;
-                //Send the email
-                // mailer.sendEmail(
-                //   "admin@courseselect.com",
-                //   req.body.email,
-                //   "Email verification",
-                //   html
-                // );
-                var mailOptions = {
-                  from: "courseselect2018@gmail.com",
-                  //to:   "eguevara1996@gmail.com", //req.body.email,
-                  to:   req.body.reviewsData.description,
-
-                  subject: "Email verification",
-                  text: html
-                };
-                transporter.sendMail(mailOptions, function(error, info) {
-                  if (error) {
-                    console.log(error);
-                  } else {
-                    console.log("Email sent: " + info.response);
-                  }
-                });
-                //////////// email
-
-
-
       abc
         .save()
         .then(reviews => {

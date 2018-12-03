@@ -122,21 +122,39 @@ passport.authenticate("jwt", { session: false }),
 
   // Compose an email
           const html = `Hi ${req.body.paymentinfo.name}!
-            <br/>
-            <br />
-            Thank you for registering with us.
-            Please verify your email by pasting following token:<br/>
-            Token: <b>Hola</b>
-            <br />
-            on the following page:
-            <a href="http://localhost:3000/verify">Course-Select verifying page</a>
 
-            <br /> </br>
-            Have a good day!
-            <br /> </br>
+
+            Thank you for Completing Checkout for your Courses!
+            Here is the reciept information of your transaction<br/>
+
+            ___________________________________________________________
+
+            Student Name: ${req.body.paymentinfo.name}
+            Student Email: ${req.body.paymentinfo.email}
+            Credit Card information: Used for your transaction:
+            Credit Card Number:
+            ${req.body.paymentinfo.creditcardnumber}
+            Card Expiration Date:
+            ${req.body.paymentinfo.expirationmonthyear}
+
+            Courses Checkout out:
+
+
+            Price of each course: $1000
+            Number of Courses Checked Out: 2
+            Total Cost of Courses Checked Out: $2000
+
+            ___________________________________________________________
+
+
+            Checkout your new Course Schedule at the following link:
+            <a href="http://localhost:3000/addcourses">
+
+            Have a Amazing day!
+
 
             Team,
-            <br />
+
             Course Select
             `;
           //Send the email
@@ -149,7 +167,7 @@ passport.authenticate("jwt", { session: false }),
           var mailOptions = {
             from: "courseselect2018@gmail.com",
             to: req.body.paymentinfo.email,
-            subject: "Email verification",
+            subject: "Checkout Confirmation",
             text: html
           };
           transporter.sendMail(mailOptions, function(error, info) {
