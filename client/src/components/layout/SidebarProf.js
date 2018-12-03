@@ -87,7 +87,17 @@ class SidebarProf extends Component {
                   style={{ color: "white" }}
                 >
                   <i className="fas fa-comments" />
-                  &nbsp; Let's Chat
+                  &nbsp; Private Chat
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  href="/groupchat"
+                  className="nav-link active"
+                  style={{ color: "white" }}
+                >
+                  <i className="fab fa-rocketchat" />
+                  &nbsp; Group Chat
                 </a>
               </li>
             </ul>

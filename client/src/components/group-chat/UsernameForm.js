@@ -34,7 +34,7 @@ class UsernameForm extends Component {
                         <div className="col-md-6 m-auto">
                           <div className="shadow-lg p-4 mb-10 bg-grey rounded">
                             <h1 className="display-4 text-center">
-                              Person name you want to chat with!
+                              Enter the chat room!
                             </h1>
                             <p className="lead text-center">
                               What is your username!

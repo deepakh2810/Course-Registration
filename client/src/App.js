@@ -51,6 +51,7 @@ import Profile from "./components/profile/Profile";
 import notFound from "./components/not-found/notFound";
 
 import chat from "./components/chat/Chat";
+import GroupChat from "./components/group-chat/Chat";
 
 library.add(faStroopwafel);
 
@@ -97,6 +98,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/chat" component={chat} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/groupchat" component={GroupChat} />
             </Switch>
             <Switch>
               <PrivateRoute
