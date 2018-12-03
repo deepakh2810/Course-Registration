@@ -1,8 +1,11 @@
+
+/*
 body {
   padding: 100px;
   margin-top: 50px;
-
 }
+*/
+
 .spacer{
     width:20px;
     height:auto;
@@ -67,4 +70,4 @@ body {
 
 .container-flex > .dock > * {
   margin: 5px;
-} 
+}

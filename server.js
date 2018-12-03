@@ -17,6 +17,10 @@ const faid = require("./routes/api/faid");
 const edates = require("./routes/api/edates");
 const Chatkit = require("@pusher/chatkit-server");
 
+const postcoursestostudent = require("./routes/api/postcoursestostudent");
+const reviews = require("./routes/api/reviews");
+const payment = require("./routes/api/payment");
+
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -49,6 +53,10 @@ app.use("/api/todo", todo);
 app.use("/api/holds", holds);
 app.use("/api/faid", faid);
 app.use("/api/edates", edates);
+
+app.use("/api/postcoursestostudent", postcoursestostudent);
+app.use("/api/reviews", reviews);
+app.use("/api", require("./routes/api/payment"));
 
 //Serve  static assets
 if (process.env.NODE_ENV === "production") {

@@ -9,6 +9,7 @@ import addtodoReducer from "./addtodoReducer";
 import addholdsReducer from "./addholdsReducer";
 import addfaidReducer from "./addfaidReducer";
 import addedatesReducer from "./addedatesReducer";
+import reviewsReducer from "./reviewsReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -20,5 +21,7 @@ export default combineReducers({
   todos: addtodoReducer,
   holds: addholdsReducer,
   faid: addfaidReducer,
-  edates: addedatesReducer
+  edates: addedatesReducer,
+  reviews: reviewsReducer
+
 });
