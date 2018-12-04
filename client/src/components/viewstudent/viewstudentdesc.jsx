@@ -21,9 +21,8 @@ class ViewStudentDesc extends Component {
           return this.props.grade.grades[i].grade;
         }
       }
-    } else {
       return "Not Provided Yet";
-    }
+    } 
   }
 
   populateContent() {
