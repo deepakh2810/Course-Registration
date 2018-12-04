@@ -149,12 +149,8 @@ passport.authenticate("jwt", { session: false }),
             Amount of Financial Aid Entered:   ${req.body.paymentinfo.enteredfinancialaid}
 
             Final Total after Financial Aid Deduction: ${req.body.paymentinfo.newAmountAfterFinAid}
-
             ___________________________________________________________
 
-
-            Checkout your new Course Schedule at the following link:
-            <a href="http://localhost:3000/addcourses">
 
             Have a Amazing day!
 
