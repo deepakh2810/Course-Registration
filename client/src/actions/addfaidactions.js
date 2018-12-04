@@ -1,9 +1,9 @@
 import axios from "axios";
 import { GET_FAID, FAID_LOADING, POST_FAID } from "./types";
-import {DELETE_FAID} from "./types";
+import { DELETE_FAID } from "./types";
 
 export const getFaidByUniId = university_id => dispatch => {
-  console.log("In get action for FInancial ID", university_id);
+  // console.log("In get action for FInancial ID", university_id);
   dispatch(setFaidLoading());
   axios
     .get("/api/faid/" + university_id)

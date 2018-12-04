@@ -5,6 +5,9 @@ const FaidSchema = new Schema({
   University_ID: {
     type: String
   },
+  Name: {
+    type: String
+  },
   faid: {
     type: String
   }

@@ -18,10 +18,16 @@ class FaidAdmin extends Component {
   }
 
   render() {
+    const userList = this.props.users.users.filter(
+      user => user.user_type === "STUDENT"
+    );
     if (this.props.users.users) {
       return (
         <React.Fragment>
-          {this.props.users.users.map(user => (
+          <div className="display-4 lead text-center">
+            <h2>FINANCIAL AID</h2>
+          </div>
+          {userList.map(user => (
             <FinancialAidCard
               key={user._id}
               data={user}
