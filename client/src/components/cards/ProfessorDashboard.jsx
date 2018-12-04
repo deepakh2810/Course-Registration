@@ -30,7 +30,7 @@ class ProfessorDashboard extends Component {
         name: "View Student List",
         description: "Checkout the list of student's enrolled in your course",
         imagelink:
-          "https://www.gijobs.com/wp-content/uploads/2014/08/textbooks.resized-1.jpg",
+          "https://cdn.ila-france.com/wp-content/uploads/2015/02/our-students.jpg",
         route: "/viewstudents"
       },
       {
