@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 import SidebarAdmin from "../layout/SidebarAdmin";
 import SidebarProf from "../layout/SidebarProf";
 import ProfBarGraph from "./profBarGraph";
+import GraphView from "./graphview";
 
-
-class graphswrapper extends Component{
-  populateSidebar(){
-    if (this.props.auth.user.user_type === "ADMIN"){
+class graphswrapper extends Component {
+  populateSidebar() {
+    if (this.props.auth.user.user_type === "ADMIN") {
       return (
         <React.Fragment>
           <SidebarAdmin />
@@ -23,14 +23,15 @@ class graphswrapper extends Component{
     }
   }
 
-render() {
-  
+  render() {
     return (
       <React.Fragment>
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-2">{this.populateSidebar()}</div>
-            <div className="col-md-10">< ProfBarGraph /></div>
+            <div className="col-md-10">
+              <ProfBarGraph />
+            </div>
           </div>
         </div>
       </React.Fragment>

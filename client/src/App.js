@@ -60,7 +60,9 @@ import AddGrades from "./components/add-view-grade/addgrades";
 import AdminGradesView from "./components/add-view-grade/admingradesview";
 import ViewStudents from "./components/viewstudent/viewstudent";
 import ViewStudentDesc from "./components/viewstudent/viewstudentdesc";
+import ViewGraph from "./components/graphs/graphview";
 import Bargraph from "./components/graphs/graphswrapper";
+import Piegraph from "./components/graphs/graphspiewrapper";
 library.add(faStroopwafel);
 
 //Check for token
@@ -102,6 +104,12 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/chat" component={chat} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/viewgraph" component={ViewGraph} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/piegraph" component={Piegraph} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/bargraph" component={Bargraph} />
@@ -167,7 +175,7 @@ class App extends Component {
                 component={AddHolds}
               />
             </Switch>
-	    <Switch>
+            <Switch>
               <PrivateRoute
                 exact
                 path="/addgrades/:coursenumber"

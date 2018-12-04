@@ -63,7 +63,7 @@ class ProfessorDashboard extends Component {
         description: "View students enrolled for your courses",
         imagelink:
           "https://activegrowth.com/wp-content/uploads/2017/05/ga-alternatives-featured-2.png",
-        route: "/bargraph"
+        route: "/viewgraph"
       }
     ]
   };
