@@ -24,6 +24,9 @@ class ToDoAdmin extends Component {
 
       return (
         <React.Fragment>
+          <div className="display-4 lead text-center">
+            <h2>TO-DO</h2>
+          </div>
           {userList.map(user => (
             <ToDoCard
               key={user.university_id}

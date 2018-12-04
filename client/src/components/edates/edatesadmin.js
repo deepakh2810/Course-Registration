@@ -17,10 +17,16 @@ class EdatesAdmin extends Component {
   }
 
   render() {
+    const userList = this.props.users.users.filter(
+      user => user.user_type === "STUDENT"
+    );
     if (this.props.users.users) {
       return (
         <React.Fragment>
-          {this.props.users.users.map(user => (
+          <div className="display-4 lead text-center">
+            <h2>ENROLLMENT DATES</h2>
+          </div>
+          {userList.map(user => (
             <EDatesCard
               key={user.university_id}
               data={user}

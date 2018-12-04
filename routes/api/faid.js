@@ -8,16 +8,14 @@ router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-      console.log("In get FAID: ", req.params);
+    console.log("In get FAID: ", req.params);
     Faid.find({ University_ID: req.params.id })
       .then(Faid => {
         res.json(Faid);
       })
       .catch(err => {
         res.status(404).json({ success: false });
-      }
-        
-        );
+      });
   }
 );
 
@@ -25,9 +23,9 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-   
     const abc = new Faid({
       University_ID: req.body.faidData.University_ID,
+      Name: req.body.faidData.name,
       faid: req.body.faidData.description
     });
     abc
@@ -47,7 +45,7 @@ router.delete(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-      console.log("In delete: ", req.params.id);
+    console.log("In delete: ", req.params.id);
     Faid.findById(req.params.id)
       .then(faid => {
         let university_id = faid.University_ID;

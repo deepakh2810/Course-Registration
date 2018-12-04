@@ -11,6 +11,7 @@ import {
 import { postPayment } from "../../actions/paymentActions";
 import Sidebar from "../layout/Sidebar";
 import ConfirmationPage from "./ConfirmationPage";
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 class Payment extends React.Component {
   state = {
@@ -185,6 +186,11 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
 
   funcfinaid = e => {
     e.preventDefault();
+    // let totalfinancialaidamount = 0;
+    // for (var i = 0; i < this.props.faid.faid.length; i++) {
+    //   totalfinancialaidamount =
+    //     totalfinancialaidamount + this.props.faid.faid[i].faid;
+    // }
 
     const finaidamount = e.target.elements.financialAidAmount.value;
     const newtotal =
@@ -215,6 +221,7 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
 
   render() {
     ////////////// VVV //SAVES THE COURSES IN CART
+    console.log("In Payment: ", this.props);
     if (this.props.studentinfobyname.studentinfo.coursesincart) {
       const numofcoursesincart = this.props.studentinfobyname.studentinfo
         .coursesincart.length;
@@ -289,7 +296,8 @@ const mapStateToProps = state => {
     studentinfo: state.studentinfo,
     studentinfobyname: state.studentsinfo,
     paymentinfo: state.paymentinfo,
-    receiptInfo: state.receiptInfo
+    receiptInfo: state.receiptInfo,
+    faid: state.faid
   };
 };
 

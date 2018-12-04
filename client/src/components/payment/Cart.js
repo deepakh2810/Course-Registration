@@ -3,48 +3,14 @@ import { connect } from "react-redux";
 
 import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import { getCourses } from "../../actions/courseActions";
+import { getFaidByUniId } from "../../actions/addfaidactions";
 
 import TextFieldGroup from "../common/TextFieldGroup";
 import ConfirmationPage from "./ConfirmationPage";
 
 class Cart extends React.Component {
   state = {
-    selectButtonInfo: {
-      add: 0,
-      swap: {
-        ind: 0,
-        courseId: "",
-        courseName: ""
-      }
-    }
-  };
-
-  state = {
-    Department: "None",
-    coursesincart: [
-      {
-        name: "Computing & Technology Bootcamp",
-        coursenumber: "INFO221",
-        instructor: "Charles Escue",
-        description: "A high-level introduction ...",
-        location: "Luddy Hall 2011",
-        schedule: "Online Course",
-        year: "2018",
-        semester: "Spring",
-        department: "INFO"
-      },
-      {
-        name: "Machine Learning",
-        coursenumber: "CSCI525",
-        instructor: "Donald Williamson",
-        description: "Theory and practice of constructing ...",
-        location: "Luddy Hall 0311",
-        schedule: "Monday, Wednesday 7:15 PM",
-        year: "2018",
-        semester: "Spring",
-        department: "CS"
-      }
-    ]
+    totalfianacialaidamount: 0
   };
 
   handleAddView = () => {
@@ -68,10 +34,33 @@ class Cart extends React.Component {
     this.setState(selectButtonInfo);
   };
 
-  //componentDidMount() {
-  //this.props.getStudentInfoByName(this.props.username);  }
+  componentDidMount() {
+    const university_id = this.props.auth.user.university_id;
+
+    this.props.getFaidByUniId(university_id);
+  }
+
+  populateFinancialAid() {
+    if (this.props.faid) {
+      return (
+        <React.Fragment>
+          {this.props.faid.faid.map(one => (
+            <p>
+              {one.Name}: ${one.faid}
+            </p>
+          ))}
+        </React.Fragment>
+      );
+    }
+  }
 
   render() {
+    console.log("In cart: ", this.props);
+    let totalfinancialaidamount = 0;
+    for (var i = 0; i < this.props.faid.faid.length; i++) {
+      totalfinancialaidamount =
+        totalfinancialaidamount + this.props.faid.faid[i].faid;
+    }
     // const numofcoursesincart = this.state.coursesincart.length;
     if (this.props.coursesincart) {
       const numofcoursesincart = this.props.coursesincart.length;
@@ -137,6 +126,7 @@ class Cart extends React.Component {
             <hr />
 
             <h4>Financial Aid:</h4>
+            <React.Fragment>{this.populateFinancialAid()}</React.Fragment>
             <form onSubmit={this.props.funcfinaid}>
               <TextFieldGroup
                 id="financialAidAmount"
@@ -185,12 +175,14 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    auth: state.auth,
     studentinfo: state.studentinfo,
-    studentinfobyname: state.studentsinfo
+    studentinfobyname: state.studentsinfo,
+    faid: state.faid
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getStudentInfoByName, getCourses }
+  { getStudentInfoByName, getCourses, getFaidByUniId }
 )(Cart);

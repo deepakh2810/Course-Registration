@@ -12,6 +12,7 @@ class AddFaid extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
       description: ""
     };
     this.onChange = this.onChange.bind(this);
@@ -27,6 +28,7 @@ class AddFaid extends Component {
   onSubmit(e) {
     const faidData = {
       University_ID: this.props.match.params.university_id,
+      name: this.state.name,
       description: this.state.description
     };
     this.props.postFaidByUniId(faidData, this.props.history);
@@ -44,6 +46,13 @@ class AddFaid extends Component {
         </div>
         <div className="shadow-lg p-4 mb-10 bg-grey rounded">
           <form onSubmit={this.onSubmit}>
+            <TextAreaFieldGroup
+              placeholder="* Add the name of the Aid"
+              name="name"
+              value={this.state.name}
+              onChange={this.onChange}
+              info="Scheme Name"
+            />
             <TextAreaFieldGroup
               placeholder="* Financial Aid Amount"
               name="description"
@@ -74,7 +83,14 @@ class AddFaid extends Component {
                   <div className="card-title">
                     <div className="row">
                       <div className="col col-md-10">
-                        <h4>{faid.faid}</h4>
+                        <div className="row">
+                          <div className="col col-md-6">
+                            <h4>{faid.Name}</h4>
+                          </div>
+                          <div className="col col-md-6">
+                            <h4>${faid.faid}</h4>
+                          </div>
+                        </div>
                       </div>
                       <div className="col col-md-2">
                         <button
