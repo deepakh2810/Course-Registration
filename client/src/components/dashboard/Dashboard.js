@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
+import SidebarAdmin from "../layout/SidebarAdmin";
+import SidebarProf from "../layout/SidebarProf";
 import Sidebar from "../layout/Sidebar";
 import ProfileActions from "./ProfileActions";
 import Experience from "./Experience";
@@ -11,6 +13,32 @@ import Education from "./Education";
 import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
+  populateSidebar() {
+    if (this.props.auth.user.user_type === "ADMIN") {
+      return (
+        <React.Fragment>
+          <SidebarAdmin />
+        </React.Fragment>
+      );
+    } else if (this.props.auth.user.user_type === "PROFESSOR") {
+      return (
+        <React.Fragment>
+          <SidebarProf />
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Sidebar />
+        </React.Fragment>
+      );
+    }
+  }
+
+
+
+
+
   componentDidMount() {
     this.props.getCurrentProfile();
   }
@@ -30,12 +58,9 @@ class Dashboard extends Component {
         dashboardContent = (
           <div className="container-fluid">
             <div className="row">
-              <Sidebar />
-              <div className="col-md-10">
-                <div className="create-profile">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-md-8 m-aut">
+            <div className="col-md-2">
+              {this.populateSidebar()}</div>
+                <div className="col-md-10">
                         <h1 className="display-4 text-center"> Edit Profile</h1>
 
                         <p className="lead text-muted">
@@ -56,11 +81,8 @@ class Dashboard extends Component {
                           Delete My Account
                         </button>
                       </div>
-                    </div>
-                  </div>
-                  <br />
-                </div>
-              </div>
+
+                  
             </div>
           </div>
         );
@@ -68,7 +90,7 @@ class Dashboard extends Component {
         dashboardContent = (
           <div className="container-fluid">
             <div className="row">
-              <Sidebar />
+              {this.populateSidebar()}
               <div className="col-md-2">
                 <div className="col-md-10">
                   <div className="row">
@@ -92,13 +114,9 @@ class Dashboard extends Component {
       }
     }
     return (
-      <div className="dashboard">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-12">{dashboardContent}</div>
-          </div>
-        </div>
-      </div>
+       <React.Fragment>
+        {dashboardContent}
+        </React.Fragment>
     );
   }
 }

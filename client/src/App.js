@@ -100,10 +100,6 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/profile" component={Dashboard} />
             </Switch>
-
-            <Switch>
-              <PrivateRoute exact path="/profile" component={Dashboard} />
-            </Switch>
             <Switch>
               <PrivateRoute exact path="/chat" component={chat} />
             </Switch>
