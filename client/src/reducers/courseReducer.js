@@ -2,7 +2,8 @@ import {
   GET_COURSES,
   COURSE_LOADING,
   GET_COURSE_BY_COURSENUMEBR,
-  REMOVE_COURSE_BY_COURSE_NUMBER
+  REMOVE_COURSE_BY_COURSE_NUMBER,
+  GET_COURSE_BY_PROFESSOR
 } from "../actions/types";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
       description: null,
       location: null,
       schedule: null,
+      officehours: null,
       date: null
     }
   ],
@@ -41,6 +43,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case REMOVE_COURSE_BY_COURSE_NUMBER:
+      return {
+        ...state,
+        courses: action.payload,
+        loading: false
+      };
+    case GET_COURSE_BY_PROFESSOR:
       return {
         ...state,
         courses: action.payload,

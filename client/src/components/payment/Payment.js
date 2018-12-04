@@ -6,34 +6,18 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   getStudentInfoByName,
-  postCourses,
-  removeCourseFromCart
+  postCourses
 } from "../../actions/studentinfoActions";
-import { getCourses } from "../../actions/courseActions";
 import { postPayment } from "../../actions/paymentActions";
 import Sidebar from "../layout/Sidebar";
 import ConfirmationPage from "./ConfirmationPage";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
-
-
-
 
 class Payment extends React.Component {
-
-
-
-
   state = {
     finaidchanged: undefined,
     formSubmitted: undefined,
     error: undefined,
     receiptInfo: undefined
-
   };
 
   state = {
@@ -44,11 +28,7 @@ class Payment extends React.Component {
 
   componentDidMount() {
     this.props.getStudentInfoByName(this.props.auth.user.name);
-
   }
-
-
-
 
   handleAddView = () => {
     const selectButtonInfo = this.state.selectButtonInfo;
@@ -57,11 +37,8 @@ class Payment extends React.Component {
     this.setState(selectButtonInfo);
   };
 
-
-
-
   submitFunction = e => {
-     //e.preventDefault();
+    //e.preventDefault();
     const namecard = e.target.elements.nameoncard.value;
     const cardnum = e.target.elements.creditcardnumber.value;
     const expirmonthyear = e.target.elements.expirationmonthyear.value;
@@ -83,16 +60,16 @@ class Payment extends React.Component {
         //expirationyear: expiryear,
         ccv: cvv
       };
-      console.log(
-        " This is completedForm before JSON.stringify " + completedForm
-      );
+      // console.log(
+      //   " This is completedForm before JSON.stringify " + completedForm
+      // );
 
       const formStringJson = JSON.stringify(completedForm);
-      console.log(
-        " This is completedForm AFTER JSON.stringify " + completedForm
-      );
+      // console.log(
+      //   " This is completedForm AFTER JSON.stringify " + completedForm
+      // );
 
-      console.log(" email: " + email);
+      // console.log(" email: " + email);
 
       const savedCart = this.props.studentinfobyname.studentinfo.coursesincart;
       const savedProps = this.props;
@@ -104,88 +81,81 @@ class Payment extends React.Component {
         error: " "
       });
 
-
       ////////////// VVV //SAVES THE COURSES IN CART
-            if (this.props.studentinfobyname.studentinfo.coursesincart) {
-              const numofcoursesincart = this.props.studentinfobyname.studentinfo.coursesincart.length;
-              console.log("Cart size: ", numofcoursesincart);
-              const costperCourse = 1000;
-              const totalcostCourses = 0;
-              console.log("Inside the cart: ", this.props);
+      if (this.props.studentinfobyname.studentinfo.coursesincart) {
+        const numofcoursesincart = this.props.studentinfobyname.studentinfo
+          .coursesincart.length;
+        // console.log("Cart size: ", numofcoursesincart);
+        const costperCourse = 1000;
+        const totalcostCourses = 0;
+        // console.log("Inside the cart: ", this.props);
 
-              const receiptInfo = [ ];
-             const a2 = [ { grade: "i am item1"} ];
-             //receiptInfo.push.apply( receiptInfo , a2 );
-             const a3 = [  "i am item3"];
+        const receiptInfo = [];
+        const a2 = [{ grade: "i am item1" }];
+        //receiptInfo.push.apply( receiptInfo , a2 );
+        const a3 = ["i am item3"];
 
-             this.props.studentinfobyname.studentinfo.coursesincart.map(course => (
-                receiptInfo.push.apply( receiptInfo, [course.name] )
-             ))
+        this.props.studentinfobyname.studentinfo.coursesincart.map(course =>
+          receiptInfo.push.apply(receiptInfo, [course.name])
+        );
 
-               console.log("receiptInfo: ", receiptInfo);
-               console.log("a3: ", a3);
+        // console.log("receiptInfo: ", receiptInfo);
+        // console.log("a3: ", a3);
 
+        ///////////////  ^^^//SAVES THE COURSES IN CART
 
+        this.setState({
+          receiptInfo: this.props.studentinfobyname.studentinfo.coursesincart
+        });
+        // console.log(" this.state.receiptInfo: ", this.state.receiptInfo);
+      }
+      ///////////////  closing brace
 
-      ///////////////  ^^^//SAVES THE COURSES IN CART
-
-      this.setState({
-        receiptInfo: this.props.studentinfobyname.studentinfo.coursesincart
-      });
-      console.log(" this.state.receiptInfo: ", this.state.receiptInfo);
-    }
-    ///////////////  closing brace
-
-
-{/*
+      {
+        /*
     return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
               coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
               savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
               savedProps={this.props }
 
               /> }</div>;
-*/}
-
+*/
+      }
 
       this.props.postCourses(
         this.props.auth.user.name,
         this.props.studentinfobyname.studentinfo.coursesincart
       );
 
-
-
-{/*
+      {
+        /*
       this.props.history.push({
         pathname: "/confirmationpage",
         state: {detail: this.state.receiptInfo}
       });
-*/}
+*/
+      }
 
-
-//return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo} /> }</div>;
-{/*
+      //return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo} /> }</div>;
+      {
+        /*
 return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
           coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
           savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
           savedProps={this.props }
 
           /> }</div>;
-*/}
+*/
+      }
 
-//return <div>{    this.renderConfirmationPage() }</div>;
+      //return <div>{    this.renderConfirmationPage() }</div>;
 
-
-//return <div>{   <Redirect to={"/confirmationpage" + this.state.receiptInfo}  /> }</div>;
-
+      //return <div>{   <Redirect to={"/confirmationpage" + this.state.receiptInfo}  /> }</div>;
 
       this.props.history.push("/confirmationpage");
 
-
       //return( <div> <Redirect to={"/confirmationpage" + this.state.receiptInfo}  />  </div>);
-
-    }
-
-    else {
+    } else {
       this.setState({
         error: "Form is missing information",
         formSubmitted: undefined
@@ -193,24 +163,25 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
     }
   };
 
-
-
   renderConfirmationPage() {
-
-        return (
-  <React.Fragment>
-     <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
-              coursesincart={this.props.studentinfobyname.studentinfo.coursesincart }
-              savedCart={this.props.studentinfobyname.studentinfo.coursesincart }
-              savedProps={this.props }
-
-              /> }</div>;
-    {this.props.history.push("/confirmationpage") }
-
-    </React.Fragment>
-  );
-}
-
+    return (
+      <React.Fragment>
+        <div>
+          {
+            <ConfirmationPage
+              receiptInfo={this.props.receiptInfo}
+              coursesincart={
+                this.props.studentinfobyname.studentinfo.coursesincart
+              }
+              savedCart={this.props.studentinfobyname.studentinfo.coursesincart}
+              savedProps={this.props}
+            />
+          }
+        </div>
+        ;{this.props.history.push("/confirmationpage")}
+      </React.Fragment>
+    );
+  }
 
   funcfinaid = e => {
     e.preventDefault();
@@ -219,8 +190,8 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
     const newtotal =
       1000 * this.props.studentinfobyname.studentinfo.coursesincart.length -
       finaidamount;
-    console.log(" finaidamount: " + finaidamount);
-    console.log(" newtotal: " + newtotal);
+    // console.log(" finaidamount: " + finaidamount);
+    // console.log(" newtotal: " + newtotal);
 
     if (finaidamount) {
       this.setState({
@@ -242,41 +213,36 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
     window.print();
   };
 
-
   render() {
-
-
     ////////////// VVV //SAVES THE COURSES IN CART
-          if (this.props.studentinfobyname.studentinfo.coursesincart) {
-            const numofcoursesincart = this.props.studentinfobyname.studentinfo.coursesincart.length;
-            console.log("Cart size: ", numofcoursesincart);
-            const costperCourse = 1000;
-            const totalcostCourses = 0;
-            console.log("Inside the cart: ", this.props);
+    if (this.props.studentinfobyname.studentinfo.coursesincart) {
+      const numofcoursesincart = this.props.studentinfobyname.studentinfo
+        .coursesincart.length;
+      // console.log("Cart size: ", numofcoursesincart);
+      const costperCourse = 1000;
+      const totalcostCourses = 0;
+      // console.log("Inside the cart: ", this.props);
 
-            const receiptInfo = [ ];
-           const a2 = [ { grade: "i am item1"} ];
-           //receiptInfo.push.apply( receiptInfo , a2 );
-           const a3 = [  "i am item3"];
+      const receiptInfo = [];
+      const a2 = [{ grade: "i am item1" }];
+      //receiptInfo.push.apply( receiptInfo , a2 );
+      const a3 = ["i am item3"];
 
-           this.props.studentinfobyname.studentinfo.coursesincart.map(course => (
-              receiptInfo.push.apply( receiptInfo, [course.name] )
-           ))
+      this.props.studentinfobyname.studentinfo.coursesincart.map(course =>
+        receiptInfo.push.apply(receiptInfo, [course.name])
+      );
 
-             console.log("receiptInfo: ", receiptInfo);
-             console.log("a3: ", a3);
+      // console.log("receiptInfo: ", receiptInfo);
+      // console.log("a3: ", a3);
 
+      ///////////////  ^^^//SAVES THE COURSES IN CART
 
+      const tryReceiptInfoProps = this.props.studentinfobyname.studentinfo
+        .coursesincart;
 
-    ///////////////  ^^^//SAVES THE COURSES IN CART
-
-      const tryReceiptInfoProps = this.props.studentinfobyname.studentinfo.coursesincart;
-
-    console.log(" tryReceiptInfoProps: ", tryReceiptInfoProps );
-  }
-  ///////////////  closing brace
-
-
+      // console.log(" tryReceiptInfoProps: ", tryReceiptInfoProps);
+    }
+    ///////////////  closing brace
 
     return (
       <React.Fragment>

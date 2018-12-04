@@ -1,6 +1,4 @@
 import React from "react";
-//import './Form.css';
-//import './TheForm.css';
 import TextFieldGroup from "../common/TextFieldGroup";
 import { Redirect } from "react-router-dom";
 // import CreditCardInput from '../../react-credit-card-input-master/src/index';

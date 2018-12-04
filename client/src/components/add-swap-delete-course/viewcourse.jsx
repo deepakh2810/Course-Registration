@@ -23,7 +23,7 @@ class ViewCourse extends Component {
     if (raiseAlert === 1) {
       alert(alertMessage);
     } else {
-      console.log("In else, That's good");
+      // console.log("In else, That's good");
       this.props.postCourseToCart(this.props.studentid, this.props.course);
     }
   };

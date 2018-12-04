@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SidebarAdmin from "../layout/SidebarAdmin";
-import SidebarProf from "../layout/SidebarProf";
 import Sidebar from "../layout/Sidebar";
 import EdatesAdmin from "./edatesadmin";
 import Edatesstudent from "./edatesstudent";

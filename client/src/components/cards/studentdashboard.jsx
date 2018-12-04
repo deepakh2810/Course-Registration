@@ -39,7 +39,7 @@ class StudentDashboard extends Component {
         description: " View your individual course grades",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
-        route: "/"
+        route: "/grade"
       },
       {
         id: "C004",

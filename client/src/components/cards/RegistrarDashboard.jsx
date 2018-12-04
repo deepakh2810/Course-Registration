@@ -34,11 +34,11 @@ class RegistrarDashboard extends Component {
       },
       {
         id: "C003",
-        name: "View Courses",
-        description: "Create/Delete a course",
+        name: "View Student Grades",
+        description: " View your individual course grades so far",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
-        route: "/create-course"
+        route: "/grade"
       },
       {
         id: "t001",

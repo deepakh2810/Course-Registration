@@ -11,17 +11,20 @@ class HoldsProffStudent extends Component {
   renderExistingContent() {
     // return <h2>In here</h2>;
     if (this.props.holds.holds[0]) {
-      console.log("In the render component: ");
       return (
         <React.Fragment>
-          <h2>Existing Items on the list:</h2>
+          <div className="display-4 lead text-center">
+            <h2>Holds:</h2>
+          </div>
           {this.props.holds.holds.map(holds => (
-            <div className="card w-90 m-2">
-              <div className="card-body">
-                <div className="card-title">
-                  <div className="row">
-                    <div className="col col-md-12">
-                      <h4 key={holds._id}>{holds.Holds_Comment}</h4>
+            <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+              <div className="card w-90 m-2">
+                <div className="card-body">
+                  <div className="card-title">
+                    <div className="row">
+                      <div className="col col-md-12">
+                        <h4 key={holds._id}>{holds.Holds_Comment}</h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -30,11 +33,20 @@ class HoldsProffStudent extends Component {
           ))}
         </React.Fragment>
       );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+            <div className="display-4 lead text-center">
+              <h3>You do not have any holds.</h3>
+            </div>
+          </div>
+        </React.Fragment>
+      );
     }
   }
 
   render() {
-    console.log("In Proff-student Holds", this.props);
     return (
       <React.Fragment>
         {/* <h2>Hello</h2> */}

@@ -55,7 +55,11 @@ import GroupChat from "./components/group-chat/Chat";
 
 import Payment from "./components/payment/Payment";
 import ConfirmationPage from "./components/payment/ConfirmationPage";
-
+import AddViewGradeWrapper from "./components/add-view-grade/addviewgradewrapper";
+import AddGrades from "./components/add-view-grade/addgrades";
+import AdminGradesView from "./components/add-view-grade/admingradesview";
+import ViewStudents from "./components/viewstudent/viewstudent";
+import ViewStudentDesc from "./components/viewstudent/viewstudentdesc";
 library.add(faStroopwafel);
 
 //Check for token
@@ -135,7 +139,27 @@ class App extends Component {
                 component={AddFaid}
               />
             </Switch>
-
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/grade"
+                component={AddViewGradeWrapper}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/viewstudents"
+                component={ViewStudents}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/viewstudentinfo/:coursenumber"
+                component={ViewStudentDesc}
+              />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact
@@ -143,7 +167,13 @@ class App extends Component {
                 component={AddHolds}
               />
             </Switch>
-
+	    <Switch>
+              <PrivateRoute
+                exact
+                path="/addgrades/:coursenumber"
+                component={AddGrades}
+              />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact
@@ -151,7 +181,13 @@ class App extends Component {
                 component={AddEdates}
               />
             </Switch>
-
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/admingradesview/:coursenumber"
+                component={AdminGradesView}
+              />
+            </Switch>
             <Switch>
               <PrivateRoute
                 exact

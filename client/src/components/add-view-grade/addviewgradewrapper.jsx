@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Sidebar from "../layout/Sidebar";
 import SidebarAdmin from "../layout/SidebarAdmin";
 import SidebarProf from "../layout/SidebarProf";
-import ViewSchedule from "./viewschedule";
-import ViewScheduleProf from "./viewscheduleprof";
+import Sidebar from "../layout/Sidebar";
+import ViewGradeAdmin from "./viewgradeadmin";
+import ViewGradeStudent from "./viewgradestudent";
+import AddGradeProfessor from "./addgradeprofessor";
 
-class ViewClassScheduleWrapper extends Component {
+class AddViewGradeWrapper extends Component {
   populateSidebar() {
     if (this.props.auth.user.user_type === "ADMIN") {
       return (
@@ -29,27 +30,30 @@ class ViewClassScheduleWrapper extends Component {
       );
     }
   }
+
   populateContent() {
-    if (this.props.auth.user.user_type === "PROFESSOR") {
+    if (this.props.auth.user.user_type === "ADMIN") {
       return (
         <React.Fragment>
-          <ViewScheduleProf />
+          <ViewGradeAdmin />
+        </React.Fragment>
+      );
+    } else if (this.props.auth.user.user_type === "PROFESSOR") {
+      return (
+        <React.Fragment>
+          <AddGradeProfessor />
         </React.Fragment>
       );
     } else {
       return (
         <React.Fragment>
-          <ViewSchedule
-            key={this.props.auth.user.university_id}
-            username={this.props.auth.user.name}
-          />
+          <ViewGradeStudent />
         </React.Fragment>
       );
     }
   }
-
   render() {
-    console.log("In the view schedule wrapper: ", this.props);
+    console.log("In the Grade wrapper: ", this.props);
     return (
       <React.Fragment>
         <div className="container-fluid">
@@ -67,8 +71,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-ViewClassScheduleWrapper.propTypes = {
+AddViewGradeWrapper.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(ViewClassScheduleWrapper);
+export default connect(mapStateToProps)(AddViewGradeWrapper);

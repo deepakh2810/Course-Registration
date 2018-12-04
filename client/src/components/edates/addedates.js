@@ -22,10 +22,12 @@ class AddEdates extends Component {
     this.props.getEdatesByUniId(university_id);
   }
   hendleDelete(edates_id) {
-    this.props.deleteByEdatesId(edates_id, this.props.match.params.university_id);
+    this.props.deleteByEdatesId(
+      edates_id,
+      this.props.match.params.university_id
+    );
   }
   onSubmit(e) {
-  
     const edatesData = {
       University_ID: this.props.match.params.university_id,
       description: this.state.description
@@ -40,20 +42,21 @@ class AddEdates extends Component {
   renderEdatesTextBox() {
     return (
       <React.Fragment>
-        <h2>Add the new Enrollment date:</h2>
-        <form onSubmit={this.onSubmit}>
-          <TextAreaFieldGroup
-            placeholder="* Enrollment Date in YYYY-mm-dd format"
-            name="description"
-            value={this.state.description}
-            onChange={this.onChange}
-            info="Add the Enrollment date"
-          />
-          <input
-            type="submit"
-            className="btn btn-info"
-          />
-        </form>
+        <div className="display-4 lead text-center">
+          <h2>Add the new Enrollment date:</h2>
+        </div>
+        <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+          <form onSubmit={this.onSubmit}>
+            <TextAreaFieldGroup
+              placeholder="* Enrollment Date in YYYY-mm-dd format"
+              name="description"
+              value={this.state.description}
+              onChange={this.onChange}
+              info="Add the Enrollment date"
+            />
+            <input type="submit" className="btn btn-info" />
+          </form>
+        </div>
       </React.Fragment>
     );
   }
@@ -64,22 +67,29 @@ class AddEdates extends Component {
         <React.Fragment>
           <br />
           <br />
-          <h2>Existing Items on the list:</h2>
+          <div className="display-4 lead text-center">
+            <h2>Existing Enrollment Dates::</h2>
+          </div>
           {this.props.edates.edates.map(edates => (
-            <div className="card w-90 m-2">
-              <div className="card-body">
-                <div className="card-title">
-                  <div className="row">
-                    <div className="col col-md-10">
-                      <h4>{edates.Edates}</h4>
-                    </div>
-                    <div className="col col-md-2">
-                      <button
-                        onClick={() => this.hendleDelete(edates._id)}
-                        className="btn btn-info m-2"
-                      >
-                        Delete
-                      </button>
+            <div
+              className="shadow-lg p-4 mb-10 bg-grey rounded"
+              key={edates._id}
+            >
+              <div className="card w-90 m-2">
+                <div className="card-body">
+                  <div className="card-title">
+                    <div className="row">
+                      <div className="col col-md-10">
+                        <h4>{edates.Edates}</h4>
+                      </div>
+                      <div className="col col-md-2">
+                        <button
+                          onClick={() => this.hendleDelete(edates._id)}
+                          className="btn btn-info m-2"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -92,7 +102,6 @@ class AddEdates extends Component {
   }
 
   render() {
-    console.log("Edates: ", this.props);
     return (
       <React.Fragment>
         <div className="container-fluid">
@@ -101,7 +110,6 @@ class AddEdates extends Component {
               <SidebarAdmin />
             </div>
             <div className="col-md-10">
-              {/* <h2>Add to do</h2> */}
               {this.renderEdatesTextBox()}
               {this.renderExistingContent()}
             </div>

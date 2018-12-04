@@ -4,7 +4,8 @@ import {
   STUDENTINFO_LOADING,
   POST_COURSE_TO_CART,
   REMOVE_COURSE_FROM_CART,
-  REMOVE_COURSE_FROM_STUDENT
+  REMOVE_COURSE_FROM_STUDENT,
+  GET_STUDENT_FOR_COURSE
 } from "./types";
 
 //Get Courses
@@ -21,6 +22,24 @@ export const getStudentinfo = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_STUDENTINFO,
+        payload: {}
+      })
+    );
+};
+
+export const getStudentsForCourses = coursenumber => dispatch => {
+  dispatch(setStudentInfoLoading());
+  axios
+    .get("/api/studentforcourse/" + coursenumber)
+    .then(res => {
+      dispatch({
+        type: GET_STUDENT_FOR_COURSE,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_STUDENT_FOR_COURSE,
         payload: {}
       })
     );

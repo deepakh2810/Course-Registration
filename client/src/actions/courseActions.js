@@ -4,7 +4,8 @@ import {
   COURSE_LOADING,
   GET_COURSE_BY_COURSENUMEBR,
   GET_ERRORS,
-  REMOVE_COURSE_BY_COURSE_NUMBER
+  REMOVE_COURSE_BY_COURSE_NUMBER,
+  GET_COURSE_BY_PROFESSOR
 } from "./types";
 // import reducers from "../reducers";
 
@@ -56,6 +57,25 @@ export const getCoursesByCourseNumber = coursenumber => dispatch => {
     .catch(err => {
       dispatch({
         type: GET_COURSE_BY_COURSENUMEBR,
+        payload: {}
+      });
+    });
+};
+
+//Get Courses by Professor Name
+export const getCoursesByProfessor = profname => dispatch => {
+  dispatch(setCourseLoading());
+  axios
+    .get("/api/courseprof/" + profname)
+    .then(res => {
+      dispatch({
+        type: GET_COURSE_BY_PROFESSOR,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_COURSE_BY_PROFESSOR,
         payload: {}
       });
     });

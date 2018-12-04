@@ -23,13 +23,29 @@ router.get(
   "/:coursenumber",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // console.log("Here in the api", req.params.coursenumber);
     Course.findOne({ coursenumber: req.params.coursenumber })
       .then(Course => {
-        // console.log("In Api: ", Course);
         res.json(Course);
       })
       .catch(err => res.status(404).json({ success: false }));
+  }
+);
+
+// @route   GET api/courses/getCourseByProf
+// @desc    Get courses for a particular professor
+// @access  Public
+
+router.get(
+  "/getCourseByProf/:profname",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("Here in the proff api", req.params.profname);
+    // Course.findOne({ coursenumber: req.params.coursenumber })
+    //   .then(Course => {
+    //     // console.log("In Api: ", Course);
+    //     res.json(Course);
+    //   })
+    //   .catch(err => res.status(404).json({ success: false }));
   }
 );
 
@@ -54,6 +70,7 @@ router.post(
       department: req.body.department,
       location: req.body.location,
       schedule: req.body.schedule,
+      officehours: req.body.officehours,
       year: "2018",
       semester: "Spring"
     });

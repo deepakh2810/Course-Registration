@@ -31,6 +31,10 @@ const CourseSchema = new Schema({
     type: String,
     required: true
   },
+  officehours: {
+    type: String,
+    required: true
+  },
   year: {
     type: String,
     required: false

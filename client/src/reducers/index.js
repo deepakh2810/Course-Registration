@@ -10,6 +10,7 @@ import addholdsReducer from "./addholdsReducer";
 import addfaidReducer from "./addfaidReducer";
 import addedatesReducer from "./addedatesReducer";
 import reviewsReducer from "./reviewsReducer";
+import gradeReducer from "./gradeReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -22,6 +23,6 @@ export default combineReducers({
   holds: addholdsReducer,
   faid: addfaidReducer,
   edates: addedatesReducer,
-  reviews: reviewsReducer
-
+  reviews: reviewsReducer,
+  grades: gradeReducer
 });

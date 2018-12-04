@@ -23,7 +23,7 @@ class ProfessorDashboard extends Component {
         description: "Check out this week's classes and other appointments",
         imagelink:
           "http://oriellycc.com/wp-content/uploads/2016/08/calschedule.jpg",
-        route: "/Addswapdelete"
+        route: "/viewschedule"
       },
       {
         id: "C002",
@@ -31,7 +31,7 @@ class ProfessorDashboard extends Component {
         description: "Checkout the list of student's enrolled in your course",
         imagelink:
           "https://www.gijobs.com/wp-content/uploads/2014/08/textbooks.resized-1.jpg",
-        route: "/"
+        route: "/viewstudents"
       },
       {
         id: "C003",
@@ -39,7 +39,7 @@ class ProfessorDashboard extends Component {
         description: "Enter the Grades for a student in your course",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
-        route: "/holds"
+        route: "/grade"
       },
       {
         id: "t001",
@@ -47,7 +47,7 @@ class ProfessorDashboard extends Component {
         description: "Enter Holds for a particular student",
         imagelink:
           "http://wbnaboise.org/wp-content/uploads/2015/07/hold200.gif",
-        route: "/"
+        route: "/holds"
       },
       {
         id: "t002",

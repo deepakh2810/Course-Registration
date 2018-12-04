@@ -5,24 +5,28 @@ import PropTypes from "prop-types";
 
 class ToDoProffStudent extends Component {
   componentDidMount() {
-    console.log("In todo student-proff:", this.props);
     const university_id = this.props.auth.user.university_id;
     this.props.getToDoByUniId(university_id);
   }
   renderExistingContent() {
     // return <h2>In here</h2>;
     if (this.props.todos.todos[0]) {
-      console.log("In the render component: ");
       return (
         <React.Fragment>
-          <h2>Existing Items on the list:</h2>
+          <div className="display-4 lead text-center">
+            <h2>To-Do Items</h2>
+          </div>
           {this.props.todos.todos.map(todo => (
-            <div className="card w-90 m-2">
-              <div className="card-body">
-                <div className="card-title">
-                  <div className="row">
-                    <div className="col col-md-12">
-                      <h4 key={todo._id}>{todo.Todo_Comment}</h4>
+            <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+              <div className="card w-90 m-2" key={todo._id}>
+                <div className="card-body">
+                  <div className="card-title">
+                    <div className="row">
+                      <div className="col col-md-12">
+                        <h4 className="fa fa fa-genderless pr-1">
+                          &nbsp;&nbsp;{todo.Todo_Comment}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -31,14 +35,22 @@ class ToDoProffStudent extends Component {
           ))}
         </React.Fragment>
       );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+            <div className="display-4 lead text-center">
+              <h3>You do not have any To-Do items.</h3>
+            </div>
+          </div>
+        </React.Fragment>
+      );
     }
   }
 
   render() {
-    console.log("In Proff-student To Do", this.props);
     return (
       <React.Fragment>
-        {/* <h2>Hello</h2> */}
         <div className="container-fluid">{this.renderExistingContent()}</div>
       </React.Fragment>
     );

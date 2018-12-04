@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getStudentInfoByName } from "../../actions/studentinfoActions";
+import { getHoldsByUniId } from "../../actions/addholdsactions";
 import ViewCourse from "./viewcourse";
 import AddCourses from "./addcourses";
 import SwapCourse from "./swapcourse";
-import Spinner from "../common/Spinner";
 
 class Selection extends Component {
   state = {
@@ -53,6 +53,7 @@ class Selection extends Component {
 
   componentDidMount() {
     this.props.getStudentInfoByName(this.props.username);
+    this.props.getHoldsByUniId(this.props.auth.user.university_id);
   }
 
   renderSelection() {
@@ -121,15 +122,31 @@ class Selection extends Component {
   }
 
   renderSelectionContent() {
-    return (
-      <React.Fragment>
-        <button onClick={this.handleAddView} className="btn btn-info m-2">
-          Add New Course{" "}
-        </button>
-        <h2 className="m-2">Your Current Schedule: </h2>
-        <div>{this.renderSchedule()}</div>
-      </React.Fragment>
-    );
+    if (this.props.holds.holds.length > 0) {
+      return (
+        <React.Fragment>
+          <button className="btn btn-info m-2" disabled>
+            Add New Course{" "}
+          </button>
+          <p class="text-danger">
+            *You can not add new courses, as you have holds associated with your
+            account. Please contact your administrator.
+          </p>
+          <h2 className="m-2">Your Current Schedule: </h2>
+          <div>{this.renderSchedule()}</div>
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <button onClick={this.handleAddView} className="btn btn-info m-2">
+            Add New Course{" "}
+          </button>
+          <h2 className="m-2">Your Current Schedule: </h2>
+          <div>{this.renderSchedule()}</div>
+        </React.Fragment>
+      );
+    }
   }
 
   render() {
@@ -153,11 +170,13 @@ class Selection extends Component {
 
 const mapStateToProps = state => {
   return {
+    auth: state.auth,
+    holds: state.holds,
     studentinfobyname: state.studentsinfo
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getStudentInfoByName }
+  { getStudentInfoByName, getHoldsByUniId }
 )(Selection);

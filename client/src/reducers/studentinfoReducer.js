@@ -4,7 +4,8 @@ import {
   GET_STUDENTINFO_BY_NAME,
   POST_COURSE_TO_CART,
   REMOVE_COURSE_FROM_CART,
-  REMOVE_COURSE_FROM_STUDENT
+  REMOVE_COURSE_FROM_STUDENT,
+  GET_STUDENT_FOR_COURSE
 } from "../actions/types";
 
 const initialState = {
@@ -73,6 +74,12 @@ export default function(state = initialState, action) {
         loading: false
       };
     case REMOVE_COURSE_FROM_STUDENT:
+      return {
+        ...state,
+        studentinfo: action.payload,
+        loading: false
+      };
+    case GET_STUDENT_FOR_COURSE:
       return {
         ...state,
         studentinfo: action.payload,

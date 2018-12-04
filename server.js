@@ -5,6 +5,7 @@ const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const posts = require("./routes/api/posts");
 const courses = require("./routes/api/courses");
+const courseprof = require("./routes/api/coursesprof");
 const studentsinfo = require("./routes/api/studentsinfo");
 const studentinfobyname = require("./routes/api/studentinfobyname");
 const todo = require("./routes/api/todo");
@@ -20,6 +21,9 @@ const Chatkit = require("@pusher/chatkit-server");
 const postcoursestostudent = require("./routes/api/postcoursestostudent");
 const reviews = require("./routes/api/reviews");
 const payment = require("./routes/api/payment");
+const studentforcourse = require("./routes/api/studentforcourse");
+const grade = require("./routes/api/grade");
+const gradeforstudent = require("./routes/api/gradeforstudent");
 
 //Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -57,6 +61,10 @@ app.use("/api/edates", edates);
 app.use("/api/postcoursestostudent", postcoursestostudent);
 app.use("/api/reviews", reviews);
 app.use("/api", require("./routes/api/payment"));
+app.use("/api/courseprof", courseprof);
+app.use("/api/studentforcourse", studentforcourse);
+app.use("/api/grade", grade);
+app.use("/api/gradeforstudent", gradeforstudent);
 
 //Serve  static assets
 if (process.env.NODE_ENV === "production") {

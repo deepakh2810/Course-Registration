@@ -12,14 +12,18 @@ class EdatesStudent extends Component {
     if (this.props.edates.edates[0]) {
       return (
         <React.Fragment>
-          <h2>Existing Items on the list:</h2>
+          <h2>Enrollment Date:</h2>
           {this.props.edates.edates.map(edates => (
-            <div className="card w-90 m-2">
-              <div className="card-body">
-                <div className="card-title">
-                  <div className="row">
-                    <div className="col col-md-12">
-                      <h4 key={edates._id}>{edates.Edates}</h4>
+            <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+              <div className="card w-90 m-2" key={edates._id}>
+                <div className="card-body">
+                  <div className="card-title">
+                    <div className="row">
+                      <div className="col col-md-12">
+                        <h4 className="fa fa fa-genderless pr-1">
+                          &nbsp;&nbsp;{edates.Edates}
+                        </h4>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -28,11 +32,20 @@ class EdatesStudent extends Component {
           ))}
         </React.Fragment>
       );
+    } else {
+      return (
+        <React.Fragment>
+          <div className="shadow-lg p-4 mb-10 bg-grey rounded">
+            <div className="display-4 lead text-center">
+              <h3>Enrollment Dates have not been published yet.</h3>
+            </div>
+          </div>
+        </React.Fragment>
+      );
     }
   }
 
   render() {
-    console.log("In EDates front end: ", this.props);
     return (
       <React.Fragment>
         <div className="container-fluid">{this.renderExistingContent()}</div>

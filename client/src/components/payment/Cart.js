@@ -1,48 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { removeCourseFromCart } from "../../actions/studentinfoActions";
+
 import { getStudentInfoByName } from "../../actions/studentinfoActions";
 import { getCourses } from "../../actions/courseActions";
-import { Button } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch
-} from "react-router-dom";
-//import AddCourses from "../add-swap-delete-course/addcourses"
-import CourseCart from "../add-swap-delete-course/coursecart";
-//import './TheForm.css';
+
 import TextFieldGroup from "../common/TextFieldGroup";
 import ConfirmationPage from "./ConfirmationPage";
 
-
-{
-  /*   ///  this was inside the return
-  <form onSubmit = {this.props.printFunction}>
-  <h1> Cart  <span className="price" style={{color: 'black'}}>
-  <i className="fa fa-shopping-cart" /> <b></b></span> </h1>
-  <hr/>
-  <p> Financial Aid Deduction
-  <span className="price" style={{color: 'black'}}><b> </b></span>
-  </p>
-  <p> Total Cost
-  <span className="price" style={{color: 'black'}}><b> </b></span>
-  </p>
-  <p>
-   <br/> <Button onClick = {this.props.printFunction} bsStyle="info"> Print </Button>  </p> <br/>
-  </form>
-*/
-}
-
-
-//const TheContext = React.creatContext('firstcontext');
-
-
 class Cart extends React.Component {
-
-
-
   state = {
     selectButtonInfo: {
       add: 0,
@@ -103,25 +68,10 @@ class Cart extends React.Component {
     this.setState(selectButtonInfo);
   };
 
-
   //componentDidMount() {
   //this.props.getStudentInfoByName(this.props.username);  }
 
-
-
-
-
-
   render() {
-
-
-
-
-
-
-
-
-
     // const numofcoursesincart = this.state.coursesincart.length;
     if (this.props.coursesincart) {
       const numofcoursesincart = this.props.coursesincart.length;
@@ -129,70 +79,65 @@ class Cart extends React.Component {
       //const numofcoursesincart = this.state.coursesincart.length;
       const costperCourse = 1000;
       const totalcostCourses = 0;
-      console.log("Inside the cart: ", this.props);
 
+      const receiptInfo = [];
+      const a2 = [{ grade: "i am item1" }];
+      //receiptInfo.push.apply( receiptInfo , a2 );
+      const a3 = ["i am item3"];
 
+      this.props.coursesincart.map(course =>
+        receiptInfo.push.apply(receiptInfo, [course.name])
+      );
 
-      const receiptInfo = [ ];
-     const a2 = [ { grade: "i am item1"} ];
-     //receiptInfo.push.apply( receiptInfo , a2 );
-     const a3 = [  "i am item3"];
+      // console.log("receiptInfo: ", receiptInfo);
+      // console.log("a3: ", a3);
 
-     this.props.coursesincart.map(course => (
-        receiptInfo.push.apply( receiptInfo, [course.name] )
-     ))
+      // console.log("receiptInfo: ", this.receiptInfo);
 
-       console.log("receiptInfo: ", receiptInfo);
-       console.log("a3: ", a3);
+      //  <ConfirmationPage  receiptInfo={receiptInfo} />
 
-       console.log("receiptInfo: ", this.receiptInfo);
-
-     //  <ConfirmationPage  receiptInfo={receiptInfo} />
-
-   // <div>     <ConfirmationPage receiptInfo={this.receiptInfo} /> </div>
-
-
-
+      // <div>     <ConfirmationPage receiptInfo={this.receiptInfo} /> </div>
 
       return (
-
         <React.Fragment>
-
-
           {/* <div className="container-fluid"> */}
           {/* <div className="row"> */}
           {/* <div className="col-md-6 m-auto"> */}
           <div className="shadow-lg p-4 mb-10 bg-grey rounded">
-
             <h1 className="display-4 text-center">Cart</h1>
 
-                        <p className="lead text-left" style={{ color: "black" }}>
-                          {" "}
-                          Total Number of Courses in Cart: {numofcoursesincart}{" "}
-                          <br/>
-                          <i className="fa fa-shopping-cart" />
-                          <hr />
-                        </p>
+            <p className="lead text-left" style={{ color: "black" }}>
+              {" "}
+              <i className="fa fa-shopping-cart">
+                &nbsp;&nbsp;Total Number of Courses in Cart:{" "}
+                {numofcoursesincart} <br />
+              </i>
+              {/* <i className="fa fa-shopping-cart" /> */}
+              <hr />
+            </p>
 
             {this.props.coursesincart.map(course => (
-              <h4>{course.name}</h4>
+              <h4 className="fa fa fa-genderless pr-1">
+                &nbsp;&nbsp;{course.name}
+              </h4>
             ))}
 
-            <p className="lead text-right" style={{ color: "black" }}>   <hr />
-            {"Price of each course: $1000"}</p>
-            
-            <h5  className="lead text-right" style={{color: 'black'}} >
+            <p className="lead text-right" style={{ color: "black" }}>
               {" "}
-              {"Total Cost: $"} {1000 * this.props.studentinfobyname.studentinfo.coursesincart.length}
+              <hr />
+              {"Price of each course: $1000"}
+            </p>
+
+            <h5 className="lead text-right" style={{ color: "black" }}>
+              {" "}
+              {"Total Cost: $"}{" "}
+              {1000 *
+                this.props.studentinfobyname.studentinfo.coursesincart.length}
             </h5>
             <hr />
 
             <h4>Financial Aid:</h4>
-            <form onSubmit= {this.props.funcfinaid  }>
-
-
-
-
+            <form onSubmit={this.props.funcfinaid}>
               <TextFieldGroup
                 id="financialAidAmount"
                 name="financialAidAmount"
@@ -216,7 +161,7 @@ class Cart extends React.Component {
                 )}{" "}
               </div>
 
-              {console.log("length of coursesincart:" + { numofcoursesincart })}
+              {/* {console.log("length of coursesincart:" + { numofcoursesincart })} */}
 
               <input
                 type="submit"
@@ -238,14 +183,12 @@ class Cart extends React.Component {
 
 //React.render( <Cart  receiptInfo={receiptInfo} /> , document.getElement);
 
-
 const mapStateToProps = state => {
   return {
     studentinfo: state.studentinfo,
     studentinfobyname: state.studentsinfo
   };
 };
-
 
 export default connect(
   mapStateToProps,

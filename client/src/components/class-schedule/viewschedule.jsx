@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getStudentInfoByName } from "../../actions/studentinfoActions";
+import ViewScheduleCard from "./viewschedulecard";
 
 class ViewSchedule extends Component {
   componentDidMount() {
@@ -8,44 +9,17 @@ class ViewSchedule extends Component {
   }
 
   render() {
-    console.log("Props: ", this.props);
-    console.log(
-      "Length: ",
-      this.props.studentinfobyname.studentinfo.coursesselected
-    );
     if (this.props.studentinfobyname.studentinfo.coursesselected) {
       return (
         <React.Fragment>
-          <table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Course #</th>
-                <th scope="col">Class</th>
-                <th scope="col">Schedule</th>
-                <th scope="col">Location</th>
-              </tr>
-            </thead>
-            {this.props.studentinfobyname.studentinfo.coursesselected.map(
-              course => (
-                <tbody key={course.coursenumber}>
-                  <tr>
-                    <td>
-                      <h3>{course.coursenumber}</h3>
-                    </td>
-                    <td>
-                      <h3>{course.name}</h3>
-                    </td>
-                    <td>
-                      <h3>{course.schedule}</h3>
-                    </td>
-                    <td>
-                      <h3>{course.location}</h3>
-                    </td>
-                  </tr>
-                </tbody>
-              )
-            )}
-          </table>
+          <div className="display-4 lead text-center">
+            <h2>Your Weekly Schedule</h2>
+          </div>
+          {this.props.studentinfobyname.studentinfo.coursesselected.map(
+            course => (
+              <ViewScheduleCard key={course.coursenumber} data={course} />
+            )
+          )}
         </React.Fragment>
       );
     } else {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeCourseFromCart } from "../../actions/studentinfoActions";
+import { Link } from "react-router-dom";
 class CourseCart extends Component {
   handleRemove = course => {
     this.props.removeCourseFromCart(this.props.studentid, course);
@@ -29,7 +30,9 @@ class CourseCart extends Component {
             </tbody>
           ))}
         </table>
-        <button className="btn btn-success w-100">Pay Now</button>
+        <Link to={"/payment"}>
+          <button className="btn btn-success w-100">Pay Now</button>
+        </Link>
       </React.Fragment>
     );
   }
