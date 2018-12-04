@@ -16,15 +16,6 @@ library.add(faStroopwafel);
 class Sidebar extends Component {
   state = {};
   render() {
-    // const styles = {
-    //   base: {
-    //     ":hover": {
-    //       color: "#ffffff",
-    //       cursor: "pointer"
-    //     }
-    //   }
-    // };
-    // console.log("In sidebar: ", this.props);
     const { user } = this.props.auth;
     return (
       <React.Fragment>

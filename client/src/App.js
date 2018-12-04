@@ -60,6 +60,7 @@ import AddGrades from "./components/add-view-grade/addgrades";
 import AdminGradesView from "./components/add-view-grade/admingradesview";
 import ViewStudents from "./components/viewstudent/viewstudent";
 import ViewStudentDesc from "./components/viewstudent/viewstudentdesc";
+import Bargraph from "./components/graphs/graphswrapper";
 library.add(faStroopwafel);
 
 //Check for token
@@ -105,6 +106,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/chat" component={chat} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/bargraph" component={Bargraph} />
             </Switch>
             <Switch>
               <PrivateRoute exact path="/groupchat" component={GroupChat} />

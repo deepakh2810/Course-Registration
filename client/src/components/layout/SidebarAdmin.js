@@ -107,16 +107,6 @@ class SidebarAdmin extends Component {
                   &nbsp; Group Chat
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  href="/"
-                  className="nav-link active"
-                  style={{ color: "white" }}
-                >
-                  <i className="fas fa-shopping-cart" />
-                  &nbsp; Shopping Cart
-                </a>
-              </li>
             </ul>
           </div>
         </div>
