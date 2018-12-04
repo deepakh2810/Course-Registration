@@ -9,7 +9,7 @@ export const registerUser = (userData, history) => dispatch => {
   console.log("In Actions - Register: ", userData);
   axios
     .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
+    .then(res => history.push("/verify"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
