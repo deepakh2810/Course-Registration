@@ -68,16 +68,58 @@ class RegistrarDashboard extends Component {
   };
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-6">
-            {this.state.cards.map(card => (
-              <ViewCard key={card.id} card={card} />
-            ))}
-          </div>
-        </div>
-        <br />
-      </div>
+     
+<div
+className="container-fluid"
+>
+
+<div
+className="row">
+
+<div
+className="col-md-2">
+
+<SidebarAdmin
+/>
+
+</div>
+
+<div
+className="col-md-10">
+
+<div
+className="row">
+
+<div
+className="col-md-11">
+
+<div
+className="row">
+
+{this.state.cards.map(card
+=> (
+
+<ViewCard
+key={card.id}
+card={card}
+/>
+
+))}
+
+</div>
+
+</div>
+
+<br
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
     );
   }
 }
