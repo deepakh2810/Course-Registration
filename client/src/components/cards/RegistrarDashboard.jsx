@@ -21,7 +21,7 @@ class RegistrarDashboard extends Component {
         name: "View Users",
         description: "View all users in the System",
         imagelink:
-          "http://oriellycc.com/wp-content/uploads/2016/08/calschedule.jpg",
+          "https://www.recruitguelph.ca/cecs/sites/uoguelph.ca.cecs/files/public/images/what%27s-your-profile_1.jpg",
         route: "/profiles"
       },
       {
