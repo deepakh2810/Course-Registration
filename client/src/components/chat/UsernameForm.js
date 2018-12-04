@@ -36,15 +36,12 @@ class UsernameForm extends Component {
                             <h1 className="display-4 text-center">
                               Person name you want to chat with!
                             </h1>
-                            <p className="lead text-center">
-                              What is your username!
-                            </p>
 
                             <form onSubmit={this.onSubmit}>
                               <input
                                 type="text"
                                 className="form-control form-control-lg "
-                                placeholder="Your full name"
+                                placeholder="Enter the name"
                                 onChange={this.onChange}
                               />{" "}
                               <input
