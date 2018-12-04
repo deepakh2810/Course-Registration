@@ -37,7 +37,6 @@ class AddReviews extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
     console.log("On submit");
     console.log("The state: ", this.state);
     console.log("Checking for the user:", this.props.auth.user.name);
@@ -110,7 +109,7 @@ class AddReviews extends Component {
     //  console.log("this.props.history: ", this.props.history);
     this.props.postReviewsByCourseNumber(reviewsData, this.props.history);
     //console.log("after: this.props.history: ", this.props.history);
-  }
+}
 
   onChange(e) {
     console.log("onchange");

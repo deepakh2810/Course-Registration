@@ -38,7 +38,7 @@ class Payment extends React.Component {
   };
 
   submitFunction = e => {
-    //e.preventDefault();
+    e.preventDefault();
     const namecard = e.target.elements.nameoncard.value;
     const cardnum = e.target.elements.creditcardnumber.value;
     const expirmonthyear = e.target.elements.expirationmonthyear.value;
@@ -52,13 +52,30 @@ class Payment extends React.Component {
       // console.log("const info after JSON.stringify: " + info);
       // console.log(buttonSubmitted);
 
+
+//console.log(,);
+//this.state.newpricetotal
+      let printNewAmount = 0;
+
+      if( this.state.newpricetotal){
+        printNewAmount = this.state.newpricetotal;
+      }
+      else{
+        printNewAmount = 1000 * this.props.studentinfobyname.studentinfo.coursesincart.length;
+      }
+
+
+
       const completedForm = {
         name: namecard,
         email: email,
         creditcardnumber: cardnum,
         expirationmonthyear: expirmonthyear,
         //expirationyear: expiryear,
-        ccv: cvv
+        ccv: cvv,
+        thecoursesincart: this.props.studentinfobyname.studentinfo.coursesincart,
+        enteredfinancialaid: this.state.enteredfinancialaid,
+        totalAmountFinal: printNewAmount
       };
       // console.log(
       //   " This is completedForm before JSON.stringify " + completedForm
@@ -128,12 +145,7 @@ class Payment extends React.Component {
       );
 
       {
-        /*
-      this.props.history.push({
-        pathname: "/confirmationpage",
-        state: {detail: this.state.receiptInfo}
-      });
-*/
+
       }
 
       //return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo} /> }</div>;
@@ -152,7 +164,21 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
 
       //return <div>{   <Redirect to={"/confirmationpage" + this.state.receiptInfo}  /> }</div>;
 
-      this.props.history.push("/confirmationpage");
+
+
+
+
+     this.props.history.push("/confirmationpage", { newAmount: this.state.newpricetotal } );
+
+    {/*
+    this.props.history.push({
+      pathname: "/confirmationpage",
+      state: {detail: this.state.receiptInfo}
+    });
+*/}
+
+
+
 
       //return( <div> <Redirect to={"/confirmationpage" + this.state.receiptInfo}  />  </div>);
     } else {
@@ -178,7 +204,7 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
             />
           }
         </div>
-        ;{this.props.history.push("/confirmationpage")}
+        {this.props.history.push("/confirmationpage")}
       </React.Fragment>
     );
   }
@@ -214,6 +240,9 @@ return <div>{    <ConfirmationPage receiptInfo={this.props.receiptInfo}
   };
 
   render() {
+
+    console.log("NEWPRICETOTAL!!", this.state.newpricetotal);
+
     ////////////// VVV //SAVES THE COURSES IN CART
     if (this.props.studentinfobyname.studentinfo.coursesincart) {
       const numofcoursesincart = this.props.studentinfobyname.studentinfo
