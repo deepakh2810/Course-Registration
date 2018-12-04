@@ -120,6 +120,11 @@ passport.authenticate("jwt", { session: false }),
 
 
 
+
+
+
+    const costBeforeFinAid = 1000 * req.body.paymentinfo.thecoursesincart.length;
+
   // Compose an email
           const html = `Hi ${req.body.paymentinfo.name}!
 
@@ -137,18 +142,15 @@ passport.authenticate("jwt", { session: false }),
             Card Expiration Date:
             ${req.body.paymentinfo.expirationmonthyear}
 
-            Courses Checkout out:
-
-
             Price of each course: $1000
-            Number of Courses Checked Out: 2
-            Total Cost of Courses Checked Out: $2000
+            Number of Courses Checked Out:  ${req.body.paymentinfo.thecoursesincart.length}
 
+            Total Cost of Courses Before Financial Aid :  ${ costBeforeFinAid }
+            Amount of Financial Aid Entered:   ${req.body.paymentinfo.enteredfinancialaid}
+
+            Final Total after Financial Aid Deduction: ${req.body.paymentinfo.newAmountAfterFinAid}
             ___________________________________________________________
 
-
-            Checkout your new Course Schedule at the following link:
-            <a href="http://localhost:3000/addcourses">
 
             Have a Amazing day!
 

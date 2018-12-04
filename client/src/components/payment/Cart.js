@@ -153,6 +153,9 @@ class Cart extends React.Component {
 
               {/* {console.log("length of coursesincart:" + { numofcoursesincart })} */}
 
+      
+
+
               <input
                 type="submit"
                 value="Calculate Financial Aid"

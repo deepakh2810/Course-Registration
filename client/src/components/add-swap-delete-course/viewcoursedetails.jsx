@@ -57,7 +57,7 @@ class ViewCourseDetails extends Component {
           </div>
 
 
-          <div> <Reviews/> </div>
+          <div> <Reviews courses={this.props.courses.courses} /> </div>
 
           </div>
         </div>

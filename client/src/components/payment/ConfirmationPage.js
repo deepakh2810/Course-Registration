@@ -34,7 +34,7 @@ class ConfirmationPage extends React.Component{
 
     returnDashboardButton = (e) => {
       e.preventDefault();
-      this.props.history.push("/addcourses");
+      this.props.history.push("/viewschedule");
     }
 
 
@@ -43,6 +43,18 @@ render(){
   console.log(" NOW ON CONFIRMATION PAGE:Inside the props: ", this.props);
   console.log("NOW ON CONFIRMATION PAGE: ");
   console.log(" NOW ON CONFIRMATION PAGE:this.props.studentinfobyname.studentinfo ", this.props.studentinfobyname.studentinfo);
+
+  let printNewAmount = 0;
+  if( this.props.location.state.newAmount){
+    printNewAmount = this.props.location.state.newAmount;
+  }
+  else{
+    printNewAmount = 1000 * this.props.studentinfobyname.studentinfo.coursesincart.length;
+  }
+
+
+  //console.log("Inside!!", this.state.newpricetotal);
+
 
   const theProps = this.props;
   console.log(" THEPROPS VARIABLE ", theProps );
@@ -97,9 +109,15 @@ if (this.props.studentinfobyname.studentinfo.coursesincart) {
 
                 <hr />
                 <h5  className="lead text-right" style={{color: 'black'}} >
-                  {" "}
-                  {"Total Cost: $"} {1000 * this.props.studentinfobyname.studentinfo.coursesincart.length}
+
+                  {"Total Cost Before Financial Aid Deduction: $"} {1000 * this.props.studentinfobyname.studentinfo.coursesincart.length}
+
+                  </h5>
+
+                    <h5 className="lead text-right" style={{color: 'black'} } >
+                      {"Total Cost after Deductions:  $"} { printNewAmount}
                 </h5>
+
 
                 </React.Fragment>
 
