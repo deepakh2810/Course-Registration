@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsers } from "../../actions/edatesActions";
-// import { Link } from "react-router-dom";
 import EDatesCard from "./edatescard";
 
 class EdatesAdmin extends Component {

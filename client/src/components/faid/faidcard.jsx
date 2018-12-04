@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class EDatesCard extends Component {
+class FinancialAidCard extends Component {
   render() {
     return (
       <React.Fragment>
@@ -19,7 +19,7 @@ class EDatesCard extends Component {
               </div>
             </div>
             <div class="col-md-2">
-              <Link to={"/addedates/" + this.props.data.university_id}>
+              <Link to={"/addfaid/" + this.props.data.university_id}>
                 <button type="button" className="btn btn-info m-2">
                   Add
                 </button>
@@ -33,4 +33,4 @@ class EDatesCard extends Component {
   }
 }
 
-export default EDatesCard;
+export default FinancialAidCard;

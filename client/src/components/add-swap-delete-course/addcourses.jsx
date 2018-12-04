@@ -185,7 +185,7 @@ class AddCourses extends Component {
             <div className="col-md-5">
               <div className="dropdown">
                 <button
-                  className="btn btn-secondary dropdown-toggle"
+                  className="btn btn-info dropdown-toggle"
                   type="button"
                   id="dropdownMenuButton"
                   data-toggle="dropdown"
@@ -234,6 +234,7 @@ class AddCourses extends Component {
                 <form>
                   <input
                     onChange={this.onInputChange.bind(this)}
+                    className="form-control form-control-lg float-left"
                     type="text"
                     placeholder="Search Here.."
                     name="search"
