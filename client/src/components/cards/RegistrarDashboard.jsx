@@ -42,8 +42,8 @@ class RegistrarDashboard extends Component {
       },
       {
         id: "t001",
-        name: "Enter Holds",
-        description: "Enter Holds for Student/Professor",
+        name: "Enter/Remove Holds",
+        description: "Enter/Remove Holds for Student/Professor",
         imagelink:
           "http://wbnaboise.org/wp-content/uploads/2015/07/hold200.gif",
         route: "/holds"
