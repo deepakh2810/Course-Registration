@@ -29,7 +29,7 @@ class RegistrarDashboard extends Component {
         name: "Enter Financial Aid",
         description: "Enter Financial Aid for a Student",
         imagelink:
-          "https://www.gijobs.com/wp-content/uploads/2014/08/textbooks.resized-1.jpg",
+          "https://manhattantech.edu/sites/default/files/styles/header/public/financial_aid.png?itok=wH_gTEr8",
         route: "/faid"
       },
       {
