@@ -29,13 +29,13 @@ class RegistrarDashboard extends Component {
         name: "Enter Financial Aid",
         description: "Enter Financial Aid for a Student",
         imagelink:
-          "https://manhattantech.edu/sites/default/files/styles/header/public/financial_aid.png?itok=wH_gTEr8",
+          "https://www.gijobs.com/wp-content/uploads/2014/08/textbooks.resized-1.jpg",
         route: "/faid"
       },
       {
         id: "C003",
         name: "View Student Grades",
-        description: "Course grades of students",
+        description: " View your individual course grades so far",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
         route: "/grade"
@@ -68,58 +68,25 @@ class RegistrarDashboard extends Component {
   };
   render() {
     return (
-     
-<div
-className="container-fluid"
->
-
-<div
-className="row">
-
-<div
-className="col-md-2">
-
-<SidebarAdmin
-/>
-
-</div>
-
-<div
-className="col-md-10">
-
-<div
-className="row">
-
-<div
-className="col-md-11">
-
-<div
-className="row">
-
-{this.state.cards.map(card
-=> (
-
-<ViewCard
-key={card.id}
-card={card}
-/>
-
-))}
-
-</div>
-
-</div>
-
-<br
-/>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+      <div className="container-fluid" >
+        <div className="row">
+          <div className="col-md-2">
+            <SidebarAdmin />
+          </div>
+          <div className="col-md-10">
+            <div className="row">
+              <div className="col-md-11">
+                <div className="row">
+                  {this.state.cards.map(card => (
+                    <ViewCard key={card.id} card={card} />
+                  ))}
+                </div>
+              </div>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
