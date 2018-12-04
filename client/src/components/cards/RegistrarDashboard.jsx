@@ -35,7 +35,7 @@ class RegistrarDashboard extends Component {
       {
         id: "C003",
         name: "View Student Grades",
-        description: " View individual course grades so far",
+        description: "Course grades of students",
         imagelink:
           "https://www.insidehighered.com/sites/default/server_files/media/iStock-172413295.jpg",
         route: "/grade"
