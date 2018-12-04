@@ -30,7 +30,7 @@ class StudentDashboard extends Component {
         name: "Profile Details",
         description: "View Complete Profile",
         imagelink:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1024px-Circle-icons-profile.svg.png",
+          "https://www.recruitguelph.ca/cecs/sites/uoguelph.ca.cecs/files/public/images/what%27s-your-profile_1.jpg",
         route: "/profiles"
       },
       {
